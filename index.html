@@ -3,9 +3,72 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
+        <link rel="stylesheet" href="./style/style.css" />
+        <title>Portfelio</title>
     </head>
     <body>
-        <p>a stupid little page</p>
+        <!-- 🔄 Loader -->
+        <div id="loader-wrapper">
+            <div class="loader"></div>
+        </div>
+        <header>
+            <nav>
+                <div class="logo">logo</div>
+                <div class="navmenu">
+                    <button onclick="setTheme('light')">Light</button>
+                    <button onclick="setTheme('dark')">Dark</button>
+                    <ul>
+                        <li>projects</li>
+                        <li>about</li>
+                        <li>contact</li>
+                        <li>menu</li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <main>
+            <div class="card">Card content</div>
+            <button>Click me</button>
+            <a href="#">A link</a>
+            <hr class="divider" />
+            <p>Some text</p>
+        </main>
+        <script>
+            function setTheme(theme) {
+                document.body.className = "theme-" + theme;
+            }
+            function applyTheme(theme) {
+                document.body.className = "theme-" + theme;
+                localStorage.setItem("theme", theme);
+            }
+
+            // Run on first page load
+            (function () {
+                const savedTheme = localStorage.getItem("theme");
+
+                if (savedTheme) {
+                    applyTheme(savedTheme); // user selected earlier
+                } else {
+                    const prefersDark = window.matchMedia(
+                        "(prefers-color-scheme: dark)"
+                    ).matches;
+                    applyTheme(prefersDark ? "dark" : "light"); // auto-detect
+                }
+            })();
+
+            // actual working loading model
+            // window.addEventListener("load", () => {
+            //     document.getElementById("loader-wrapper").style.display =
+            //         "none";
+            // });
+
+            // delay loading to see in action
+            window.addEventListener("load", () => {
+                setTimeout(() => {
+                    document.getElementById("loader-wrapper").style.display =
+                        "none";
+                }, 2000); // Delay for 2 seconds
+            });
+        </script>
     </body>
 </html>
