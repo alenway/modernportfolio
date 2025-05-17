@@ -1,0 +1,99 @@
+@import "https://unpkg.com/open-props/easings.min.css";
+
+:root {
+    --color-light-bg: #f1faee;
+    --color-light-text: #1d3557;
+    --color-dark-bg: #001524;
+    --color-dark-text: #ffecd1;
+    --transition-speed: 0.3s;
+}
+
+/* Light and Dark Modes */
+[data-theme="light"] {
+    background-color: var(--color-light-bg);
+    color: var(--color-light-text);
+}
+
+[data-theme="dark"] {
+    background-color: var(--color-dark-bg);
+    color: var(--color-dark-text);
+}
+
+body {
+    font-family: sans-serif;
+    transition: background-color var(--transition-speed),
+        color var(--transition-speed);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+}
+
+/* Toggle Button */
+.theme-toggle {
+    --size: 2.5rem;
+    background: none;
+    border: none;
+    padding: 0;
+    width: var(--size);
+    height: var(--size);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    cursor: pointer;
+    outline-offset: 4px;
+    color: var(--color-light-text);
+}
+
+[data-theme="dark"] .theme-toggle {
+    color: var(--color-dark-text);
+}
+
+.theme-toggle svg {
+    width: 100%;
+    height: 100%;
+    stroke-linecap: round;
+}
+
+/* Sun/Moon icon animations */
+.sun-and-moon {
+    transition: transform 0.3s ease;
+}
+
+.sun {
+    transform-origin: center center;
+    transition: transform 0.5s var(--ease-elastic-3), fill 0.3s ease;
+    fill: currentColor;
+}
+
+.sun-beams {
+    transform-origin: center center;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    stroke: currentColor;
+    stroke-width: 2px;
+}
+
+/* Dark mode styles */
+[data-theme="dark"] .sun {
+    transform: scale(1.5);
+    transition-timing-function: var(--ease-3);
+}
+
+[data-theme="dark"] .sun-beams {
+    opacity: 0;
+    transform: rotate(-25deg);
+}
+
+/* Light mode styles */
+[data-theme="light"] .sun {
+    transform: scale(1);
+}
+
+[data-theme="light"] .sun-beams {
+    opacity: 1;
+    transform: rotate(0deg);
+}
