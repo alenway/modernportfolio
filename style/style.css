@@ -1,3 +1,12 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    font-size: 16px; /* default */
+}
+
 .theme-light {
     --color-1: #e63946; /* background */
     --color-2: #f1faee; /* surface (cards, nav, footer) */
@@ -15,7 +24,7 @@
 }
 
 /* === Loader === */
-#loader-wrapper {
+/* #loader-wrapper {
     position: fixed;
     top: 0;
     left: 0;
@@ -40,6 +49,43 @@
 @keyframes spin {
     to {
         transform: rotate(360deg);
+    }
+} */
+
+#loader-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--color-1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.typing-text {
+    font-family: monospace;
+    font-size: 1.5rem;
+    color: var(--color-5);
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid var(--color-5);
+    width: 0;
+    animation: typing 3s steps(17) forwards, blink 0.75s step-end infinite;
+}
+
+/* Adjust steps() to match your text length */
+@keyframes typing {
+    to {
+        width: 17ch; /* number of characters */
+    }
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent;
     }
 }
 
@@ -90,4 +136,11 @@ header nav .navmenu ul {
     gap: 1.5rem;
     padding: 0;
     margin: 0;
+}
+
+header {
+    background-color: var(--color-2);
+    margin: 10px;
+    padding: 20px;
+    border-radius: 20px;
 }

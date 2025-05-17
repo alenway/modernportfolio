@@ -1,0 +1,98 @@
+/* === Loader === */
+#loader-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--color-1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.typing-text {
+  font-family: monospace;
+  font-size: 1.5rem;
+  color: var(--color-5);
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid var(--color-5);
+  width: 0;
+  animation: typing 3s steps(17) forwards, blink 0.75s step-end infinite;
+}
+
+/* Adjust steps() to match your text length */
+@keyframes typing {
+  to {
+    width: 17ch;
+  }
+}
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+.theme-toggle {
+  --size: 2rem;
+  background: none;
+  border: none;
+  padding: 0;
+  inline-size: var(--size);
+  block-size: var(--size);
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+/* theme implementation */
+body {
+  background-color: var(--color-1);
+  color: var(--color-4);
+}
+
+header,
+.card {
+  background-color: var(--color-2);
+}
+
+button,
+a {
+  background-color: var(--color-5);
+  color: var(--color-2);
+  border: none;
+}
+
+hr,
+.divider {
+  background-color: var(--color-3);
+}
+
+input,
+textarea {
+  background-color: var(--color-2);
+  border: 1px solid var(--color-3);
+  color: var(--color-4);
+}
+
+header {
+  margin: 10px;
+  padding: 20px;
+  border-radius: 20px;
+  background-color: var(--color-2);
+}
+header nav {
+  display: flex;
+  justify-content: space-between;
+}
+header nav .navmenu {
+  display: flex;
+  gap: 1.5rem;
+}
+header nav .navmenu ul {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+  padding: 0;
+  margin: 0;
+}/*# sourceMappingURL=main.css.map */
