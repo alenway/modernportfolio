@@ -3,26 +3,107 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="./style/style.css" />
+        <link rel="stylesheet" href="./style/default.css" />
+        <link rel="stylesheet" href="./style/main.css" />
         <title>Portfelio</title>
     </head>
     <body>
         <!-- 🔄 Loader -->
-        <div id="loader-wrapper">
+        <!-- <div id="loader-wrapper">
             <div class="loader"></div>
-        </div>
+        </div> -->
+        <!-- <div id="loader-wrapper">
+            <p class="typing-text">Loading Profello...</p>
+        </div> -->
+
         <header>
             <nav>
                 <div class="logo">logo</div>
                 <div class="navmenu">
-                    <button onclick="setTheme('light')">Light</button>
-                    <button onclick="setTheme('dark')">Dark</button>
-                    <ul>
-                        <li>projects</li>
-                        <li>about</li>
-                        <li>contact</li>
-                        <li>menu</li>
-                    </ul>
+                    <div class="themebuttons">
+                        <button
+                            class="theme-toggle"
+                            type="button"
+                            title="Toggle theme"
+                            aria-label="Toggle theme"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                aria-hidden="true"
+                                width="1em"
+                                height="1em"
+                                fill="currentColor"
+                                stroke-linecap="round"
+                                class="theme-toggle__classic"
+                                viewBox="0 0 32 32"
+                            >
+                                <clipPath id="theme-toggle__classic__cutout">
+                                    <path d="M0-5h30a1 1 0 0 0 9 13v24H0Z" />
+                                </clipPath>
+                                <g
+                                    clip-path="url(#theme-toggle__classic__cutout)"
+                                >
+                                    <circle cx="16" cy="16" r="9.34" />
+                                    <g stroke="currentColor" stroke-width="1.5">
+                                        <path d="M16 5.5v-4" />
+                                        <path d="M16 30.5v-4" />
+                                        <path d="M1.5 16h4" />
+                                        <path d="M26.5 16h4" />
+                                        <path d="m23.4 8.6 2.8-2.8" />
+                                        <path d="m5.7 26.3 2.9-2.9" />
+                                        <path d="m5.8 5.8 2.8 2.8" />
+                                        <path d="m23.4 23.4 2.9 2.9" />
+                                    </g>
+                                </g>
+                            </svg>
+                        </button>
+                        <button
+                            class="theme-toggle theme-toggle--reversed"
+                            type="button"
+                            title="Toggle theme"
+                            aria-label="Toggle theme"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                aria-hidden="true"
+                                width="1em"
+                                height="1em"
+                                fill="currentColor"
+                                stroke-linecap="round"
+                                class="theme-toggle__classic"
+                                viewBox="0 0 32 32"
+                            >
+                                <clipPath id="theme-toggle__classic__cutout">
+                                    <path d="M0-5h30a1 1 0 0 0 9 13v24H0Z" />
+                                </clipPath>
+                                <g
+                                    clip-path="url(#theme-toggle__classic__cutout)"
+                                >
+                                    <circle cx="16" cy="16" r="9.34" />
+                                    <g stroke="currentColor" stroke-width="1.5">
+                                        <path d="M16 5.5v-4" />
+                                        <path d="M16 30.5v-4" />
+                                        <path d="M1.5 16h4" />
+                                        <path d="M26.5 16h4" />
+                                        <path d="m23.4 8.6 2.8-2.8" />
+                                        <path d="m5.7 26.3 2.9-2.9" />
+                                        <path d="m5.8 5.8 2.8 2.8" />
+                                        <path d="m23.4 23.4 2.9 2.9" />
+                                    </g>
+                                </g>
+                            </svg>
+                        </button>
+                        <button onclick="setTheme('light')">Light</button>
+                        <button onclick="setTheme('dark')">Dark</button>
+                    </div>
+                    <div class="navitems">
+                        <ul>
+                            <li>item</li>
+                            <li>item</li>
+                            <li>item</li>
+                            <li>item</li>
+                        </ul>
+                    </div>
                 </div>
             </nav>
         </header>
@@ -62,13 +143,21 @@
             //         "none";
             // });
 
-            // delay loading to see in action
-            window.addEventListener("load", () => {
-                setTimeout(() => {
-                    document.getElementById("loader-wrapper").style.display =
-                        "none";
-                }, 2000); // Delay for 2 seconds
-            });
+            // delay loading to see in action for circular loading effect
+            // window.addEventListener("load", () => {
+            //     setTimeout(() => {
+            //         document.getElementById("loader-wrapper").style.display =
+            //             "none";
+            //     }, 2000); // Delay for 2 seconds
+            // });
+
+            // typing loader
+            // window.addEventListener("load", () => {
+            //     setTimeout(() => {
+            //         const loader = document.getElementById("loader-wrapper");
+            //         loader.style.display = "none";
+            //     }, 3200); // slightly longer than typing animation
+            // });
         </script>
     </body>
 </html>
