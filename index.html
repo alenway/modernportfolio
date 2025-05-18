@@ -2,162 +2,63 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
+        <link rel="stylesheet" href="./style/custom.css" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="./style/default.css" />
-        <link rel="stylesheet" href="./style/main.css" />
-        <title>Portfelio</title>
+        <title>Document</title>
     </head>
     <body>
-        <!-- 🔄 Loader -->
-        <!-- <div id="loader-wrapper">
-            <div class="loader"></div>
-        </div> -->
-        <!-- <div id="loader-wrapper">
-            <p class="typing-text">Loading Profello...</p>
-        </div> -->
+        <img
+            class="image-gradient"
+            src="assets/Gradient from 3D Startup App.png"
+            alt="Gradient"
+        />
+        <div class="layer-blur"></div>
+        <div class="container">
+            <header>
+                <h1 class="logo">Proj</h1>
 
-        <header>
-            <nav>
-                <div class="logo">logo</div>
-                <div class="navmenu">
-                    <div class="themebuttons">
-                        <button
-                            class="theme-toggle"
-                            type="button"
-                            title="Toggle theme"
-                            aria-label="Toggle theme"
-                        >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                aria-hidden="true"
-                                width="1em"
-                                height="1em"
-                                fill="currentColor"
-                                stroke-linecap="round"
-                                class="theme-toggle__classic"
-                                viewBox="0 0 32 32"
-                            >
-                                <clipPath id="theme-toggle__classic__cutout">
-                                    <path d="M0-5h30a1 1 0 0 0 9 13v24H0Z" />
-                                </clipPath>
-                                <g
-                                    clip-path="url(#theme-toggle__classic__cutout)"
-                                >
-                                    <circle cx="16" cy="16" r="9.34" />
-                                    <g stroke="currentColor" stroke-width="1.5">
-                                        <path d="M16 5.5v-4" />
-                                        <path d="M16 30.5v-4" />
-                                        <path d="M1.5 16h4" />
-                                        <path d="M26.5 16h4" />
-                                        <path d="m23.4 8.6 2.8-2.8" />
-                                        <path d="m5.7 26.3 2.9-2.9" />
-                                        <path d="m5.8 5.8 2.8 2.8" />
-                                        <path d="m23.4 23.4 2.9 2.9" />
-                                    </g>
-                                </g>
-                            </svg>
-                        </button>
-                        <button
-                            class="theme-toggle theme-toggle--reversed"
-                            type="button"
-                            title="Toggle theme"
-                            aria-label="Toggle theme"
-                        >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                aria-hidden="true"
-                                width="1em"
-                                height="1em"
-                                fill="currentColor"
-                                stroke-linecap="round"
-                                class="theme-toggle__classic"
-                                viewBox="0 0 32 32"
-                            >
-                                <clipPath id="theme-toggle__classic__cutout">
-                                    <path d="M0-5h30a1 1 0 0 0 9 13v24H0Z" />
-                                </clipPath>
-                                <g
-                                    clip-path="url(#theme-toggle__classic__cutout)"
-                                >
-                                    <circle cx="16" cy="16" r="9.34" />
-                                    <g stroke="currentColor" stroke-width="1.5">
-                                        <path d="M16 5.5v-4" />
-                                        <path d="M16 30.5v-4" />
-                                        <path d="M1.5 16h4" />
-                                        <path d="M26.5 16h4" />
-                                        <path d="m23.4 8.6 2.8-2.8" />
-                                        <path d="m5.7 26.3 2.9-2.9" />
-                                        <path d="m5.8 5.8 2.8 2.8" />
-                                        <path d="m23.4 23.4 2.9 2.9" />
-                                    </g>
-                                </g>
-                            </svg>
-                        </button>
-                        <button onclick="setTheme('light')">Light</button>
-                        <button onclick="setTheme('dark')">Dark</button>
+                <nav>
+                    <a href="#">company</a>
+                    <a href="#">features</a>
+                    <a href="#">resources</a>
+                    <a href="#">docs</a>
+                </nav>
+                <button class="btn-signing">signing</button>
+            </header>
+
+            <main>
+                <div class="content">
+                    <div class="tag-box">
+                        <div class="tag">intrucing &wedbar;</div>
                     </div>
-                    <div class="navitems">
-                        <ul>
-                            <li>item</li>
-                            <li>item</li>
-                            <li>item</li>
-                            <li>item</li>
-                        </ul>
+
+                    <h1>
+                        email for <br />
+                        developers
+                    </h1>
+                    <p class="discription">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Libero sit temporibus vitae fuga sed architecto in fugit
+                        eligendi. Soluta similique, voluptate ducimus debitis
+                        excepturi enim? Voluptas sapiente quia laudantium?
+                        Libero.
+                    </p>
+                    <div class="buttons">
+                        <a href="#" class="btn-get-started"
+                            >documentation &gt;</a
+                        >
+                        <a href="#" class="btn-signing-main">getstart &gt;</a>
                     </div>
                 </div>
-            </nav>
-        </header>
-        <main>
-            <div class="card">Card content</div>
-            <button>Click me</button>
-            <a href="#">A link</a>
-            <hr class="divider" />
-            <p>Some text</p>
-        </main>
-        <script>
-            function setTheme(theme) {
-                document.body.className = "theme-" + theme;
-            }
-            function applyTheme(theme) {
-                document.body.className = "theme-" + theme;
-                localStorage.setItem("theme", theme);
-            }
-
-            // Run on first page load
-            (function () {
-                const savedTheme = localStorage.getItem("theme");
-
-                if (savedTheme) {
-                    applyTheme(savedTheme); // user selected earlier
-                } else {
-                    const prefersDark = window.matchMedia(
-                        "(prefers-color-scheme: dark)"
-                    ).matches;
-                    applyTheme(prefersDark ? "dark" : "light"); // auto-detect
-                }
-            })();
-
-            // actual working loading model
-            // window.addEventListener("load", () => {
-            //     document.getElementById("loader-wrapper").style.display =
-            //         "none";
-            // });
-
-            // delay loading to see in action for circular loading effect
-            // window.addEventListener("load", () => {
-            //     setTimeout(() => {
-            //         document.getElementById("loader-wrapper").style.display =
-            //             "none";
-            //     }, 2000); // Delay for 2 seconds
-            // });
-
-            // typing loader
-            // window.addEventListener("load", () => {
-            //     setTimeout(() => {
-            //         const loader = document.getElementById("loader-wrapper");
-            //         loader.style.display = "none";
-            //     }, 3200); // slightly longer than typing animation
-            // });
-        </script>
+            </main>
+            <spline-viewer
+                class="robot-3d"
+                url="https://prod.spline.design/CwijbN56EKGHUetz/scene.splinecode"
+            ></spline-viewer>
+        </div>
+        <script
+            type="module"
+            src="https://unpkg.com/@splinetool/viewer@1.9.96/build/spline-viewer.js"
+        ></script>
     </body>
 </html>

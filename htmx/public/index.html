@@ -8,20 +8,33 @@
             integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+"
             crossorigin="anonymous"
         ></script>
-        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        <link href="./style/output.css" rel="stylesheet" />
         <title>htmx document</title>
     </head>
-    <body>
-        <div class="text-center">
-            <div class="text-2xl font-bold my-5">
-                <h1>simple request example tailwind</h1>
+    <body class="bg-gray-100">
+        <div class="container mx-auto p-4">
+            <div class="text-center">
+                <h1 class="text-2xl font-bold my-5">HTMX with Express.js</h1>
                 <button
-                    hx-get="https://jsonplaceholder.typicode.com/todos/1"
-                    hx-trigger="click"
-                    class="bg-blue-500 text-white py-2 px-3 my-5 rounded-lg"
+                    hx-get="/api/todos"
+                    hx-target="#result"
+                    hx-indicator="#loading"
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                 >
-                    fetch users
+                    Fetch Todo
                 </button>
+
+                <!-- Loading indicator -->
+                <div id="loading" class="htmx-indicator my-4">
+                    <div class="flex justify-center">
+                        <div
+                            class="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"
+                        ></div>
+                    </div>
+                </div>
+
+                <!-- Result will appear here -->
+                <div id="result" class="mt-4 p-4 bg-white rounded shadow"></div>
             </div>
         </div>
     </body>
