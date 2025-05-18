@@ -302,22 +302,23 @@ main {
 /* sound effect */
 /* Modern Sound Button Styles */
 .musiccontainer {
-    width: 100%;
-    max-width: 500px;
-    text-align: center;
-    padding: 2rem;
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 100;
 }
+
 /* Modern Sound Button Styles */
 .music-control-container {
     position: relative;
-    width: 80px;
-    height: 80px;
+    width: 50px;
+    height: 50px;
     margin: 0 auto;
 }
 
 .sound-button {
-    width: 80px;
-    height: 80px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     background-color: var(--primary-color);
     border: none;
@@ -346,14 +347,12 @@ main {
     color: white;
     transition: all 0.3s ease;
 }
-
-/* Equalizer styles */
 .equalizer {
     position: absolute;
-    width: 110px;
-    height: 110px;
-    top: -15px;
-    left: -15px;
+    width: 50px;
+    height: 50px;
+    top: -10px;
+    left: -10px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -369,109 +368,92 @@ main {
 
 .eq-bar {
     position: absolute;
-    width: 4px;
+    width: 2px;
+    height: 10px;
     background-color: var(--eq-bar-color);
     border-radius: 2px;
     transform-origin: center bottom;
-    opacity: 0.7;
+    opacity: 0.8;
 }
 
-/* Generate 26 equalizer bars positioned in a circle */
+/* 26 bars spaced evenly around 360° = every 13.846° */
 .eq-bar:nth-child(1) {
-    height: 10px;
-    transform: rotate(0deg) translateY(-53px);
+    transform: rotate(0deg) translateY(-20px);
 }
 .eq-bar:nth-child(2) {
-    height: 12px;
-    transform: rotate(15deg) translateY(-52px);
+    transform: rotate(13.85deg) translateY(-20px);
 }
 .eq-bar:nth-child(3) {
-    height: 18px;
-    transform: rotate(30deg) translateY(-50px);
+    transform: rotate(27.69deg) translateY(-20px);
 }
 .eq-bar:nth-child(4) {
-    height: 14px;
-    transform: rotate(45deg) translateY(-50px);
+    transform: rotate(41.54deg) translateY(-20px);
 }
 .eq-bar:nth-child(5) {
-    height: 16px;
-    transform: rotate(60deg) translateY(-48px);
+    transform: rotate(55.38deg) translateY(-20px);
 }
 .eq-bar:nth-child(6) {
-    height: 20px;
-    transform: rotate(75deg) translateY(-46px);
+    transform: rotate(69.23deg) translateY(-20px);
 }
 .eq-bar:nth-child(7) {
-    height: 17px;
-    transform: rotate(90deg) translateY(-44px);
+    transform: rotate(83.08deg) translateY(-20px);
 }
 .eq-bar:nth-child(8) {
-    height: 14px;
-    transform: rotate(105deg) translateY(-46px);
+    transform: rotate(96.92deg) translateY(-20px);
 }
 .eq-bar:nth-child(9) {
-    height: 11px;
-    transform: rotate(120deg) translateY(-48px);
+    transform: rotate(110.77deg) translateY(-20px);
 }
 .eq-bar:nth-child(10) {
-    height: 17px;
-    transform: rotate(135deg) translateY(-50px);
+    transform: rotate(124.62deg) translateY(-20px);
 }
 .eq-bar:nth-child(11) {
-    height: 13px;
-    transform: rotate(150deg) translateY(-50px);
+    transform: rotate(138.46deg) translateY(-20px);
 }
 .eq-bar:nth-child(12) {
-    height: 16px;
-    transform: rotate(165deg) translateY(-52px);
+    transform: rotate(152.31deg) translateY(-20px);
 }
 .eq-bar:nth-child(13) {
-    height: 12px;
-    transform: rotate(180deg) translateY(-53px);
+    transform: rotate(166.15deg) translateY(-20px);
 }
 .eq-bar:nth-child(14) {
-    height: 15px;
-    transform: rotate(195deg) translateY(-52px);
+    transform: rotate(180deg) translateY(-20px);
 }
 .eq-bar:nth-child(15) {
-    height: 17px;
-    transform: rotate(210deg) translateY(-50px);
+    transform: rotate(193.85deg) translateY(-20px);
 }
 .eq-bar:nth-child(16) {
-    height: 14px;
-    transform: rotate(225deg) translateY(-50px);
+    transform: rotate(207.69deg) translateY(-20px);
 }
 .eq-bar:nth-child(17) {
-    height: 11px;
-    transform: rotate(240deg) translateY(-48px);
+    transform: rotate(221.54deg) translateY(-20px);
 }
 .eq-bar:nth-child(18) {
-    height: 18px;
-    transform: rotate(255deg) translateY(-46px);
+    transform: rotate(235.38deg) translateY(-20px);
 }
 .eq-bar:nth-child(19) {
-    height: 15px;
-    transform: rotate(270deg) translateY(-44px);
+    transform: rotate(249.23deg) translateY(-20px);
 }
 .eq-bar:nth-child(20) {
-    height: 13px;
-    transform: rotate(285deg) translateY(-46px);
+    transform: rotate(263.08deg) translateY(-20px);
 }
 .eq-bar:nth-child(21) {
-    height: 16px;
-    transform: rotate(300deg) translateY(-48px);
+    transform: rotate(276.92deg) translateY(-20px);
 }
 .eq-bar:nth-child(22) {
-    height: 19px;
-    transform: rotate(315deg) translateY(-50px);
+    transform: rotate(290.77deg) translateY(-20px);
 }
 .eq-bar:nth-child(23) {
-    height: 14px;
-    transform: rotate(330deg) translateY(-50px);
+    transform: rotate(304.62deg) translateY(-20px);
 }
 .eq-bar:nth-child(24) {
-    height: 17px;
-    transform: rotate(345deg) translateY(-52px);
+    transform: rotate(318.46deg) translateY(-20px);
+}
+.eq-bar:nth-child(25) {
+    transform: rotate(332.31deg) translateY(-20px);
+}
+.eq-bar:nth-child(26) {
+    transform: rotate(346.15deg) translateY(-20px);
 }
 
 /* Animation for equalizer bars */
