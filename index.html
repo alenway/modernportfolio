@@ -66,7 +66,43 @@
                 url="https://prod.spline.design/CwijbN56EKGHUetz/scene.splinecode"
             ></spline-viewer>
             <!-- Add buttons somewhere in the corner (e.g., top-right) -->
-            <button id="sound-toggle">🔊 Stop</button>
+            <!-- <button id="sound-toggle">🔊 Stop</button> -->
+            <div class="container">
+                <div class="music-control-container">
+                    <!-- Equalizer bars -->
+                    <div id="equalizer" class="equalizer">
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                    </div>
+
+                    <!-- Play/Pause button -->
+                    <button id="sound-toggle" class="sound-button">
+                        <span id="sound-icon" class="sound-icon">▶️</span>
+                    </button>
+                </div>
+            </div>
         </div>
         <script
             type="module"
@@ -135,40 +171,176 @@
                 setTimeout(typeText, 500);
             });
 
-            // sound on the site..
-            const lofibackground = new Audio("sound/Lofi Background Music.mp3");
-            lofibackground.loop = true;
+            document.addEventListener("DOMContentLoaded", () => {
+                // Elements
+                const soundToggle = document.getElementById("sound-toggle");
+                const soundIcon = document.getElementById("sound-icon");
+                const equalizer = document.getElementById("equalizer");
+                const statusMessage = document.getElementById("status-message");
+                const autoplayMessage =
+                    document.getElementById("autoplay-message");
+                const volumeSlider = document.getElementById("volume");
 
-            const soundToggle = document.getElementById("sound-toggle");
+                // Create audio element for background music
+                const backgroundMusic = new Audio();
+                // backgroundMusic.src =
+                //     "https://assets.mixkit.co/music/preview/mixkit-spirit-of-the-forest-547.mp3"; // Placeholder music URL
+                backgroundMusic.src = "./sound/Lofi Background Music.mp3";
+                backgroundMusic.loop = true;
+                backgroundMusic.volume = 0.5; // Default volume
 
-            // Try to autoplay
-            window.addEventListener("load", () => {
-                lofibackground
-                    .play()
-                    .then(() => {
-                        console.log("Autoplay succeeded");
-                        soundToggle.textContent = "🔊 Stop";
-                        soundToggle.style.display = "block";
-                    })
-                    .catch((err) => {
-                        console.warn(
-                            "Autoplay failed, waiting for user interaction"
-                        );
-                        soundToggle.textContent = "▶️ Play";
-                        soundToggle.style.display = "block";
-                    });
-            });
-
-            // Toggle button
-            soundToggle.addEventListener("click", () => {
-                if (lofibackground.paused) {
-                    lofibackground.play();
-                    soundToggle.textContent = "🔊 Stop";
-                } else {
-                    lofibackground.pause();
-                    soundToggle.textContent = "▶️ Play";
+                // Function to update UI based on playback state
+                function updatePlaybackUI(isPlaying) {
+                    if (isPlaying) {
+                        soundIcon.textContent = "⏸️";
+                        equalizer.classList.add("active");
+                        statusMessage.textContent = "Now playing";
+                    } else {
+                        soundIcon.textContent = "▶️";
+                        equalizer.classList.remove("active");
+                        statusMessage.textContent = "Music paused";
+                    }
                 }
+
+                // Check if browser supports autoplay with sound
+                let autoplayAllowed = false;
+
+                // Attempt to play silently to check if autoplay is allowed
+                function checkAutoplaySupport() {
+                    // Create a temporary audio element
+                    const tempAudio = new Audio();
+                    tempAudio.volume = 0;
+                    tempAudio.src =
+                        "data:audio/mpeg;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaWdTb3VuZEJhbmsuY29tIC8gTGFTb25vdGhlcXVlLm9yZwBURU5DAAAAHQAAA1N3aXRjaCBQbHVzIMKpIE5DSCBTb2Z0d2FyZQBUSVQyAAAABgAAAzIyMzUAVFNTRQAAAA8AAANMYXZmNTcuODMuMTAwAAAAAAAAAAAAAAD/80DEAAAAA0gAAAAATEFNRTMuMTAwVVVVVVVVVVVVVUxBTUUzLjEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/zQsRbAAADSAAAAABVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/zQMSkAAADSAAAAABVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV";
+
+                    // Try to play it - if it works, autoplay is supported
+                    const playPromise = tempAudio.play();
+
+                    if (playPromise !== undefined) {
+                        playPromise
+                            .then(() => {
+                                // Autoplay is allowed
+                                autoplayAllowed = true;
+                                tempAudio.pause();
+                                console.log("Autoplay is allowed");
+
+                                // Now try to play the actual background music
+                                startBackgroundMusic();
+                            })
+                            .catch((error) => {
+                                // Autoplay is not allowed
+                                autoplayAllowed = false;
+                                console.log("Autoplay is not allowed:", error);
+
+                                // Show message to the user
+                                autoplayMessage.style.display = "block";
+                            });
+                    }
+                }
+
+                // Function to start background music
+                function startBackgroundMusic() {
+                    const playPromise = backgroundMusic.play();
+
+                    if (playPromise !== undefined) {
+                        playPromise
+                            .then(() => {
+                                // Music started playing successfully
+                                updatePlaybackUI(true);
+                            })
+                            .catch((error) => {
+                                // Autoplay was prevented
+                                console.warn(
+                                    "Background music autoplay was prevented:",
+                                    error
+                                );
+                                updatePlaybackUI(false);
+                                autoplayMessage.style.display = "block";
+                            });
+                    }
+                }
+
+                // Initialize by checking autoplay support when the page loads
+                window.addEventListener("load", checkAutoplaySupport);
+
+                // Listen for the first user interaction to try playing again if autoplay failed
+                const userInteractionEvents = [
+                    "click",
+                    "touchstart",
+                    "keydown",
+                ];
+
+                function handleFirstUserInteraction() {
+                    if (backgroundMusic.paused) {
+                        startBackgroundMusic();
+                    }
+
+                    // Remove the event listeners after first interaction
+                    userInteractionEvents.forEach((event) => {
+                        document.removeEventListener(
+                            event,
+                            handleFirstUserInteraction
+                        );
+                    });
+                }
+
+                // Add event listeners for the first user interaction
+                userInteractionEvents.forEach((event) => {
+                    document.addEventListener(
+                        event,
+                        handleFirstUserInteraction,
+                        { once: true }
+                    );
+                });
+
+                // Toggle button click handler
+                soundToggle.addEventListener("click", () => {
+                    if (backgroundMusic.paused) {
+                        // Start playing
+                        backgroundMusic
+                            .play()
+                            .then(() => {
+                                updatePlaybackUI(true);
+                                autoplayMessage.style.display = "none";
+                            })
+                            .catch((error) => {
+                                console.error("Error playing music:", error);
+                            });
+                    } else {
+                        // Pause playing
+                        backgroundMusic.pause();
+                        updatePlaybackUI(false);
+                    }
+                });
+
+                // Volume control
+                volumeSlider.addEventListener("input", () => {
+                    backgroundMusic.volume = volumeSlider.value;
+                });
+
+                // Update UI when audio starts playing
+                backgroundMusic.addEventListener("play", () => {
+                    updatePlaybackUI(true);
+                });
+
+                // Update UI when audio is paused
+                backgroundMusic.addEventListener("pause", () => {
+                    updatePlaybackUI(false);
+                });
+
+                // Check if there are any issues with loading the audio
+                backgroundMusic.addEventListener("error", (e) => {
+                    console.error("Audio error:", e);
+                    statusMessage.textContent = "Error loading audio";
+                    autoplayMessage.textContent =
+                        "There was an error loading the audio file. Please check your connection.";
+                    autoplayMessage.style.display = "block";
+                });
             });
+
+            // Replace the placeholder URL with your actual audio file path
+            // For a real implementation, update this line:
+            // backgroundMusic.src = "sound/Lofi Background Music.mp3";
         </script>
     </body>
 </html>

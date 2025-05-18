@@ -292,12 +292,200 @@ main {
 }
 
 /* sound effect */
-#sound-toggle {
-    position: fixed;
-    top: 15px;
-    right: 15px;
-    padding: 10px 15px;
-    font-size: 18px;
+/* Modern Sound Button Styles */
+.music-control-container {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+}
+
+.sound-button {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    border: none;
     cursor: pointer;
-    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+    position: relative;
+    z-index: 10;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.sound-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 25px rgba(99, 102, 241, 0.6);
+    background-color: var(--primary-hover);
+}
+
+.sound-button:active {
+    transform: scale(0.98);
+}
+
+.sound-icon {
+    font-size: 28px;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+/* Equalizer styles */
+.equalizer {
+    position: absolute;
+    width: 110px;
+    height: 110px;
+    top: -15px;
+    left: -15px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.equalizer.active {
+    opacity: 1;
+}
+
+.eq-bar {
+    position: absolute;
+    width: 4px;
+    background-color: var(--eq-bar-color);
+    border-radius: 2px;
+    transform-origin: center bottom;
+    opacity: 0.7;
+}
+
+/* Generate 26 equalizer bars positioned in a circle */
+.eq-bar:nth-child(1) {
+    height: 10px;
+    transform: rotate(0deg) translateY(-53px);
+}
+.eq-bar:nth-child(2) {
+    height: 12px;
+    transform: rotate(15deg) translateY(-52px);
+}
+.eq-bar:nth-child(3) {
+    height: 18px;
+    transform: rotate(30deg) translateY(-50px);
+}
+.eq-bar:nth-child(4) {
+    height: 14px;
+    transform: rotate(45deg) translateY(-50px);
+}
+.eq-bar:nth-child(5) {
+    height: 16px;
+    transform: rotate(60deg) translateY(-48px);
+}
+.eq-bar:nth-child(6) {
+    height: 20px;
+    transform: rotate(75deg) translateY(-46px);
+}
+.eq-bar:nth-child(7) {
+    height: 17px;
+    transform: rotate(90deg) translateY(-44px);
+}
+.eq-bar:nth-child(8) {
+    height: 14px;
+    transform: rotate(105deg) translateY(-46px);
+}
+.eq-bar:nth-child(9) {
+    height: 11px;
+    transform: rotate(120deg) translateY(-48px);
+}
+.eq-bar:nth-child(10) {
+    height: 17px;
+    transform: rotate(135deg) translateY(-50px);
+}
+.eq-bar:nth-child(11) {
+    height: 13px;
+    transform: rotate(150deg) translateY(-50px);
+}
+.eq-bar:nth-child(12) {
+    height: 16px;
+    transform: rotate(165deg) translateY(-52px);
+}
+.eq-bar:nth-child(13) {
+    height: 12px;
+    transform: rotate(180deg) translateY(-53px);
+}
+.eq-bar:nth-child(14) {
+    height: 15px;
+    transform: rotate(195deg) translateY(-52px);
+}
+.eq-bar:nth-child(15) {
+    height: 17px;
+    transform: rotate(210deg) translateY(-50px);
+}
+.eq-bar:nth-child(16) {
+    height: 14px;
+    transform: rotate(225deg) translateY(-50px);
+}
+.eq-bar:nth-child(17) {
+    height: 11px;
+    transform: rotate(240deg) translateY(-48px);
+}
+.eq-bar:nth-child(18) {
+    height: 18px;
+    transform: rotate(255deg) translateY(-46px);
+}
+.eq-bar:nth-child(19) {
+    height: 15px;
+    transform: rotate(270deg) translateY(-44px);
+}
+.eq-bar:nth-child(20) {
+    height: 13px;
+    transform: rotate(285deg) translateY(-46px);
+}
+.eq-bar:nth-child(21) {
+    height: 16px;
+    transform: rotate(300deg) translateY(-48px);
+}
+.eq-bar:nth-child(22) {
+    height: 19px;
+    transform: rotate(315deg) translateY(-50px);
+}
+.eq-bar:nth-child(23) {
+    height: 14px;
+    transform: rotate(330deg) translateY(-50px);
+}
+.eq-bar:nth-child(24) {
+    height: 17px;
+    transform: rotate(345deg) translateY(-52px);
+}
+
+/* Animation for equalizer bars */
+@keyframes eq-animation-1 {
+    0%,
+    100% {
+        height: 10px;
+    }
+    50% {
+        height: 20px;
+    }
+}
+
+@keyframes eq-animation-2 {
+    0%,
+    100% {
+        height: 14px;
+    }
+    50% {
+        height: 24px;
+    }
+}
+
+@keyframes eq-animation-3 {
+    0%,
+    100% {
+        height: 12px;
+    }
+    50% {
+        height: 18px;
+    }
 }
