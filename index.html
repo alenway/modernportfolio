@@ -8,6 +8,13 @@
         <title>Portfèlio</title>
     </head>
     <body>
+        <!-- Loading screen with typing effect -->
+        <div class="loader">
+            <div class="typing-container">
+                <h1 class="typing-text"></h1>
+            </div>
+        </div>
+
         <img
             class="image-gradient"
             src="assets/Gradient from 3D Startup App.png"
@@ -34,15 +41,14 @@
                     </div>
 
                     <h1>
-                        email for <br />
-                        developers
+                        Narendra<br />
+                        Samtani
                     </h1>
                     <p class="discription">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Libero sit temporibus vitae fuga sed architecto in fugit
-                        eligendi. Soluta similique, voluptate ducimus debitis
-                        excepturi enim? Voluptas sapiente quia laudantium?
-                        Libero.
+                        I'm a chill-minded developer who vibes with clean code,
+                        bold ideas, and late-night debugging sessions. I don't
+                        just build websites — I craft digital experiences that
+                        feel smooth, smart, and alive.
                     </p>
                     <div class="buttons">
                         <a href="#" class="btn-get-started"
@@ -61,5 +67,68 @@
             type="module"
             src="https://unpkg.com/@splinetool/viewer@1.9.96/build/spline-viewer.js"
         ></script>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const textElement = document.querySelector(".typing-text");
+                const typingContainer =
+                    document.querySelector(".typing-container");
+                const loader = document.querySelector(".loader");
+                const mainBody = document.querySelector("body");
+                const mainContent = document.querySelector(".container");
+
+                // Hide main content initially while keeping loader visible
+                mainContent.style.display = "none";
+
+                // The text to be typed
+                const textToType = "Welcome to my Portfèlio...";
+                let charIndex = 0;
+
+                // Function for typing effect
+                function typeText() {
+                    if (charIndex < textToType.length) {
+                        textElement.textContent += textToType.charAt(charIndex);
+                        charIndex++;
+                        setTimeout(typeText, 100); // Adjust speed of typing here
+                    } else {
+                        // Highlight the word "Portfèlio" by adding a span around it
+                        const highlightedText = textElement.textContent.replace(
+                            "Portfèlio",
+                            '<span class="highlight">Portfèlio</span>'
+                        );
+                        textElement.innerHTML = highlightedText;
+
+                        // When typing is complete, start the zoom effect after a pause
+                        setTimeout(zoomAndTransition, 800);
+                    }
+                }
+
+                // Function for zoom and transition effects
+                function zoomAndTransition() {
+                    // Start zoom effect - more subtle and natural
+                    typingContainer.style.transform = "scale(8)";
+                    typingContainer.style.opacity = "0.6";
+
+                    // Fade out the loader more gradually
+                    setTimeout(() => {
+                        loader.style.opacity = "0";
+
+                        // Show the main content
+                        setTimeout(() => {
+                            // Show the main content
+                            mainContent.style.display = "block";
+
+                            // Remove the loader after transition completes
+                            setTimeout(() => {
+                                loader.style.display = "none";
+                            }, 500);
+                        }, 800);
+                    }, 1200);
+                }
+
+                // Start the typing effect
+                setTimeout(typeText, 500);
+            });
+        </script>
     </body>
 </html>
