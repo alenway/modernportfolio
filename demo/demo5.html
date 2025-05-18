@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Modern Music Player Button</title>
+        <style>
+            :root {
+                --primary-color: #6366f1;
+                --primary-hover: #4f46e5;
+                --bg-color: #111827;
+                --text-color: #f9fafb;
+                --eq-bar-color: #d1d5db;
+            }
+
+            body {
+                font-family: "Inter", -apple-system, BlinkMacSystemFont,
+                    "Segoe UI", Roboto, sans-serif;
+                background-color: var(--bg-color);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                height: 100vh;
+                margin: 0;
+                color: var(--text-color);
+            }
+
+            .container {
+                width: 100%;
+                max-width: 500px;
+                text-align: center;
+                padding: 2rem;
+            }
+
+            h1 {
+                margin-bottom: 2rem;
+                font-weight: 700;
+            }
+
+            p {
+                line-height: 1.6;
+                margin-bottom: 2.5rem;
+                opacity: 0.9;
+            }
+
+            /* Modern Sound Button Styles */
+            .music-control-container {
+                position: relative;
+                width: 80px;
+                height: 80px;
+                margin: 0 auto;
+            }
+
+            .sound-button {
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                background-color: var(--primary-color);
+                border: none;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+                position: relative;
+                z-index: 10;
+                transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            }
+
+            .sound-button:hover {
+                transform: scale(1.05);
+                box-shadow: 0 6px 25px rgba(99, 102, 241, 0.6);
+                background-color: var(--primary-hover);
+            }
+
+            .sound-button:active {
+                transform: scale(0.98);
+            }
+
+            .sound-icon {
+                font-size: 28px;
+                color: white;
+                transition: all 0.3s ease;
+            }
+
+            /* Equalizer styles */
+            .equalizer {
+                position: absolute;
+                width: 110px;
+                height: 110px;
+                top: -15px;
+                left: -15px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.5s ease;
+            }
+
+            .equalizer.active {
+                opacity: 1;
+            }
+
+            .eq-bar {
+                position: absolute;
+                width: 4px;
+                background-color: var(--eq-bar-color);
+                border-radius: 2px;
+                transform-origin: center bottom;
+                opacity: 0.7;
+            }
+
+            /* Generate 26 equalizer bars positioned in a circle */
+            .eq-bar:nth-child(1) {
+                height: 10px;
+                transform: rotate(0deg) translateY(-53px);
+            }
+            .eq-bar:nth-child(2) {
+                height: 12px;
+                transform: rotate(15deg) translateY(-52px);
+            }
+            .eq-bar:nth-child(3) {
+                height: 18px;
+                transform: rotate(30deg) translateY(-50px);
+            }
+            .eq-bar:nth-child(4) {
+                height: 14px;
+                transform: rotate(45deg) translateY(-50px);
+            }
+            .eq-bar:nth-child(5) {
+                height: 16px;
+                transform: rotate(60deg) translateY(-48px);
+            }
+            .eq-bar:nth-child(6) {
+                height: 20px;
+                transform: rotate(75deg) translateY(-46px);
+            }
+            .eq-bar:nth-child(7) {
+                height: 17px;
+                transform: rotate(90deg) translateY(-44px);
+            }
+            .eq-bar:nth-child(8) {
+                height: 14px;
+                transform: rotate(105deg) translateY(-46px);
+            }
+            .eq-bar:nth-child(9) {
+                height: 11px;
+                transform: rotate(120deg) translateY(-48px);
+            }
+            .eq-bar:nth-child(10) {
+                height: 17px;
+                transform: rotate(135deg) translateY(-50px);
+            }
+            .eq-bar:nth-child(11) {
+                height: 13px;
+                transform: rotate(150deg) translateY(-50px);
+            }
+            .eq-bar:nth-child(12) {
+                height: 16px;
+                transform: rotate(165deg) translateY(-52px);
+            }
+            .eq-bar:nth-child(13) {
+                height: 12px;
+                transform: rotate(180deg) translateY(-53px);
+            }
+            .eq-bar:nth-child(14) {
+                height: 15px;
+                transform: rotate(195deg) translateY(-52px);
+            }
+            .eq-bar:nth-child(15) {
+                height: 17px;
+                transform: rotate(210deg) translateY(-50px);
+            }
+            .eq-bar:nth-child(16) {
+                height: 14px;
+                transform: rotate(225deg) translateY(-50px);
+            }
+            .eq-bar:nth-child(17) {
+                height: 11px;
+                transform: rotate(240deg) translateY(-48px);
+            }
+            .eq-bar:nth-child(18) {
+                height: 18px;
+                transform: rotate(255deg) translateY(-46px);
+            }
+            .eq-bar:nth-child(19) {
+                height: 15px;
+                transform: rotate(270deg) translateY(-44px);
+            }
+            .eq-bar:nth-child(20) {
+                height: 13px;
+                transform: rotate(285deg) translateY(-46px);
+            }
+            .eq-bar:nth-child(21) {
+                height: 16px;
+                transform: rotate(300deg) translateY(-48px);
+            }
+            .eq-bar:nth-child(22) {
+                height: 19px;
+                transform: rotate(315deg) translateY(-50px);
+            }
+            .eq-bar:nth-child(23) {
+                height: 14px;
+                transform: rotate(330deg) translateY(-50px);
+            }
+            .eq-bar:nth-child(24) {
+                height: 17px;
+                transform: rotate(345deg) translateY(-52px);
+            }
+
+            /* Animation for equalizer bars */
+            @keyframes eq-animation-1 {
+                0%,
+                100% {
+                    height: 10px;
+                }
+                50% {
+                    height: 20px;
+                }
+            }
+
+            @keyframes eq-animation-2 {
+                0%,
+                100% {
+                    height: 14px;
+                }
+                50% {
+                    height: 24px;
+                }
+            }
+
+            @keyframes eq-animation-3 {
+                0%,
+                100% {
+                    height: 12px;
+                }
+                50% {
+                    height: 18px;
+                }
+            }
+
+            /* Apply different animations to groups of bars */
+            .eq-bar:nth-child(3n + 1) {
+                animation: eq-animation-1 0.9s ease-in-out infinite;
+            }
+
+            .eq-bar:nth-child(3n + 2) {
+                animation: eq-animation-2 1.3s ease-in-out infinite;
+            }
+
+            .eq-bar:nth-child(3n) {
+                animation: eq-animation-3 1s ease-in-out infinite;
+            }
+
+            /* Volume control styles */
+            .controls {
+                margin-top: 3rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+
+            .volume-control {
+                display: flex;
+                align-items: center;
+                width: 80%;
+                max-width: 250px;
+                gap: 15px;
+            }
+
+            .volume-icon {
+                font-size: 20px;
+                color: var(--text-color);
+                opacity: 0.9;
+            }
+
+            .volume-slider {
+                flex-grow: 1;
+                height: 5px;
+                appearance: none;
+                background: rgba(255, 255, 255, 0.2);
+                border-radius: 3px;
+            }
+
+            .volume-slider::-webkit-slider-thumb {
+                appearance: none;
+                width: 15px;
+                height: 15px;
+                border-radius: 50%;
+                background: var(--primary-color);
+                cursor: pointer;
+                border: 2px solid white;
+            }
+
+            .volume-slider::-moz-range-thumb {
+                width: 15px;
+                height: 15px;
+                border-radius: 50%;
+                background: var(--primary-color);
+                cursor: pointer;
+                border: 2px solid white;
+            }
+
+            /* Status message */
+            .status-message {
+                margin-top: 20px;
+                font-size: 0.9rem;
+                opacity: 0.8;
+                transition: all 0.3s ease;
+                height: 20px;
+            }
+
+            /* Autoplay message */
+            .autoplay-message {
+                margin-top: 20px;
+                padding: 10px 15px;
+                border-radius: 8px;
+                background-color: rgba(255, 255, 255, 0.1);
+                font-size: 0.9rem;
+                max-width: 90%;
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Modern Music Player</h1>
+            <p>
+                Enjoy your background music with this modern circular player
+                that provides visual feedback when music is playing.
+            </p>
+
+            <div class="music-control-container">
+                <!-- Equalizer bars -->
+                <div id="equalizer" class="equalizer">
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                </div>
+
+                <!-- Play/Pause button -->
+                <button id="sound-toggle" class="sound-button">
+                    <span id="sound-icon" class="sound-icon">▶️</span>
+                </button>
+            </div>
+
+            <div id="status-message" class="status-message">
+                Music is ready to play
+            </div>
+
+            <div id="autoplay-message" class="autoplay-message">
+                Autoplay was blocked by your browser. Click the play button to
+                start the music.
+            </div>
+
+            <div class="controls">
+                <div class="volume-control">
+                    <span class="volume-icon">🔈</span>
+                    <input
+                        type="range"
+                        id="volume"
+                        class="volume-slider"
+                        min="0"
+                        max="1"
+                        step="0.01"
+                        value="0.5"
+                    />
+                    <span class="volume-icon">🔊</span>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                // Elements
+                const soundToggle = document.getElementById("sound-toggle");
+                const soundIcon = document.getElementById("sound-icon");
+                const equalizer = document.getElementById("equalizer");
+                const statusMessage = document.getElementById("status-message");
+                const autoplayMessage =
+                    document.getElementById("autoplay-message");
+                const volumeSlider = document.getElementById("volume");
+
+                // Create audio element for background music
+                const backgroundMusic = new Audio();
+                // backgroundMusic.src =
+                //     "https://assets.mixkit.co/music/preview/mixkit-spirit-of-the-forest-547.mp3"; // Placeholder music URL
+                backgroundMusic.src = "../sound/Lofi Background Music.mp3";
+                backgroundMusic.loop = true;
+                backgroundMusic.volume = 0.5; // Default volume
+
+                // Function to update UI based on playback state
+                function updatePlaybackUI(isPlaying) {
+                    if (isPlaying) {
+                        soundIcon.textContent = "⏸️";
+                        equalizer.classList.add("active");
+                        statusMessage.textContent = "Now playing";
+                    } else {
+                        soundIcon.textContent = "▶️";
+                        equalizer.classList.remove("active");
+                        statusMessage.textContent = "Music paused";
+                    }
+                }
+
+                // Check if browser supports autoplay with sound
+                let autoplayAllowed = false;
+
+                // Attempt to play silently to check if autoplay is allowed
+                function checkAutoplaySupport() {
+                    // Create a temporary audio element
+                    const tempAudio = new Audio();
+                    tempAudio.volume = 0;
+                    tempAudio.src =
+                        "data:audio/mpeg;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaWdTb3VuZEJhbmsuY29tIC8gTGFTb25vdGhlcXVlLm9yZwBURU5DAAAAHQAAA1N3aXRjaCBQbHVzIMKpIE5DSCBTb2Z0d2FyZQBUSVQyAAAABgAAAzIyMzUAVFNTRQAAAA8AAANMYXZmNTcuODMuMTAwAAAAAAAAAAAAAAD/80DEAAAAA0gAAAAATEFNRTMuMTAwVVVVVVVVVVVVVUxBTUUzLjEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/zQsRbAAADSAAAAABVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/zQMSkAAADSAAAAABVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV";
+
+                    // Try to play it - if it works, autoplay is supported
+                    const playPromise = tempAudio.play();
+
+                    if (playPromise !== undefined) {
+                        playPromise
+                            .then(() => {
+                                // Autoplay is allowed
+                                autoplayAllowed = true;
+                                tempAudio.pause();
+                                console.log("Autoplay is allowed");
+
+                                // Now try to play the actual background music
+                                startBackgroundMusic();
+                            })
+                            .catch((error) => {
+                                // Autoplay is not allowed
+                                autoplayAllowed = false;
+                                console.log("Autoplay is not allowed:", error);
+
+                                // Show message to the user
+                                autoplayMessage.style.display = "block";
+                            });
+                    }
+                }
+
+                // Function to start background music
+                function startBackgroundMusic() {
+                    const playPromise = backgroundMusic.play();
+
+                    if (playPromise !== undefined) {
+                        playPromise
+                            .then(() => {
+                                // Music started playing successfully
+                                updatePlaybackUI(true);
+                            })
+                            .catch((error) => {
+                                // Autoplay was prevented
+                                console.warn(
+                                    "Background music autoplay was prevented:",
+                                    error
+                                );
+                                updatePlaybackUI(false);
+                                autoplayMessage.style.display = "block";
+                            });
+                    }
+                }
+
+                // Initialize by checking autoplay support when the page loads
+                window.addEventListener("load", checkAutoplaySupport);
+
+                // Listen for the first user interaction to try playing again if autoplay failed
+                const userInteractionEvents = [
+                    "click",
+                    "touchstart",
+                    "keydown",
+                ];
+
+                function handleFirstUserInteraction() {
+                    if (backgroundMusic.paused) {
+                        startBackgroundMusic();
+                    }
+
+                    // Remove the event listeners after first interaction
+                    userInteractionEvents.forEach((event) => {
+                        document.removeEventListener(
+                            event,
+                            handleFirstUserInteraction
+                        );
+                    });
+                }
+
+                // Add event listeners for the first user interaction
+                userInteractionEvents.forEach((event) => {
+                    document.addEventListener(
+                        event,
+                        handleFirstUserInteraction,
+                        { once: true }
+                    );
+                });
+
+                // Toggle button click handler
+                soundToggle.addEventListener("click", () => {
+                    if (backgroundMusic.paused) {
+                        // Start playing
+                        backgroundMusic
+                            .play()
+                            .then(() => {
+                                updatePlaybackUI(true);
+                                autoplayMessage.style.display = "none";
+                            })
+                            .catch((error) => {
+                                console.error("Error playing music:", error);
+                            });
+                    } else {
+                        // Pause playing
+                        backgroundMusic.pause();
+                        updatePlaybackUI(false);
+                    }
+                });
+
+                // Volume control
+                volumeSlider.addEventListener("input", () => {
+                    backgroundMusic.volume = volumeSlider.value;
+                });
+
+                // Update UI when audio starts playing
+                backgroundMusic.addEventListener("play", () => {
+                    updatePlaybackUI(true);
+                });
+
+                // Update UI when audio is paused
+                backgroundMusic.addEventListener("pause", () => {
+                    updatePlaybackUI(false);
+                });
+
+                // Check if there are any issues with loading the audio
+                backgroundMusic.addEventListener("error", (e) => {
+                    console.error("Audio error:", e);
+                    statusMessage.textContent = "Error loading audio";
+                    autoplayMessage.textContent =
+                        "There was an error loading the audio file. Please check your connection.";
+                    autoplayMessage.style.display = "block";
+                });
+            });
+
+            // Replace the placeholder URL with your actual audio file path
+            // For a real implementation, update this line:
+            // backgroundMusic.src = "sound/Lofi Background Music.mp3";
+        </script>
+    </body>
+</html>

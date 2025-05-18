@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Typewriter Sound Effect</title>
+        <style>
+            body {
+                font-family: "Courier New", Courier, monospace;
+                background-color: #f5f5f5;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                height: 100vh;
+                margin: 0;
+            }
+
+            .container {
+                width: 80%;
+                max-width: 600px;
+                text-align: center;
+            }
+
+            h1 {
+                color: #333;
+                margin-bottom: 20px;
+            }
+
+            textarea {
+                width: 100%;
+                height: 200px;
+                padding: 15px;
+                border: 2px solid #ccc;
+                border-radius: 5px;
+                font-family: "Courier New", Courier, monospace;
+                font-size: 16px;
+                resize: none;
+                background-color: #fff;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                transition: border-color 0.3s ease;
+            }
+
+            textarea:focus {
+                outline: none;
+                border-color: #007bff;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            }
+
+            .controls {
+                margin-top: 20px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .sound-toggle {
+                display: flex;
+                align-items: center;
+            }
+
+            .switch {
+                position: relative;
+                display: inline-block;
+                width: 60px;
+                height: 30px;
+                margin-left: 10px;
+            }
+
+            .switch input {
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
+
+            .slider {
+                position: absolute;
+                cursor: pointer;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: #ccc;
+                transition: 0.4s;
+                border-radius: 30px;
+            }
+
+            .slider:before {
+                position: absolute;
+                content: "";
+                height: 22px;
+                width: 22px;
+                left: 4px;
+                bottom: 4px;
+                background-color: white;
+                transition: 0.4s;
+                border-radius: 50%;
+            }
+
+            input:checked + .slider {
+                background-color: #2196f3;
+            }
+
+            input:checked + .slider:before {
+                transform: translateX(30px);
+            }
+
+            .volume-control {
+                display: flex;
+                align-items: center;
+            }
+
+            .volume-control label {
+                margin-right: 10px;
+            }
+
+            input[type="range"] {
+                width: 100px;
+            }
+
+            .status {
+                font-size: 14px;
+                color: #666;
+                margin-top: 10px;
+                height: 20px;
+            }
+
+            .loading-indicator {
+                display: inline-block;
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background-color: #2196f3;
+                margin-right: 5px;
+                animation: pulse 1s infinite;
+            }
+
+            @keyframes pulse {
+                0% {
+                    opacity: 1;
+                }
+                50% {
+                    opacity: 0.3;
+                }
+                100% {
+                    opacity: 1;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Typewriter Sound Effect</h1>
+            <textarea
+                id="typewriter-area"
+                placeholder="Start typing to hear the typewriter sound effect..."
+            ></textarea>
+
+            <div class="controls">
+                <div class="sound-toggle">
+                    <span>Sound:</span>
+                    <label class="switch">
+                        <input type="checkbox" id="sound-toggle" checked />
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="volume-control">
+                    <label for="volume">Volume:</label>
+                    <input
+                        type="range"
+                        id="volume"
+                        min="0"
+                        max="1"
+                        step="0.1"
+                        value="0.5"
+                    />
+                </div>
+            </div>
+
+            <div class="status">
+                <span id="typing-status"></span>
+            </div>
+        </div>
+
+        <script>
+            // Variables for audio
+            let isSoundEnabled = true;
+            let volume = 0.5;
+            let typingTimeout;
+            let isLoading = false;
+
+            // Create audio sounds
+            const keySound1 = new Audio();
+            const keySound2 = new Audio();
+            const keySound3 = new Audio();
+            const keySound4 = new Audio();
+
+            // Create the audio context for Web Audio API
+            let audioContext = null;
+
+            // Function to generate a typewriter-like sound using Web Audio API
+            function createTypewriterSound() {
+                if (!audioContext) {
+                    audioContext = new (window.AudioContext ||
+                        window.webkitAudioContext)();
+                }
+
+                // Create oscillator
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+
+                // Set oscillator type and frequency
+                oscillator.type = "triangle";
+                oscillator.frequency.setValueAtTime(
+                    Math.random() * 20 + 440,
+                    audioContext.currentTime
+                );
+
+                // Configure gain (volume)
+                gainNode.gain.setValueAtTime(
+                    volume * 0.15,
+                    audioContext.currentTime
+                );
+                gainNode.gain.exponentialRampToValueAtTime(
+                    0.001,
+                    audioContext.currentTime + 0.1
+                );
+
+                // Connect nodes
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+
+                // Start and stop the oscillator
+                oscillator.start();
+                oscillator.stop(audioContext.currentTime + 0.1);
+            }
+
+            // Function to play a click sound
+            function playClickSound() {
+                if (!isSoundEnabled) return;
+
+                // Generate sound using Web Audio API
+                createTypewriterSound();
+            }
+
+            // Function to update status display
+            function updateStatus(message) {
+                const status = document.getElementById("typing-status");
+                if (isLoading) {
+                    status.innerHTML =
+                        '<span class="loading-indicator"></span> ' + message;
+                } else {
+                    status.textContent = message;
+                }
+            }
+
+            // Set up event listeners once the DOM is fully loaded
+            document.addEventListener("DOMContentLoaded", () => {
+                const textarea = document.getElementById("typewriter-area");
+                const soundToggle = document.getElementById("sound-toggle");
+                const volumeControl = document.getElementById("volume");
+
+                // Initialize audio context on first interaction
+                textarea.addEventListener(
+                    "focus",
+                    () => {
+                        if (!audioContext) {
+                            try {
+                                audioContext = new (window.AudioContext ||
+                                    window.webkitAudioContext)();
+                                updateStatus("Sound effects ready");
+                            } catch (e) {
+                                console.error(
+                                    "Web Audio API not supported:",
+                                    e
+                                );
+                                updateStatus("Sound initialization failed");
+                            }
+                        }
+                    },
+                    { once: true }
+                );
+
+                // Key down event for typewriter sound
+                textarea.addEventListener("keydown", (event) => {
+                    // Don't play for modifier keys
+                    if (
+                        [
+                            "Shift",
+                            "Control",
+                            "Alt",
+                            "Meta",
+                            "CapsLock",
+                            "Tab",
+                            "Escape",
+                        ].includes(event.key)
+                    ) {
+                        return;
+                    }
+
+                    // Don't play for arrow keys and other non-character keys
+                    if (
+                        event.key.startsWith("Arrow") ||
+                        [
+                            "Home",
+                            "End",
+                            "PageUp",
+                            "PageDown",
+                            "Insert",
+                            "Delete",
+                        ].includes(event.key)
+                    ) {
+                        return;
+                    }
+
+                    // Create audioContext if it doesn't exist
+                    if (!audioContext && window.AudioContext) {
+                        try {
+                            audioContext = new (window.AudioContext ||
+                                window.webkitAudioContext)();
+                        } catch (e) {
+                            console.error("Failed to create audio context:", e);
+                        }
+                    }
+
+                    // Play the sound
+                    playClickSound();
+
+                    // Show typing indicator
+                    clearTimeout(typingTimeout);
+                    updateStatus("Typing...");
+
+                    // Clear typing status after a delay
+                    typingTimeout = setTimeout(() => {
+                        updateStatus("");
+                    }, 1000);
+                });
+
+                // Toggle sound on/off
+                soundToggle.addEventListener("change", () => {
+                    isSoundEnabled = soundToggle.checked;
+                    updateStatus(
+                        isSoundEnabled ? "Sound enabled" : "Sound disabled"
+                    );
+
+                    // Resume audio context if it was suspended
+                    if (
+                        isSoundEnabled &&
+                        audioContext &&
+                        audioContext.state === "suspended"
+                    ) {
+                        audioContext.resume();
+                    }
+                });
+
+                // Volume control
+                volumeControl.addEventListener("input", () => {
+                    volume = parseFloat(volumeControl.value);
+                    updateStatus(`Volume: ${Math.round(volume * 100)}%`);
+                });
+            });
+        </script>
+    </body>
+</html>

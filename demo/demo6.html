@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Dense Circular Equalizer</title>
+        <style>
+            :root {
+                --eq-bar-color: #d1d5db;
+                --bg-color: #111827;
+                --primary-color: #6366f1;
+            }
+
+            body {
+                margin: 0;
+                background: var(--bg-color);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+
+            .music-control-container {
+                position: relative;
+                width: 100px;
+                height: 100px;
+            }
+
+            .sound-button {
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                background-color: var(--primary-color);
+                border: none;
+                cursor: pointer;
+                position: absolute;
+                z-index: 10;
+                top: 10px;
+                left: 10px;
+            }
+
+            .equalizer {
+                position: absolute;
+                width: 100px;
+                height: 100px;
+                top: 0;
+                left: 0;
+                border-radius: 50%;
+            }
+
+            .eq-bar {
+                position: absolute;
+                width: 2px;
+                height: 10px;
+                background: var(--eq-bar-color);
+                opacity: 0.8;
+                border-radius: 2px;
+                transform-origin: center -40px;
+                animation: pulse 1s ease-in-out infinite;
+            }
+
+            @keyframes pulse {
+                0%,
+                100% {
+                    transform: scaleY(1);
+                }
+                50% {
+                    transform: scaleY(2);
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="music-control-container">
+            <div class="equalizer" id="equalizer"></div>
+            <button class="sound-button"></button>
+        </div>
+
+        <script>
+            const equalizer = document.getElementById("equalizer");
+            const barCount = 48; // Increase this for more density
+            for (let i = 0; i < barCount; i++) {
+                const bar = document.createElement("div");
+                bar.className = "eq-bar";
+                const angle = (360 / barCount) * i;
+                bar.style.transform = `rotate(${angle}deg) translateY(-40px)`;
+                bar.style.animationDelay = `${(i % 6) * 0.1}s`; // slight delay to vary animation
+                equalizer.appendChild(bar);
+            }
+        </script>
+    </body>
+</html>

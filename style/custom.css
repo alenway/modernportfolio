@@ -1,7 +1,23 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Custom selection style */
+::selection {
+    background: #00ffe0; /* Neon aqua */
+    color: #000000; /* Black text */
+}
+
+.logo {
+    color: #5300a0;
+    font-weight: 600;
+}
 .tag-box {
     position: relative;
     width: 18rem;
-    height: 2.5rem;
+    height: 4.5rem;
     border-radius: 50px;
     background: linear-gradient(
         to right,
@@ -91,17 +107,6 @@
 .btn-signing-main:hover {
     background-color: gray;
 } /* Your existing CSS */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Custom selection style */
-::selection {
-    background: #00ffe0; /* Neon aqua */
-    color: #000000; /* Black text */
-}
 
 /* Loading effect styles */
 .loader {
@@ -284,4 +289,15 @@ main {
     z-index: -11;
     opacity: 1; /* Set default opacity */
     transition: opacity 2s ease;
+}
+
+/* sound effect */
+#sound-toggle {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    padding: 10px 15px;
+    font-size: 18px;
+    cursor: pointer;
+    z-index: 999;
 }

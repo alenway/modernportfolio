@@ -36,9 +36,9 @@
 
             <main>
                 <div class="content">
-                    <div class="tag-box">
+                    <!-- <div class="tag-box">
                         <div class="tag">intrucing &wedbar;</div>
-                    </div>
+                    </div> -->
 
                     <h1>
                         Narendra<br />
@@ -51,10 +51,13 @@
                         feel smooth, smart, and alive.
                     </p>
                     <div class="buttons">
-                        <a href="#" class="btn-get-started"
+                        <div class="tag-box">
+                            <div class="tag">intrucing &wedbar;</div>
+                        </div>
+                        <!-- <a href="#" class="btn-get-started"
                             >documentation &gt;</a
-                        >
-                        <a href="#" class="btn-signing-main">getstart &gt;</a>
+                        > -->
+                        <!-- <a href="#" class="btn-signing-main">getstart &gt;</a> -->
                     </div>
                 </div>
             </main>
@@ -62,6 +65,8 @@
                 class="robot-3d"
                 url="https://prod.spline.design/CwijbN56EKGHUetz/scene.splinecode"
             ></spline-viewer>
+            <!-- Add buttons somewhere in the corner (e.g., top-right) -->
+            <button id="sound-toggle">🔊 Stop</button>
         </div>
         <script
             type="module"
@@ -128,6 +133,41 @@
 
                 // Start the typing effect
                 setTimeout(typeText, 500);
+            });
+
+            // sound on the site..
+            const lofibackground = new Audio("sound/Lofi Background Music.mp3");
+            lofibackground.loop = true;
+
+            const soundToggle = document.getElementById("sound-toggle");
+
+            // Try to autoplay
+            window.addEventListener("load", () => {
+                lofibackground
+                    .play()
+                    .then(() => {
+                        console.log("Autoplay succeeded");
+                        soundToggle.textContent = "🔊 Stop";
+                        soundToggle.style.display = "block";
+                    })
+                    .catch((err) => {
+                        console.warn(
+                            "Autoplay failed, waiting for user interaction"
+                        );
+                        soundToggle.textContent = "▶️ Play";
+                        soundToggle.style.display = "block";
+                    });
+            });
+
+            // Toggle button
+            soundToggle.addEventListener("click", () => {
+                if (lofibackground.paused) {
+                    lofibackground.play();
+                    soundToggle.textContent = "🔊 Stop";
+                } else {
+                    lofibackground.pause();
+                    soundToggle.textContent = "▶️ Play";
+                }
             });
         </script>
     </body>

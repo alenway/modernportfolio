@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Audio Player with Animation</title>
+        <style>
+            body {
+                margin: 0;
+                font-family: sans-serif;
+                background: #121212;
+                color: #fff;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 100vh;
+                overflow: hidden;
+            }
+
+            #consent-box {
+                position: absolute;
+                inset: 0;
+                background: rgba(0, 0, 0, 0.85);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                z-index: 10;
+            }
+
+            #consent-box button {
+                padding: 12px 24px;
+                border: none;
+                border-radius: 6px;
+                background-color: #00cc99;
+                color: white;
+                font-size: 16px;
+                cursor: pointer;
+                margin-top: 12px;
+                transition: background 0.3s;
+            }
+
+            #consent-box button:hover {
+                background-color: #00aa88;
+            }
+
+            .audio-wrapper {
+                position: relative;
+            }
+
+            .audio-button {
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                border: none;
+                background: #222;
+                color: white;
+                font-size: 28px;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+                z-index: 2;
+                box-shadow: 0 0 0 4px rgba(0, 255, 170, 0.1);
+            }
+
+            .bars {
+                position: absolute;
+                width: 100px;
+                height: 100px;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                display: none;
+                z-index: 1;
+            }
+
+            .bar {
+                position: absolute;
+                bottom: 0;
+                width: 4px;
+                background: #00ffcc;
+                animation: bounce 1s infinite ease-in-out;
+            }
+
+            .bar:nth-child(1) {
+                left: 10px;
+                height: 40%;
+                animation-delay: 0s;
+            }
+
+            .bar:nth-child(2) {
+                left: 20px;
+                height: 60%;
+                animation-delay: 0.1s;
+            }
+
+            .bar:nth-child(3) {
+                left: 30px;
+                height: 50%;
+                animation-delay: 0.2s;
+            }
+
+            .bar:nth-child(4) {
+                left: 40px;
+                height: 70%;
+                animation-delay: 0.3s;
+            }
+
+            .bar:nth-child(5) {
+                left: 50px;
+                height: 60%;
+                animation-delay: 0.4s;
+            }
+
+            @keyframes bounce {
+                0%,
+                100% {
+                    transform: scaleY(1);
+                }
+                50% {
+                    transform: scaleY(2);
+                }
+            }
+
+            .playing .bars {
+                display: block;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="consent-box">
+            <p>This site uses typing sound effects for a better experience.</p>
+            <button id="accept-btn">OK</button>
+        </div>
+
+        <div class="audio-wrapper" style="display: none" id="audioContainer">
+            <div class="bars" id="bars">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <button class="audio-button" id="audioBtn">▶️</button>
+        </div>
+
+        <audio
+            id="typingSound"
+            src="../sound/Lofi Background Music.mp3"
+            loop
+        ></audio>
+
+        <script>
+            const acceptBtn = document.getElementById("accept-btn");
+            const consentBox = document.getElementById("consent-box");
+            const audioBtn = document.getElementById("audioBtn");
+            const audio = document.getElementById("typingSound");
+            const audioContainer = document.getElementById("audioContainer");
+            const bars = document.getElementById("bars");
+
+            acceptBtn.addEventListener("click", () => {
+                consentBox.style.display = "none";
+                audioContainer.style.display = "block";
+                playSound();
+            });
+
+            function playSound() {
+                audio
+                    .play()
+                    .then(() => {
+                        bars.parentElement.classList.add("playing");
+                        audioBtn.textContent = "⏸️";
+                    })
+                    .catch((err) => {
+                        console.warn("Autoplay blocked:", err);
+                    });
+            }
+
+            function pauseSound() {
+                audio.pause();
+                bars.parentElement.classList.remove("playing");
+                audioBtn.textContent = "▶️";
+            }
+
+            audioBtn.addEventListener("click", () => {
+                if (audio.paused) {
+                    playSound();
+                } else {
+                    pauseSound();
+                }
+            });
+        </script>
+    </body>
+</html>
