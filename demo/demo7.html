@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>My Projects</title>
+        <style>
+            :root {
+                --dark-bg: #0e0e0e;
+                --text-light: #f5f5f5;
+                --text-secondary: #cccccc;
+                --accent-primary: #7f42a7;
+                --accent-secondary: #6600c5;
+                --accent-dark: #5300a0;
+                --gray-light: #757575;
+                --gray-medium: #656565;
+                --card-bg: #1a1a1a;
+            }
+
+            #projects {
+                background-color: var(--dark-bg);
+                color: var(--text-light);
+                padding: 100px 20px;
+                font-family: "Segoe UI", "Roboto", sans-serif;
+                position: relative;
+                overflow: hidden;
+            }
+
+            #projects::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: radial-gradient(
+                    circle at 20% 50%,
+                    rgba(127, 66, 167, 0.15) 0%,
+                    transparent 50%
+                );
+                pointer-events: none;
+                z-index: 0;
+            }
+
+            .section-title {
+                text-align: center;
+                font-size: 2.8rem;
+                margin-bottom: 70px;
+                position: relative;
+                z-index: 1;
+                background: linear-gradient(
+                    90deg,
+                    var(--accent-primary),
+                    var(--accent-secondary)
+                );
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent;
+                font-weight: 700;
+                letter-spacing: 1px;
+            }
+
+            .section-title::after {
+                content: "";
+                display: block;
+                width: 80px;
+                height: 4px;
+                background: linear-gradient(
+                    90deg,
+                    var(--accent-primary),
+                    var(--accent-secondary)
+                );
+                margin: 15px auto 0;
+                border-radius: 2px;
+            }
+
+            .projects-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+                gap: 30px;
+                max-width: 1200px;
+                margin: auto;
+                position: relative;
+                z-index: 1;
+            }
+
+            .project {
+                background-color: var(--card-bg);
+                border-radius: 16px;
+                overflow: hidden;
+                transform: translateY(30px);
+                opacity: 0;
+                animation: fadeInUp 1s forwards;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+                border: 1px solid rgba(102, 0, 197, 0.1);
+            }
+
+            .project:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 15px 30px rgba(102, 0, 197, 0.3);
+            }
+
+            .project:nth-child(2) {
+                animation-delay: 0.2s;
+            }
+            .project:nth-child(3) {
+                animation-delay: 0.4s;
+            }
+            .project:nth-child(4) {
+                animation-delay: 0.6s;
+            }
+
+            @keyframes fadeInUp {
+                to {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+            }
+
+            .project-img {
+                height: 220px;
+                background-size: cover;
+                background-position: center;
+                position: relative;
+                transition: all 0.5s ease;
+            }
+
+            .project-img::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(
+                    to bottom,
+                    rgba(83, 0, 160, 0.3),
+                    rgba(83, 0, 160, 0.1)
+                );
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+
+            .project:hover .project-img::after {
+                opacity: 1;
+            }
+
+            .project-content {
+                padding: 25px;
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .project-content h3 {
+                font-size: 1.5rem;
+                margin: 0;
+                color: var(--text-light);
+                font-weight: 600;
+                background: linear-gradient(
+                    90deg,
+                    var(--accent-primary),
+                    var(--accent-secondary)
+                );
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent;
+            }
+
+            .project-content p {
+                color: var(--text-secondary);
+                font-size: 1rem;
+                line-height: 1.5;
+                min-height: 60px;
+            }
+
+            .project-content span {
+                font-size: 0.85rem;
+                color: var(--gray-light);
+                display: inline-block;
+                padding: 5px 10px;
+                background-color: rgba(101, 101, 101, 0.2);
+                border-radius: 20px;
+                margin-right: 8px;
+                margin-bottom: 8px;
+            }
+
+            .project-buttons {
+                margin-top: 15px;
+                display: flex;
+                gap: 12px;
+            }
+
+            .project-buttons a {
+                text-decoration: none;
+                background: linear-gradient(
+                    135deg,
+                    var(--accent-primary),
+                    var(--accent-secondary)
+                );
+                color: white;
+                padding: 10px 18px;
+                border-radius: 8px;
+                font-size: 0.9rem;
+                font-weight: 600;
+                transition: all 0.3s ease;
+                flex: 1;
+                text-align: center;
+                border: 1px solid rgba(127, 66, 167, 0.5);
+            }
+
+            .project-buttons a:first-child {
+                background: linear-gradient(
+                    135deg,
+                    var(--accent-primary),
+                    var(--accent-dark)
+                );
+            }
+
+            .project-buttons a:last-child {
+                background: transparent;
+                color: var(--accent-secondary);
+                border: 1px solid var(--accent-secondary);
+            }
+
+            .project-buttons a:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(102, 0, 197, 0.4);
+            }
+
+            .project-buttons a:last-child:hover {
+                background: rgba(102, 0, 197, 0.1);
+            }
+
+            @media (max-width: 768px) {
+                .section-title {
+                    font-size: 2.2rem;
+                    margin-bottom: 50px;
+                }
+
+                .project-img {
+                    height: 180px;
+                }
+
+                .projects-grid {
+                    grid-template-columns: 1fr;
+                    gap: 25px;
+                }
+            }
+
+            @media (max-width: 480px) {
+                #projects {
+                    padding: 70px 15px;
+                }
+
+                .section-title {
+                    font-size: 1.8rem;
+                }
+
+                .project-content {
+                    padding: 20px;
+                }
+
+                .project-buttons {
+                    flex-direction: column;
+                    gap: 10px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- PROJECTS SECTION -->
+        <section id="projects">
+            <h2 class="section-title">My Creative Projects</h2>
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project">
+                    <div
+                        class="project-img"
+                        style="
+                            background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80');
+                        "
+                    ></div>
+                    <div class="project-content">
+                        <h3>FlavorCraft</h3>
+                        <p>
+                            A responsive recipe search app powered by MealDB API
+                            with a sleek UI for food lovers.
+                        </p>
+                        <div class="tech-tags">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                            <span>Axios</span>
+                        </div>
+                        <div class="project-buttons">
+                            <a href="#" target="_blank">Live Demo</a>
+                            <a href="#" target="_blank">View Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project">
+                    <div
+                        class="project-img"
+                        style="
+                            background-image: url('https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80');
+                        "
+                    ></div>
+                    <div class="project-content">
+                        <h3>Todo Pulse</h3>
+                        <p>
+                            Manage your daily goals and tasks with this elegant
+                            localStorage-based todo app with productivity
+                            analytics.
+                        </p>
+                        <div class="tech-tags">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                        </div>
+                        <div class="project-buttons">
+                            <a href="#" target="_blank">Live Demo</a>
+                            <a href="#" target="_blank">View Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project">
+                    <div
+                        class="project-img"
+                        style="
+                            background-image: url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80');
+                        "
+                    ></div>
+                    <div class="project-content">
+                        <h3>QuoteX</h3>
+                        <p>
+                            Get a fresh quote every time you need inspiration.
+                            Clean animations and fetch API with share
+                            functionality.
+                        </p>
+                        <div class="tech-tags">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                        </div>
+                        <div class="project-buttons">
+                            <a href="#" target="_blank">Live Demo</a>
+                            <a href="#" target="_blank">View Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project">
+                    <div
+                        class="project-img"
+                        style="
+                            background-image: url('https://images.unsplash.com/photo-1469122312224-c5846569feb1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80');
+                        "
+                    ></div>
+                    <div class="project-content">
+                        <h3>Weather Sphere</h3>
+                        <p>
+                            A beautiful weather dashboard with icons, background
+                            changes, and OpenWeather API integration.
+                        </p>
+                        <div class="tech-tags">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                            <span>API</span>
+                        </div>
+                        <div class="project-buttons">
+                            <a href="#" target="_blank">Live Demo</a>
+                            <a href="#" target="_blank">View Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

@@ -1,56 +1,220 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Mobile menu toggle
-    const mobileMenuButton = document.getElementById("mobile-menu-button");
-    const mobileMenu = document.getElementById("mobile-menu");
+    const textElement = document.querySelector(".typing-text");
+    const typingContainer = document.querySelector(".typing-container");
+    const loader = document.querySelector(".loader");
+    const mainBody = document.querySelector("body");
+    const mainContent = document.querySelector(".container");
 
-    mobileMenuButton.addEventListener("click", function () {
-        mobileMenu.classList.toggle("hidden");
-    });
+    // Hide main content initially while keeping loader visible
+    mainContent.style.display = "none";
 
-    // Theme switcher
-    const themeToggle = document.getElementById("theme-toggle");
-    const themeIcon = themeToggle.querySelector("i");
-    const htmlElement = document.documentElement;
+    // The text to be typed
+    const textToType = "Welcome to my Portfèlio";
+    let charIndex = 0;
 
-    // Check for saved theme preference or use preferred color scheme
-    const savedTheme =
-        localStorage.getItem("theme") ||
-        (window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "theme-dark"
-            : "theme-light");
-
-    htmlElement.classList.add(savedTheme);
-    updateThemeIcon(savedTheme);
-
-    themeToggle.addEventListener("click", function () {
-        if (htmlElement.classList.contains("theme-light")) {
-            htmlElement.classList.remove("theme-light");
-            htmlElement.classList.add("theme-dark");
-            localStorage.setItem("theme", "theme-dark");
-            updateThemeIcon("theme-dark");
+    // Function for typing effect
+    function typeText() {
+        if (charIndex < textToType.length) {
+            textElement.textContent += textToType.charAt(charIndex);
+            charIndex++;
+            setTimeout(typeText, 100); // Adjust speed of typing here
         } else {
-            htmlElement.classList.remove("theme-dark");
-            htmlElement.classList.add("theme-light");
-            localStorage.setItem("theme", "theme-light");
-            updateThemeIcon("theme-light");
-        }
-    });
+            // Highlight the word "Portfèlio" by adding a span around it
+            const highlightedText = textElement.textContent.replace(
+                "Portfèlio",
+                '<span class="highlight">Portfèlio</span>'
+            );
+            textElement.innerHTML = highlightedText;
 
-    function updateThemeIcon(theme) {
-        if (theme === "theme-dark") {
-            themeIcon.classList.remove("fa-moon");
-            themeIcon.classList.add("fa-sun");
-        } else {
-            themeIcon.classList.remove("fa-sun");
-            themeIcon.classList.add("fa-moon");
+            // When typing is complete, start the zoom effect after a pause
+            setTimeout(zoomAndTransition, 800);
         }
     }
 
-    // Close mobile menu when clicking on a link
-    const navLinks = document.querySelectorAll("#mobile-menu a");
-    navLinks.forEach((link) => {
-        link.addEventListener("click", function () {
-            mobileMenu.classList.add("hidden");
+    // Function for zoom and transition effects
+    function zoomAndTransition() {
+        // Start zoom effect - more subtle and natural
+        typingContainer.style.transform = "scale(8)";
+        typingContainer.style.opacity = "0.6";
+
+        // Fade out the loader more gradually
+        setTimeout(() => {
+            loader.style.opacity = "0";
+
+            // Show the main content
+            setTimeout(() => {
+                // Show the main content
+                mainContent.style.display = "block";
+
+                // Remove the loader after transition completes
+                setTimeout(() => {
+                    loader.style.display = "none";
+                }, 500);
+            }, 800);
+        }, 1200);
+    }
+
+    // Start the typing effect
+    setTimeout(typeText, 500);
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Elements
+    const soundToggle = document.getElementById("sound-toggle");
+    const soundIcon = document.getElementById("sound-icon");
+    const equalizer = document.getElementById("equalizer");
+    const statusMessage = document.getElementById("status-message");
+    const autoplayMessage = document.getElementById("autoplay-message");
+    const volumeSlider = document.getElementById("volume");
+
+    // Create audio element for background music
+    const backgroundMusic = new Audio();
+    // backgroundMusic.src =
+    //     "https://assets.mixkit.co/music/preview/mixkit-spirit-of-the-forest-547.mp3"; // Placeholder music URL
+    backgroundMusic.src = "./sound/Lofi Background Music.mp3";
+    backgroundMusic.loop = true;
+    backgroundMusic.volume = 1; // Default volume
+
+    // Function to update UI based on playback state
+    function updatePlaybackUI(isPlaying) {
+        if (isPlaying) {
+            soundIcon.textContent = "⏸️";
+            equalizer.classList.add("active");
+            statusMessage.textContent = "Now playing";
+        } else {
+            soundIcon.textContent = "▶️";
+            equalizer.classList.remove("active");
+            statusMessage.textContent = "Music paused";
+        }
+    }
+
+    // Check if browser supports autoplay with sound
+    let autoplayAllowed = false;
+
+    // Attempt to play silently to check if autoplay is allowed
+    function checkAutoplaySupport() {
+        // Create a temporary audio element
+        const tempAudio = new Audio();
+        tempAudio.volume = 0;
+        tempAudio.src =
+            "data:audio/mpeg;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaWdTb3VuZEJhbmsuY29tIC8gTGFTb25vdGhlcXVlLm9yZwBURU5DAAAAHQAAA1N3aXRjaCBQbHVzIMKpIE5DSCBTb2Z0d2FyZQBUSVQyAAAABgAAAzIyMzUAVFNTRQAAAA8AAANMYXZmNTcuODMuMTAwAAAAAAAAAAAAAAD/80DEAAAAA0gAAAAATEFNRTMuMTAwVVVVVVVVVVVVVUxBTUUzLjEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/zQsRbAAADSAAAAABVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/zQMSkAAADSAAAAABVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV";
+
+        // Try to play it - if it works, autoplay is supported
+        const playPromise = tempAudio.play();
+
+        if (playPromise !== undefined) {
+            playPromise
+                .then(() => {
+                    // Autoplay is allowed
+                    autoplayAllowed = true;
+                    tempAudio.pause();
+                    console.log("Autoplay is allowed");
+
+                    // Now try to play the actual background music
+                    startBackgroundMusic();
+                })
+                .catch((error) => {
+                    // Autoplay is not allowed
+                    autoplayAllowed = false;
+                    console.log("Autoplay is not allowed:", error);
+
+                    // Show message to the user
+                    autoplayMessage.style.display = "block";
+                });
+        }
+    }
+
+    // Function to start background music
+    function startBackgroundMusic() {
+        const playPromise = backgroundMusic.play();
+
+        if (playPromise !== undefined) {
+            playPromise
+                .then(() => {
+                    // Music started playing successfully
+                    updatePlaybackUI(true);
+                })
+                .catch((error) => {
+                    // Autoplay was prevented
+                    console.warn(
+                        "Background music autoplay was prevented:",
+                        error
+                    );
+                    updatePlaybackUI(false);
+                    autoplayMessage.style.display = "block";
+                });
+        }
+    }
+
+    // Initialize by checking autoplay support when the page loads
+    window.addEventListener("load", checkAutoplaySupport);
+
+    // Listen for the first user interaction to try playing again if autoplay failed
+    const userInteractionEvents = ["click", "touchstart", "keydown"];
+
+    function handleFirstUserInteraction() {
+        if (backgroundMusic.paused) {
+            startBackgroundMusic();
+        }
+
+        // Remove the event listeners after first interaction
+        userInteractionEvents.forEach((event) => {
+            document.removeEventListener(event, handleFirstUserInteraction);
+        });
+    }
+
+    // Add event listeners for the first user interaction
+    userInteractionEvents.forEach((event) => {
+        document.addEventListener(event, handleFirstUserInteraction, {
+            once: true,
         });
     });
+
+    // Toggle button click handler
+    soundToggle.addEventListener("click", () => {
+        if (backgroundMusic.paused) {
+            // Start playing
+            backgroundMusic
+                .play()
+                .then(() => {
+                    updatePlaybackUI(true);
+                    autoplayMessage.style.display = "none";
+                })
+                .catch((error) => {
+                    console.error("Error playing music:", error);
+                });
+        } else {
+            // Pause playing
+            backgroundMusic.pause();
+            updatePlaybackUI(false);
+        }
+    });
+
+    // Volume control
+    volumeSlider.addEventListener("input", () => {
+        backgroundMusic.volume = volumeSlider.value;
+    });
+
+    // Update UI when audio starts playing
+    backgroundMusic.addEventListener("play", () => {
+        updatePlaybackUI(true);
+    });
+
+    // Update UI when audio is paused
+    backgroundMusic.addEventListener("pause", () => {
+        updatePlaybackUI(false);
+    });
+
+    // Check if there are any issues with loading the audio
+    backgroundMusic.addEventListener("error", (e) => {
+        console.error("Audio error:", e);
+        statusMessage.textContent = "Error loading audio";
+        autoplayMessage.textContent =
+            "There was an error loading the audio file. Please check your connection.";
+        autoplayMessage.style.display = "block";
+    });
 });
+
+// Replace the placeholder URL with your actual audio file path
+// For a real implementation, update this line:
+// backgroundMusic.src = "sound/Lofi Background Music.mp3";
