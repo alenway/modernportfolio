@@ -4,28 +4,47 @@
     box-sizing: border-box;
 }
 
-/* Custom selection style */
-::selection {
-    background: #00ffe0; /* Neon aqua */
-    color: #000000; /* Black text */
+:root {
+    --color-base-primary: #5300a0;
+    --color-base-secondary: #6600c5;
+    --color-base-accent: #7f42a7;
+
+    --color-base-highlight: #00ffe0;
+
+    /* Typography colors */
+    --font-size-base: 16px;
+    --font-weight-regular: 400;
+    --font-weight-bold: 700;
 }
 
-:root {
-    --primary-color: #5300a0;
-    --primary-hover: #6600c5;
-    --bg-color: #111827;
-    --text-color: #f9fafb;
-    --eq-bar-color: #00ffe0;
+.theme-dark {
+    --color-bg: #0e0e0e;
+    --color-surface: #1a1a1a;
 
-    --dark-bg: #0e0e0e;
-    --text-light: #f5f5f5;
-    --text-secondary: #cccccc;
-    --accent-primary: #7f42a7;
-    --accent-secondary: #6600c5;
-    --accent-dark: #5300a0;
-    --gray-light: #757575;
-    --gray-medium: #656565;
-    --card-bg: #1a1a1a;
+    --color-text-primary: #f5f5f5;
+    --color-text-secondary: #cccccc;
+
+    --color-border: rgba(102, 0, 197, 0.2);
+    --color-shadow: rgba(102, 0, 197, 0.15);
+    --color-shadow-hover: rgba(102, 0, 197, 0.3);
+}
+
+.theme-light {
+    --color-bg: #ffffff;
+    --color-surface: #f9f9f9;
+
+    --color-text-primary: #111827;
+    --color-text-secondary: #4b5563;
+
+    --color-border: rgba(102, 0, 197, 0.1);
+    --color-shadow: rgba(102, 0, 197, 0.05);
+    --color-shadow-hover: rgba(102, 0, 197, 0.15);
+}
+
+/* Custom selection style */
+::selection {
+    background: var(--color-base-highlight); /* Neon aqua */
+    color: #000000; /* Black text */
 }
 
 .logo {

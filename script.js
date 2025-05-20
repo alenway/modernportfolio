@@ -133,6 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 .then(() => {
                     // Music started playing successfully
                     updatePlaybackUI(true);
+                    isPlaying = true;
                 })
                 .catch((error) => {
                     // Autoplay was prevented
