@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     mainContent.style.display = "none";
 
     // The text to be typed
-    const textToType = "Welcome to my Portfèlio";
+    const textToType = "Portfèlio";
     let charIndex = 0;
 
     // Function for typing effect

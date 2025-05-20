@@ -26,7 +26,7 @@
                 <h1 class="logo">Portfèlio</h1>
 
                 <nav>
-                    <a href="#">company</a>
+                    <a href="#">Projects</a>
                     <a href="#">features</a>
                     <a href="#">resources</a>
                     <a href="#">docs</a>
@@ -34,7 +34,7 @@
                 <button class="btn-signing">signing</button>
             </header>
 
-            <main>
+            <main style="height: 400px">
                 <div class="content">
                     <!-- <div class="tag-box">
                         <div class="tag">intrucing &wedbar;</div>
@@ -60,11 +60,13 @@
                         <!-- <a href="#" class="btn-signing-main">getstart &gt;</a> -->
                     </div>
                 </div>
+                <spline-viewer
+                    style="height: 750px"
+                    class="robot-3d"
+                    url="https://prod.spline.design/CwijbN56EKGHUetz/scene.splinecode"
+                ></spline-viewer>
             </main>
-            <spline-viewer
-                class="robot-3d"
-                url="https://prod.spline.design/CwijbN56EKGHUetz/scene.splinecode"
-            ></spline-viewer>
+
             <!-- Add buttons somewhere in the corner (e.g., top-right) -->
             <!-- <button id="sound-toggle">🔊 Stop</button> -->
             <div class="musiccontainer">
@@ -104,6 +106,120 @@
                 </div>
             </div>
         </div>
+
+        <!-- PROJECTS SECTION -->
+        <section id="projects">
+            <h2 class="section-title">My Creative Projects</h2>
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project">
+                    <div
+                        class="project-img"
+                        style="
+                            background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80');
+                        "
+                    ></div>
+                    <div class="project-content">
+                        <h3>FlavorCraft</h3>
+                        <p>
+                            A responsive recipe search app powered by MealDB API
+                            with a sleek UI for food lovers.
+                        </p>
+                        <div class="tech-tags">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                            <span>Axios</span>
+                        </div>
+                        <div class="project-buttons">
+                            <a href="#" target="_blank">Live Demo</a>
+                            <a href="#" target="_blank">View Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project">
+                    <div
+                        class="project-img"
+                        style="
+                            background-image: url('https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80');
+                        "
+                    ></div>
+                    <div class="project-content">
+                        <h3>Todo Pulse</h3>
+                        <p>
+                            Manage your daily goals and tasks with this elegant
+                            localStorage-based todo app with productivity
+                            analytics.
+                        </p>
+                        <div class="tech-tags">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                        </div>
+                        <div class="project-buttons">
+                            <a href="#" target="_blank">Live Demo</a>
+                            <a href="#" target="_blank">View Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project">
+                    <div
+                        class="project-img"
+                        style="
+                            background-image: url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80');
+                        "
+                    ></div>
+                    <div class="project-content">
+                        <h3>QuoteX</h3>
+                        <p>
+                            Get a fresh quote every time you need inspiration.
+                            Clean animations and fetch API with share
+                            functionality.
+                        </p>
+                        <div class="tech-tags">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                        </div>
+                        <div class="project-buttons">
+                            <a href="#" target="_blank">Live Demo</a>
+                            <a href="#" target="_blank">View Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project">
+                    <div
+                        class="project-img"
+                        style="
+                            background-image: url('https://images.unsplash.com/photo-1469122312224-c5846569feb1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80');
+                        "
+                    ></div>
+                    <div class="project-content">
+                        <h3>Weather Sphere</h3>
+                        <p>
+                            A beautiful weather dashboard with icons, background
+                            changes, and OpenWeather API integration.
+                        </p>
+                        <div class="tech-tags">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                            <span>API</span>
+                        </div>
+                        <div class="project-buttons">
+                            <a href="#" target="_blank">Live Demo</a>
+                            <a href="#" target="_blank">View Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <script
             type="module"
             src="https://unpkg.com/@splinetool/viewer@1.9.96/build/spline-viewer.js"

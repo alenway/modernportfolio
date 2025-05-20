@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Typing Effect with Sound</title>
+        <style>
+            body {
+                background: #222;
+                color: #eee;
+                font-family: monospace;
+                font-size: 2rem;
+                padding: 2rem;
+            }
+            .typing-text {
+                border-right: 2px solid #eee;
+                white-space: nowrap;
+                overflow: hidden;
+                width: max-content;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="typing-text"></div>
+        <button onclick="startTyping()">Start Typing</button>
+
+        <script>
+            const textToType = "Hello";
+            const typingTextElement = document.querySelector(".typing-text");
+            const typingSound = new Audio("../sound/keysound2.mp3"); // Adjust path
+
+            let charIndex = 0;
+
+            function typeNextChar() {
+                if (charIndex < textToType.length) {
+                    typingTextElement.textContent +=
+                        textToType.charAt(charIndex);
+                    typingSound.currentTime = 0;
+                    typingSound.play();
+                    charIndex++;
+                    setTimeout(typeNextChar, 150);
+                }
+            }
+
+            function startTyping() {
+                typeNextChar();
+            }
+        </script>
+    </body>
+</html>
