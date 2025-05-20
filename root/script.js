@@ -16,6 +16,9 @@ const themeConfig = {
         "theme-solarized",
         "theme-ocean",
         "theme-catppuccin",
+        "theme-evergreen",
+        "theme-aurora",
+        "theme-vintage",
     ],
     themeNames: {
         system: "System",
@@ -25,6 +28,9 @@ const themeConfig = {
         "theme-solarized": "Solarized",
         "theme-ocean": "Ocean",
         "theme-catppuccin": "Catppuccin",
+        "theme-evergreen": "Evergreen",
+        "theme-aurora": "Aurora",
+        "theme-vintage": "Vintage",
     },
     animation: {
         textToType: "Portfèlio",

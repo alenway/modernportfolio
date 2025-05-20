@@ -38,6 +38,7 @@ body {
     --nav-bg: #1a1a1a;
     --nav-text: #ffffff;
     --nav-hover: #03dac6;
+    --nav-underline: #bb86fc;
 }
 
 .theme-light {
@@ -62,6 +63,7 @@ body {
     --nav-bg: #f1f5f9;
     --nav-text: #111827;
     --nav-hover: #3b82f6;
+    --nav-underline: #3b82f6;
 }
 
 .theme-purple {
@@ -86,6 +88,7 @@ body {
     --nav-bg: #e9d5ff;
     --nav-text: #4c1d95;
     --nav-hover: #9333ea;
+    --nav-underline: #7c3aed;
 }
 
 .theme-solarized {
@@ -110,6 +113,7 @@ body {
     --nav-bg: #e6dfc3;
     --nav-text: #073642;
     --nav-hover: #268bd2;
+    --nav-underline: #268bd2;
 }
 
 .theme-ocean {
@@ -134,6 +138,7 @@ body {
     --nav-bg: #e0f7fa;
     --nav-text: #014f86;
     --nav-hover: #0284c7;
+    --nav-underline: #0284c7;
 }
 
 .theme-catppuccin {
@@ -158,6 +163,82 @@ body {
     --nav-bg: #2b2b3d;
     --nav-text: #f2f2f7;
     --nav-hover: #89b4fa;
+    --nav-underline: #89b4fa;
+}
+
+.theme-evergreen {
+    --bg-color: #f0fdf4;
+    --text-color: #064e3b;
+    --card-bg: #d1fae5;
+    --primary-color: #10b981;
+    --primary-hover: #059669;
+    --accent: #34d399;
+    --secondary-text: #065f46;
+    --eq-bar-color: #6ee7b7;
+    --input-bg: #ecfdf5;
+    --input-border: #a7f3d0;
+    --success: #22c55e;
+    --warning: #eab308;
+    --error: #ef4444;
+    --button-text: #ffffff;
+    --color-base-highlight: #bbf7d0;
+    --color-base-selection: #064e3b;
+
+    --nav-bg: #bbf7d0;
+    --nav-text: #064e3b;
+    --nav-hover-bg: #a7f3d0;
+    --nav-hover-text: #022c22;
+    --nav-underline: #065f46;
+}
+
+.theme-aurora {
+    --bg-color: #0f172a;
+    --text-color: #e2e8f0;
+    --card-bg: #1e293b;
+    --primary-color: #7dd3fc;
+    --primary-hover: #38bdf8;
+    --accent: #c084fc;
+    --secondary-text: #94a3b8;
+    --eq-bar-color: #0ea5e9;
+    --input-bg: #1e293b;
+    --input-border: #334155;
+    --success: #22d3ee;
+    --warning: #facc15;
+    --error: #f87171;
+    --button-text: #0f172a;
+    --color-base-highlight: #60a5fa;
+    --color-base-selection: #1e293b;
+
+    --nav-bg: #1e293b;
+    --nav-text: #e2e8f0;
+    --nav-hover-bg: #334155;
+    --nav-hover-text: #ffffff;
+    --nav-underline: #7dd3fc;
+}
+
+.theme-vintage {
+    --bg-color: #fff1f2;
+    --text-color: #3b0764;
+    --card-bg: #fce7f3;
+    --primary-color: #9333ea;
+    --primary-hover: #7e22ce;
+    --accent: #c084fc;
+    --secondary-text: #6b21a8;
+    --eq-bar-color: #d8b4fe;
+    --input-bg: #fdf4ff;
+    --input-border: #e9d5ff;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --error: #ef4444;
+    --button-text: #ffffff;
+    --color-base-highlight: #e9d5ff;
+    --color-base-selection: #3b0764;
+
+    --nav-bg: #f3e8ff;
+    --nav-text: #3b0764;
+    --nav-hover-bg: #e9d5ff;
+    --nav-hover-text: #2e1065;
+    --nav-underline: #9333ea;
 }
 
 .container {
@@ -322,6 +403,38 @@ a:hover {
 .ball-ocean {
     background: linear-gradient(45deg, #0284c7, #06b6d4);
 }
+.ball-catppuccin {
+    background: linear-gradient(
+        45deg,
+        #1e1e2e,
+        #89b4fa
+    ); /* Catppuccin base to soft blue */
+}
+
+.ball-evergreen {
+    background: linear-gradient(
+        45deg,
+        #064e3b,
+        #10b981
+    ); /* deep green to vibrant green */
+}
+
+.ball-vintage {
+    background: linear-gradient(
+        45deg,
+        #4c1d95,
+        #9333ea
+    ); /* rich purple tones */
+}
+
+.ball-aurora {
+    background: linear-gradient(
+        45deg,
+        #0f172a,
+        #7dd3fc
+    ); /* dark night to aurora blue */
+}
+
 .ball-system {
     background: repeating-linear-gradient(45deg, #aaa, #ccc 5px);
 }
