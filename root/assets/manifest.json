@@ -1,0 +1,21 @@
+{
+    "name": "Narendra Samtani Portfolio",
+    "short_name": "Portfolio",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "#1a1a2e",
+    "theme_color": "#1a1a2e",
+    "description": "A sleek modern portfolio to showcase my work.",
+    "icons": [
+        {
+            "src": "assets/favicons/icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "assets/favicons/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
