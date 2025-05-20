@@ -129,11 +129,12 @@ body {
     --color-base-highlight: #b4befe; /* Highlight color (lavender) */
     --color-base-selection: #585b70; /* Text selection background */
 }
-
 .container {
-    max-width: 960px;
-    margin: auto;
-    padding: 40px 20px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+    overflow: hidden;
 }
 
 h1 {
@@ -596,4 +597,26 @@ a:hover {
     50% {
         opacity: 0;
     }
+}
+
+.image-gradient {
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0.5; /* Set default opacity */
+    z-index: -1;
+    transition: opacity 1s ease;
+}
+
+.layer-blur {
+    height: 0;
+    width: 30rem;
+    position: absolute;
+    top: 20%;
+    right: 0;
+    box-shadow: 0 0 700px 15px white;
+    rotate: -30deg;
+    z-index: -1;
+    opacity: 1; /* Set default opacity */
+    transition: opacity 1.5s ease;
 }
