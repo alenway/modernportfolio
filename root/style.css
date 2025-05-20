@@ -112,29 +112,28 @@ body {
 }
 
 .theme-catppuccin {
-    --bg-color: #1e1e2e; /* Base background */
-    --text-color: #cdd6f4; /* Main foreground text */
-    --card-bg: #313244; /* Slightly lighter than background for cards */
-    --primary-color: #89b4fa; /* Blue (primary brand color) */
-    --primary-hover: #739df2; /* Slightly darker blue for hover states */
-    --accent: #f5c2e7; /* Pink accent color */
-    --secondary-text: #a6adc8; /* Muted text (subtext1) */
-    --eq-bar-color: #94e2d5; /* Teal (for visual elements like equalizers) */
-    --input-bg: #1e1e2e; /* Same as background */
-    --input-border: #45475a; /* Muted border */
-    --success: #a6e3a1; /* Green */
-    --warning: #f9e2af; /* Yellow */
-    --error: #f38ba8; /* Red */
-    --button-text: #1e1e2e; /* Text inside buttons (on light colors) */
-    --color-base-highlight: #b4befe; /* Highlight color (lavender) */
-    --color-base-selection: #585b70; /* Text selection background */
+    --bg-color: #1e1e2e;
+    --text-color: #cdd6f4;
+    --card-bg: #313244;
+    --primary-color: #89b4fa;
+    --primary-hover: #739df2;
+    --accent: #f5c2e7;
+    --secondary-text: #a6adc8;
+    --eq-bar-color: #94e2d5;
+    --input-bg: #1e1e2e;
+    --input-border: #45475a;
+    --success: #a6e3a1;
+    --warning: #f9e2af;
+    --error: #f38ba8;
+    --button-text: #1e1e2e;
+    --color-base-highlight: #b4befe;
+    --color-base-selection: #585b70;
 }
+
 .container {
     width: 100%;
     margin: 0 auto;
-    /* padding: 0 2rem; */
     position: relative;
-    /* overflow: hidden; */
 }
 
 h1 {
@@ -194,7 +193,6 @@ a {
 }
 
 a:hover {
-    /* text-decoration: underline; */
     color: var(--primary-hover);
 }
 
@@ -220,7 +218,6 @@ a:hover {
 .dropdown {
     position: relative;
     display: inline-block;
-    /* margin-bottom: 20px; */
     width: 130px;
 }
 
@@ -605,7 +602,7 @@ a:hover {
     position: absolute;
     top: 0;
     right: 0;
-    opacity: 0.5; /* Set default opacity */
+    opacity: 0.5;
     z-index: -1;
     transition: opacity 1s ease;
 }
@@ -619,12 +616,11 @@ a:hover {
     box-shadow: 0 0 700px 15px white;
     rotate: -30deg;
     z-index: -1;
-    opacity: 1; /* Set default opacity */
+    opacity: 1;
     transition: opacity 1.5s ease;
 }
 
 /* header  */
-
 header {
     display: flex;
     justify-content: space-between;
