@@ -271,86 +271,13 @@ body {
 }
 
 /* Animated Background */
-.animated-bg {
-    fixed: 0;
+.particles-bg {
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none;
     z-index: -1;
-    background: radial-gradient(ellipse at center, #1a1a2e 0%, #0a0a0a 100%);
-}
-
-.floating-shapes {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-}
-
-.shape {
-    position: absolute;
-    border-radius: 50%;
-    background: linear-gradient(45deg, #667eea, #764ba2);
-    opacity: 0.1;
-    animation: float 20s infinite linear;
-}
-
-.shape-1 {
-    width: 200px;
-    height: 200px;
-    top: 10%;
-    left: 10%;
-    animation-delay: 0s;
-}
-
-.shape-2 {
-    width: 150px;
-    height: 150px;
-    top: 60%;
-    right: 10%;
-    animation-delay: -5s;
-}
-
-.shape-3 {
-    width: 100px;
-    height: 100px;
-    top: 30%;
-    left: 80%;
-    animation-delay: -10s;
-}
-
-.shape-4 {
-    width: 250px;
-    height: 250px;
-    bottom: 10%;
-    left: 20%;
-    animation-delay: -15s;
-}
-
-.shape-5 {
-    width: 120px;
-    height: 120px;
-    top: 80%;
-    right: 30%;
-    animation-delay: -8s;
-}
-
-@keyframes float {
-    0%,
-    100% {
-        transform: translateY(0px) rotate(0deg);
-    }
-    25% {
-        transform: translateY(-20px) rotate(90deg);
-    }
-    50% {
-        transform: translateY(0px) rotate(180deg);
-    }
-    75% {
-        transform: translateY(-20px) rotate(270deg);
-    }
 }
 
 .container {
@@ -1133,23 +1060,4 @@ a:hover {
     .stat-number {
         font-size: 1.1rem;
     }
-}
-
-/* Custom scrollbar */
-::-webkit-scrollbar {
-    width: 8px;
-}
-
-::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: rgba(102, 126, 234, 0.6);
-    border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: rgba(102, 126, 234, 0.8);
 }

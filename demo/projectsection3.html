@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>My Portfolio | Projects</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            :root {
+                --primary: #667eea;
+                --primary-dark: #5a67d8;
+                --secondary: #764ba2;
+                --accent: #f093fb;
+                --bg-dark: #0a0a0a;
+                --bg-darker: #050505;
+                --card-bg: rgba(26, 26, 46, 0.8);
+                --text-light: #e2e8f0;
+                --text-muted: #94a3b8;
+                --transition-speed: 0.4s;
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: "Inter", -apple-system, BlinkMacSystemFont,
+                    sans-serif;
+                background: var(--bg-dark);
+                color: var(--text-light);
+                line-height: 1.6;
+                overflow-x: hidden;
+            }
+
+            /* Animated Background */
+            .particles-bg {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: -1;
+                background: linear-gradient(
+                    to bottom,
+                    var(--bg-darker),
+                    var(--bg-dark)
+                );
+            }
+
+            /* Sticky Header */
+            header {
+                position: sticky;
+                top: 0;
+                z-index: 100;
+                background: rgba(10, 10, 10, 0.8);
+                backdrop-filter: blur(10px);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                padding: 1rem 2rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                transition: all var(--transition-speed) ease;
+            }
+
+            .header-scrolled {
+                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            }
+
+            .logo {
+                font-size: 1.5rem;
+                font-weight: 700;
+                background: linear-gradient(
+                    135deg,
+                    var(--primary),
+                    var(--accent)
+                );
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent;
+            }
+
+            nav ul {
+                display: flex;
+                gap: 2rem;
+                list-style: none;
+            }
+
+            nav a {
+                color: var(--text-light);
+                text-decoration: none;
+                font-weight: 500;
+                position: relative;
+                padding: 0.5rem 0;
+            }
+
+            nav a::after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 0;
+                height: 2px;
+                background: linear-gradient(
+                    90deg,
+                    var(--primary),
+                    var(--accent)
+                );
+                transition: width var(--transition-speed) ease;
+            }
+
+            nav a:hover::after {
+                width: 100%;
+            }
+
+            /* Projects Section */
+            .projects-section {
+                padding: 120px 2rem;
+                position: relative;
+            }
+
+            .section-header {
+                text-align: center;
+                margin-bottom: 4rem;
+                max-width: 800px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .section-title {
+                font-size: clamp(2.5rem, 6vw, 4rem);
+                font-weight: 700;
+                margin-bottom: 1rem;
+                background: linear-gradient(
+                    135deg,
+                    var(--primary),
+                    var(--secondary),
+                    var(--accent)
+                );
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent;
+                animation: gradient-shift 8s ease infinite;
+                background-size: 300% 300%;
+            }
+
+            @keyframes gradient-shift {
+                0% {
+                    background-position: 0% 50%;
+                }
+                50% {
+                    background-position: 100% 50%;
+                }
+                100% {
+                    background-position: 0% 50%;
+                }
+            }
+
+            .section-subtitle {
+                font-size: 1.2rem;
+                color: var(--text-muted);
+                max-width: 600px;
+                margin: 0 auto;
+            }
+
+            /* Projects Grid */
+            .projects-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+                gap: 2rem;
+                max-width: 1400px;
+                margin: 0 auto;
+            }
+
+            /* Project Cards */
+            .project-card {
+                background: var(--card-bg);
+                backdrop-filter: blur(10px);
+                border-radius: 1.5rem;
+                overflow: hidden;
+                position: relative;
+                transition: all var(--transition-speed) ease;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .project-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+            }
+
+            /* Coming Soon Card */
+            .coming-soon-card {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                min-height: 400px;
+                background: linear-gradient(
+                    135deg,
+                    rgba(102, 126, 234, 0.1),
+                    rgba(118, 75, 162, 0.1)
+                );
+                border: 2px dashed rgba(102, 126, 234, 0.3);
+            }
+
+            .coming-soon-card::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(
+                    135deg,
+                    rgba(102, 126, 234, 0.1) 0%,
+                    rgba(118, 75, 162, 0.1) 50%,
+                    rgba(240, 147, 251, 0.1) 100%
+                );
+                opacity: 0;
+                transition: opacity var(--transition-speed) ease;
+            }
+
+            .coming-soon-card:hover::before {
+                opacity: 1;
+            }
+
+            .coming-soon-content {
+                text-align: center;
+                padding: 2rem;
+                z-index: 1;
+            }
+
+            .coming-soon-icon {
+                font-size: 3rem;
+                margin-bottom: 1rem;
+                color: var(--primary);
+                opacity: 0.7;
+            }
+
+            .coming-soon-title {
+                font-size: 1.5rem;
+                margin-bottom: 0.5rem;
+                color: var(--text-light);
+            }
+
+            .coming-soon-text {
+                color: var(--text-muted);
+                margin-bottom: 1.5rem;
+            }
+
+            .notify-btn {
+                background: linear-gradient(
+                    135deg,
+                    var(--primary),
+                    var(--secondary)
+                );
+                color: white;
+                border: none;
+                padding: 0.75rem 1.5rem;
+                border-radius: 2rem;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all var(--transition-speed) ease;
+            }
+
+            .notify-btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            }
+
+            /* Modal Styles */
+            .project-modal {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 1000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                visibility: hidden;
+                transition: all var(--transition-speed) ease;
+            }
+
+            .project-modal.active {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .modal-backdrop {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.8);
+                backdrop-filter: blur(10px);
+            }
+
+            .modal-content {
+                background: var(--card-bg);
+                backdrop-filter: blur(20px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 1.5rem;
+                max-width: 900px;
+                width: 90%;
+                max-height: 90vh;
+                overflow-y: auto;
+                position: relative;
+                padding: 2rem;
+                transform: scale(0.95);
+                transition: transform var(--transition-speed) ease;
+            }
+
+            .project-modal.active .modal-content {
+                transform: scale(1);
+            }
+
+            /* Responsive Design */
+            @media (max-width: 768px) {
+                header {
+                    padding: 1rem;
+                    flex-direction: column;
+                    gap: 1rem;
+                }
+
+                nav ul {
+                    gap: 1rem;
+                }
+
+                .projects-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .projects-section {
+                    padding: 80px 1rem;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Animated Background -->
+        <div class="particles-bg" id="particles-js"></div>
+
+        <!-- Sticky Header -->
+        <header id="mainHeader">
+            <div class="logo">Portfolio</div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Projects Section -->
+        <section class="projects-section" id="projects">
+            <div class="section-header">
+                <h2 class="section-title">My Projects</h2>
+                <p class="section-subtitle">
+                    Crafting digital experiences with passion and precision
+                </p>
+            </div>
+
+            <div class="projects-grid">
+                <!-- Your existing project cards would go here -->
+
+                <!-- Coming Soon Card -->
+                <article class="project-card coming-soon-card">
+                    <div class="coming-soon-content">
+                        <div class="coming-soon-icon">
+                            <svg
+                                width="60"
+                                height="60"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                            >
+                                <path
+                                    d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"
+                                ></path>
+                            </svg>
+                        </div>
+                        <h3 class="coming-soon-title">
+                            New Project Coming Soon
+                        </h3>
+                        <p class="coming-soon-text">
+                            I'm working on something exciting! Stay tuned for
+                            updates on my next big project.
+                        </p>
+                        <button class="notify-btn">Notify Me</button>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Project Modal would go here -->
+
+        <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+        <script>
+            // Initialize particles.js background
+            document.addEventListener("DOMContentLoaded", function () {
+                particlesJS("particles-js", {
+                    particles: {
+                        number: {
+                            value: 80,
+                            density: {
+                                enable: true,
+                                value_area: 800,
+                            },
+                        },
+                        color: {
+                            value: ["#667eea", "#764ba2", "#f093fb"],
+                        },
+                        shape: {
+                            type: "circle",
+                            stroke: {
+                                width: 0,
+                                color: "#000000",
+                            },
+                        },
+                        opacity: {
+                            value: 0.3,
+                            random: true,
+                            anim: {
+                                enable: true,
+                                speed: 1,
+                                opacity_min: 0.1,
+                                sync: false,
+                            },
+                        },
+                        size: {
+                            value: 3,
+                            random: true,
+                            anim: {
+                                enable: true,
+                                speed: 2,
+                                size_min: 0.1,
+                                sync: false,
+                            },
+                        },
+                        line_linked: {
+                            enable: true,
+                            distance: 150,
+                            color: "#667eea",
+                            opacity: 0.2,
+                            width: 1,
+                        },
+                        move: {
+                            enable: true,
+                            speed: 1,
+                            direction: "none",
+                            random: true,
+                            straight: false,
+                            out_mode: "out",
+                            bounce: false,
+                            attract: {
+                                enable: true,
+                                rotateX: 600,
+                                rotateY: 1200,
+                            },
+                        },
+                    },
+                    interactivity: {
+                        detect_on: "canvas",
+                        events: {
+                            onhover: {
+                                enable: true,
+                                mode: "grab",
+                            },
+                            onclick: {
+                                enable: true,
+                                mode: "push",
+                            },
+                            resize: true,
+                        },
+                        modes: {
+                            grab: {
+                                distance: 140,
+                                line_linked: {
+                                    opacity: 0.5,
+                                },
+                            },
+                            push: {
+                                particles_nb: 4,
+                            },
+                        },
+                    },
+                    retina_detect: true,
+                });
+
+                // Header scroll effect
+                const header = document.getElementById("mainHeader");
+                window.addEventListener("scroll", function () {
+                    if (window.scrollY > 50) {
+                        header.classList.add("header-scrolled");
+                    } else {
+                        header.classList.remove("header-scrolled");
+                    }
+                });
+
+                // Coming soon card button
+                const notifyBtn = document.querySelector(".notify-btn");
+                notifyBtn.addEventListener("click", function () {
+                    alert(
+                        "Thanks for your interest! I'll notify you when this project is ready."
+                    );
+                });
+            });
+        </script>
+    </body>
+</html>

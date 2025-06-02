@@ -94,15 +94,7 @@
         </div>
 
         <!-- Animated Background -->
-        <div class="animated-bg">
-            <div class="floating-shapes">
-                <div class="shape shape-1"></div>
-                <div class="shape shape-2"></div>
-                <div class="shape shape-3"></div>
-                <div class="shape shape-4"></div>
-                <div class="shape shape-5"></div>
-            </div>
-        </div>
+        <div class="particles-bg" id="particles-js"></div>
 
         <!-- Header -->
         <div class="container">
@@ -931,11 +923,16 @@
             </div>
         </div>
 
+        <!-- spline 3d model -->
         <script
             type="module"
             src="https://unpkg.com/@splinetool/viewer@1.9.96/build/spline-viewer.js"
         ></script>
 
+        <!-- Load particles.js library -->
+        <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+        <!-- custom js -->
         <script src="script.js"></script>
     </body>
 </html>
