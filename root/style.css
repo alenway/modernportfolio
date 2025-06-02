@@ -741,29 +741,58 @@ main .hero-section .part1 p {
     color: gray;
 }
 
-.hero-section .themed-download-btn {
-    display: inline-block;
+/* === Fixed Theme-Aware Button === */
+.theme-aware-resume-btn {
+    /* Structure */
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
     padding: 12px 24px;
-    font-size: 16px;
+    border-radius: 8px;
+
+    /* Text always uses --button-text (never changes) */
+    color: var(
+        --button-text
+    ) !important; /* Forces text color to stay visible */
+    font-family: inherit;
     font-weight: 600;
-    color: var(--button-text);
+
+    /* Dynamic background */
     background-color: var(--primary-color);
     border: none;
-    border-radius: 8px;
+    cursor: pointer;
     text-decoration: none;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 4px 12px rgba(187, 134, 252, 0.2);
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
 }
 
-.hero-section .themed-download-btn:hover {
+/* Hover State - Only background changes */
+.theme-aware-resume-btn:hover {
     background-color: var(--primary-hover);
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(157, 78, 221, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    /* Text color remains --button-text */
 }
 
-.hero-section .themed-download-btn:active {
-    transform: translateY(1px);
-    box-shadow: 0 3px 8px rgba(157, 78, 221, 0.2);
+/* Active State */
+.theme-aware-resume-btn:active {
+    transform: translateY(0);
+}
+
+/* Icon - Inherits button text color */
+.btn-icon {
+    display: flex;
+    transition: transform 0.3s ease;
+}
+.theme-aware-resume-btn:hover .btn-icon {
+    transform: translateX(3px) rotate(10deg);
+}
+
+/* Ripple uses --accent color */
+.theme-aware-resume-btn::after {
+    background: radial-gradient(circle, var(--accent) 1%, transparent 1%);
 }
 
 /* Section ( Project )  */
