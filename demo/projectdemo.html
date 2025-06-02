@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            /* === Projects Section === */
+            .projects-section {
+                padding: var(--space-xl) 0;
+                background-color: var(--bg-color);
+                color: var(--text-color);
+                font-family: var(--font-sans);
+            }
+
+            .section-title {
+                font-size: var(--font-xxl);
+                text-align: center;
+                margin-bottom: var(--space-xl);
+                color: var(--primary-color);
+            }
+
+            .projects-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: var(--space-lg);
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 var(--space-md);
+            }
+
+            .project-card {
+                background: var(--card-bg);
+                border-radius: var(--radius-lg);
+                overflow: hidden;
+                transition: transform var(--transition-speed),
+                    box-shadow var(--transition-speed);
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                cursor: pointer;
+            }
+
+            .project-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            }
+
+            .project-image {
+                height: 200px;
+                overflow: hidden;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: var(--card-bg-alt);
+            }
+
+            .project-image img {
+                max-width: 100%;
+                max-height: 100%;
+                width: auto;
+                height: auto;
+                object-fit: contain;
+                transition: transform var(--transition-speed);
+            }
+
+            .project-card:hover .project-image img {
+                transform: scale(1.05);
+            }
+
+            .project-content {
+                padding: var(--space-md);
+            }
+
+            .project-tags {
+                display: flex;
+                flex-wrap: wrap;
+                gap: var(--space-xs);
+                margin-bottom: var(--space-sm);
+            }
+
+            .tag {
+                background: var(--primary-hover);
+                color: var(--button-text);
+                padding: var(--space-xs) var(--space-sm);
+                border-radius: var(--radius-round);
+                font-size: var(--font-xs);
+                font-weight: 600;
+            }
+
+            .project-title {
+                font-size: var(--font-lg);
+                margin: var(--space-xs) 0;
+                color: var(--text-color);
+            }
+
+            .project-description {
+                font-size: var(--font-sm);
+                color: var(--secondary-text);
+            }
+
+            /* === Project Modal === */
+            .project-modal {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.9);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 1000;
+                opacity: 0;
+                visibility: hidden;
+                transition: opacity var(--transition-speed),
+                    visibility var(--transition-speed);
+                padding: var(--space-md);
+                box-sizing: border-box;
+            }
+
+            .project-modal.active {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .modal-content {
+                background: var(--card-bg);
+                border-radius: var(--radius-lg);
+                max-width: 900px;
+                width: 100%;
+                max-height: 90vh;
+                overflow-y: auto;
+                position: relative;
+                padding: var(--space-lg);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                animation: modalFadeIn 0.3s ease-out;
+            }
+
+            @keyframes modalFadeIn {
+                from {
+                    transform: scale(0.95);
+                    opacity: 0;
+                }
+                to {
+                    transform: scale(1);
+                    opacity: 1;
+                }
+            }
+
+            .close-modal {
+                position: absolute;
+                top: var(--space-md);
+                right: var(--space-md);
+                background: none;
+                border: none;
+                font-size: var(--font-xl);
+                color: var(--secondary-text);
+                cursor: pointer;
+                transition: color var(--transition-speed);
+                z-index: 2;
+            }
+
+            .close-modal:hover {
+                color: var(--error);
+            }
+
+            .modal-header {
+                margin-bottom: var(--space-lg);
+            }
+
+            .modal-title {
+                font-size: var(--font-xl);
+                color: var(--primary-color);
+                margin-bottom: var(--space-sm);
+            }
+
+            .modal-tags {
+                display: flex;
+                gap: var(--space-xs);
+            }
+
+            .modal-gallery {
+                margin-bottom: var(--space-lg);
+                position: relative;
+            }
+
+            .main-image {
+                height: 400px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: var(--card-bg-alt);
+                border-radius: var(--radius-md);
+                margin-bottom: var(--space-sm);
+                overflow: hidden;
+            }
+
+            .main-image img {
+                max-width: 100%;
+                max-height: 100%;
+                width: auto;
+                height: auto;
+                object-fit: contain;
+            }
+
+            .thumbnail-container {
+                display: flex;
+                gap: var(--space-sm);
+                overflow-x: auto;
+                padding-bottom: var(--space-xs);
+            }
+
+            .thumbnail {
+                min-width: 100px;
+                height: 75px;
+                border-radius: var(--radius-sm);
+                overflow: hidden;
+                cursor: pointer;
+                opacity: 0.7;
+                transition: all var(--transition-speed);
+                background: var(--card-bg-alt);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+                border: 2px solid transparent;
+            }
+
+            .thumbnail:hover {
+                opacity: 1;
+                transform: translateY(-3px);
+            }
+
+            .thumbnail.active {
+                opacity: 1;
+                border-color: var(--accent);
+                transform: translateY(-3px);
+            }
+
+            .thumbnail img {
+                max-width: 100%;
+                max-height: 100%;
+                width: auto;
+                height: auto;
+                object-fit: contain;
+            }
+
+            .modal-body {
+                display: grid;
+                grid-template-columns: 2fr 1fr;
+                gap: var(--space-lg);
+                margin-bottom: var(--space-lg);
+            }
+
+            .modal-description,
+            .modal-features {
+                font-size: var(--font-md);
+                line-height: 1.6;
+            }
+
+            .modal-description h3,
+            .modal-features h3 {
+                font-size: var(--font-lg);
+                color: var(--accent);
+                margin-bottom: var(--space-sm);
+            }
+
+            .modal-features ul {
+                padding-left: var(--space-md);
+            }
+
+            .modal-features li {
+                margin-bottom: var(--space-xs);
+            }
+
+            .modal-footer {
+                display: flex;
+                gap: var(--space-md);
+            }
+
+            .modal-link {
+                display: inline-flex;
+                align-items: center;
+                gap: var(--space-xs);
+                padding: var(--space-sm) var(--space-md);
+                background-color: var(--primary-color);
+                color: var(--button-text);
+                border-radius: var(--radius-md);
+                text-decoration: none;
+                font-weight: 600;
+                transition: background-color var(--transition-speed);
+            }
+
+            .modal-link:hover {
+                background-color: var(--primary-hover);
+            }
+
+            .modal-link svg {
+                width: 16px;
+                height: 16px;
+            }
+
+            @media (max-width: 768px) {
+                .projects-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .modal-body {
+                    grid-template-columns: 1fr;
+                }
+
+                .main-image {
+                    height: 250px;
+                }
+
+                .modal-content {
+                    padding: var(--space-md);
+                }
+
+                .thumbnail {
+                    min-width: 80px;
+                    height: 60px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <section class="projects-section">
+            <h2 class="section-title">My Projects</h2>
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <article class="project-card" data-project="1">
+                    <div class="project-image">
+                        <img
+                            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+                            alt="E-commerce Platform"
+                        />
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="tag">React</span>
+                            <span class="tag">Node.js</span>
+                        </div>
+                        <h3 class="project-title">E-commerce Platform</h3>
+                        <p class="project-description">
+                            Full-stack online store with payment integration
+                        </p>
+                    </div>
+                </article>
+
+                <!-- Project 2 -->
+                <article class="project-card" data-project="2">
+                    <div class="project-image">
+                        <img
+                            src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+                            alt="Task Manager"
+                        />
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="tag">Vue.js</span>
+                            <span class="tag">Firebase</span>
+                        </div>
+                        <h3 class="project-title">Task Manager</h3>
+                        <p class="project-description">
+                            Real-time collaborative task management
+                        </p>
+                    </div>
+                </article>
+
+                <!-- Project 3 -->
+                <article class="project-card" data-project="3">
+                    <div class="project-image">
+                        <img
+                            src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+                            alt="CMS System"
+                        />
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="tag">Django</span>
+                            <span class="tag">PostgreSQL</span>
+                        </div>
+                        <h3 class="project-title">CMS System</h3>
+                        <p class="project-description">
+                            Customizable content management platform
+                        </p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Project Modal -->
+        <div class="project-modal" id="projectModal">
+            <div class="modal-content">
+                <button class="close-modal">&times;</button>
+
+                <div class="modal-header">
+                    <h2 class="modal-title">Project Title</h2>
+                    <div class="modal-tags"></div>
+                </div>
+
+                <div class="modal-gallery">
+                    <div class="main-image">
+                        <img
+                            id="mainImage"
+                            src=""
+                            alt="Main project screenshot"
+                        />
+                    </div>
+                    <div class="thumbnail-container"></div>
+                </div>
+
+                <div class="modal-body">
+                    <div class="modal-description">
+                        <h3>About This Project</h3>
+                        <p id="projectDescription"></p>
+                    </div>
+
+                    <div class="modal-features">
+                        <h3>Key Features</h3>
+                        <ul id="projectFeatures"></ul>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <a
+                        href="#"
+                        class="modal-link"
+                        target="_blank"
+                        id="codeLink"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            fill="currentColor"
+                            viewBox="0 0 16 16"
+                        >
+                            <path
+                                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+                            />
+                        </svg>
+                        View Code
+                    </a>
+                    <a
+                        href="#"
+                        class="modal-link"
+                        target="_blank"
+                        id="demoLink"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            fill="currentColor"
+                            viewBox="0 0 16 16"
+                        >
+                            <path
+                                d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"
+                            />
+                        </svg>
+                        Live Demo
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // Project data with real image URLs
+            const projects = {
+                1: {
+                    title: "E-commerce Platform",
+                    tags: ["React", "Node.js", "MongoDB"],
+                    description:
+                        "A full-featured e-commerce platform built with modern technologies. Includes product catalog, shopping cart, user authentication, and Stripe payment integration. The admin dashboard allows for inventory management and order processing.",
+                    features: [
+                        "Responsive product catalog with filters",
+                        "User authentication (JWT)",
+                        "Stripe payment processing",
+                        "Admin dashboard",
+                        "Product reviews and ratings",
+                    ],
+                    images: [
+                        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                        "https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                    ],
+                    codeLink: "#",
+                    demoLink: "#",
+                },
+                2: {
+                    title: "Task Manager",
+                    tags: ["Vue.js", "Firebase"],
+                    description:
+                        "A collaborative task management application with real-time updates and drag-and-drop interface. Built with Vue.js for the frontend and Firebase for backend services including authentication and database.",
+                    features: [
+                        "Real-time task updates",
+                        "Drag-and-drop interface",
+                        "User authentication",
+                        "Team collaboration",
+                        "Task categories and labels",
+                    ],
+                    images: [
+                        "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                        "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                        "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                    ],
+                    codeLink: "#",
+                    demoLink: "#",
+                },
+                3: {
+                    title: "CMS System",
+                    tags: ["Django", "PostgreSQL"],
+                    description:
+                        "A customizable content management system with rich text editing, user roles, and media management. Built with Django for the backend and PostgreSQL for data storage.",
+                    features: [
+                        "Rich text editor",
+                        "User role management",
+                        "Media library",
+                        "Custom content types",
+                        "SEO optimization tools",
+                    ],
+                    images: [
+                        "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                        "https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                        "https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                    ],
+                    codeLink: "#",
+                    demoLink: "#",
+                },
+            };
+
+            document.addEventListener("DOMContentLoaded", function () {
+                const modal = document.getElementById("projectModal");
+                const modalTitle = modal.querySelector(".modal-title");
+                const modalTags = modal.querySelector(".modal-tags");
+                const modalDescription = modal.querySelector(
+                    "#projectDescription"
+                );
+                const modalFeatures = modal.querySelector("#projectFeatures");
+                const mainImage = modal.querySelector("#mainImage");
+                const thumbnailContainer = modal.querySelector(
+                    ".thumbnail-container"
+                );
+                const codeLink = modal.querySelector("#codeLink");
+                const demoLink = modal.querySelector("#demoLink");
+
+                const projectCards = document.querySelectorAll(".project-card");
+
+                projectCards.forEach((card) => {
+                    card.addEventListener("click", function () {
+                        const projectId = this.getAttribute("data-project");
+                        const project = projects[projectId];
+
+                        // Set project info
+                        modalTitle.textContent = project.title;
+                        modalDescription.textContent = project.description;
+
+                        // Set tags
+                        modalTags.innerHTML = "";
+                        project.tags.forEach((tag) => {
+                            const tagElement = document.createElement("span");
+                            tagElement.className = "tag";
+                            tagElement.textContent = tag;
+                            modalTags.appendChild(tagElement);
+                        });
+
+                        // Set features
+                        modalFeatures.innerHTML = "";
+                        project.features.forEach((feature) => {
+                            const li = document.createElement("li");
+                            li.textContent = feature;
+                            modalFeatures.appendChild(li);
+                        });
+
+                        // Set main image
+                        mainImage.src = project.images[0];
+                        mainImage.alt = project.title;
+
+                        // Create thumbnails
+                        thumbnailContainer.innerHTML = "";
+                        project.images.forEach((image, index) => {
+                            const thumbnail = document.createElement("div");
+                            thumbnail.className =
+                                "thumbnail" + (index === 0 ? " active" : "");
+                            thumbnail.innerHTML = `<img src="${image}" alt="${
+                                project.title
+                            } Thumbnail ${index + 1}">`;
+
+                            thumbnail.addEventListener("click", () => {
+                                // Update main image
+                                mainImage.src = image;
+                                mainImage.alt = `${project.title} Image ${
+                                    index + 1
+                                }`;
+
+                                // Update active thumbnail
+                                thumbnailContainer
+                                    .querySelectorAll(".thumbnail")
+                                    .forEach((t) => {
+                                        t.classList.remove("active");
+                                    });
+                                thumbnail.classList.add("active");
+                            });
+
+                            thumbnailContainer.appendChild(thumbnail);
+                        });
+
+                        // Set links
+                        codeLink.href = project.codeLink;
+                        demoLink.href = project.demoLink;
+
+                        // Show modal
+                        modal.classList.add("active");
+                        document.body.style.overflow = "hidden";
+                    });
+                });
+
+                // Close modal
+                modal
+                    .querySelector(".close-modal")
+                    .addEventListener("click", closeModal);
+                modal.addEventListener("click", function (e) {
+                    if (e.target === modal) {
+                        closeModal();
+                    }
+                });
+
+                document.addEventListener("keydown", function (e) {
+                    if (e.key === "Escape") {
+                        closeModal();
+                    }
+                });
+
+                function closeModal() {
+                    modal.classList.remove("active");
+                    document.body.style.overflow = "auto";
+                }
+            });
+        </script>
+    </body>
+</html>

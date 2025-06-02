@@ -92,12 +92,8 @@
                 <h1 class="typing-text"></h1>
             </div>
         </div>
-        <!-- <img
-            class="image-gradient"
-            src="assets/bggradient.png"
-            alt="Gradient"
-        />
-        <div class="layer-blur"></div> -->
+
+        <!-- Header -->
         <div class="container">
             <header>
                 <a href="#">
@@ -165,6 +161,7 @@
             </header>
         </div>
 
+        <!-- Hero section -->
         <main>
             <div class="hero-section">
                 <div class="part1">
@@ -213,118 +210,146 @@
             </div>
         </main>
 
-        <section id="projects">
-            <h2 class="section-title">My Creative Projects</h2>
+        <section class="projects-section">
+            <h2 class="section-title">My Projects</h2>
             <div class="projects-grid">
                 <!-- Project 1 -->
-                <div class="project">
-                    <div
-                        class="project-img"
-                        style="
-                            background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80');
-                        "
-                    ></div>
-                    <div id="#projects" class="project-content">
-                        <h3>FlavorCraft</h3>
-                        <p>
-                            A responsive recipe search app powered by MealDB API
-                            with a sleek UI for food lovers.
-                        </p>
-                        <div class="tech-tags">
-                            <span>HTML</span>
-                            <span>CSS</span>
-                            <span>JavaScript</span>
-                            <span>Axios</span>
-                        </div>
-                        <div class="project-buttons">
-                            <a href="#" target="_blank">Live Demo</a>
-                            <a href="#" target="_blank">View Code</a>
-                        </div>
+                <article class="project-card" data-project="1">
+                    <div class="project-image">
+                        <img
+                            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+                            alt="E-commerce Platform"
+                        />
                     </div>
-                </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="tag">React</span>
+                            <span class="tag">Node.js</span>
+                        </div>
+                        <h3 class="project-title">E-commerce Platform</h3>
+                        <p class="project-description">
+                            Full-stack online store with payment integration
+                        </p>
+                    </div>
+                </article>
 
                 <!-- Project 2 -->
-                <div class="project">
-                    <div
-                        class="project-img"
-                        style="
-                            background-image: url('https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80');
-                        "
-                    ></div>
-                    <div class="project-content">
-                        <h3>Todo Pulse</h3>
-                        <p>
-                            Manage your daily goals and tasks with this elegant
-                            localStorage-based todo app with productivity
-                            analytics.
-                        </p>
-                        <div class="tech-tags">
-                            <span>HTML</span>
-                            <span>CSS</span>
-                            <span>JavaScript</span>
-                        </div>
-                        <div class="project-buttons">
-                            <a href="#" target="_blank">Live Demo</a>
-                            <a href="#" target="_blank">View Code</a>
-                        </div>
+                <article class="project-card" data-project="2">
+                    <div class="project-image">
+                        <img
+                            src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+                            alt="Task Manager"
+                        />
                     </div>
-                </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="tag">Vue.js</span>
+                            <span class="tag">Firebase</span>
+                        </div>
+                        <h3 class="project-title">Task Manager</h3>
+                        <p class="project-description">
+                            Real-time collaborative task management
+                        </p>
+                    </div>
+                </article>
 
                 <!-- Project 3 -->
-                <div class="project">
-                    <div
-                        class="project-img"
-                        style="
-                            background-image: url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80');
-                        "
-                    ></div>
+                <article class="project-card" data-project="3">
+                    <div class="project-image">
+                        <img
+                            src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+                            alt="CMS System"
+                        />
+                    </div>
                     <div class="project-content">
-                        <h3>QuoteX</h3>
-                        <p>
-                            Get a fresh quote every time you need inspiration.
-                            Clean animations and fetch API with share
-                            functionality.
+                        <div class="project-tags">
+                            <span class="tag">Django</span>
+                            <span class="tag">PostgreSQL</span>
+                        </div>
+                        <h3 class="project-title">CMS System</h3>
+                        <p class="project-description">
+                            Customizable content management platform
                         </p>
-                        <div class="tech-tags">
-                            <span>HTML</span>
-                            <span>CSS</span>
-                            <span>JavaScript</span>
-                        </div>
-                        <div class="project-buttons">
-                            <a href="#" target="_blank">Live Demo</a>
-                            <a href="#" target="_blank">View Code</a>
-                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Project Modal -->
+        <div class="project-modal" id="projectModal">
+            <div class="modal-content">
+                <button class="close-modal">&times;</button>
+
+                <div class="modal-header">
+                    <h2 class="modal-title">Project Title</h2>
+                    <div class="modal-tags"></div>
+                </div>
+
+                <div class="modal-gallery">
+                    <div class="main-image">
+                        <img
+                            id="mainImage"
+                            src=""
+                            alt="Main project screenshot"
+                        />
+                    </div>
+                    <div class="thumbnail-container"></div>
+                </div>
+
+                <div class="modal-body">
+                    <div class="modal-description">
+                        <h3>About This Project</h3>
+                        <p id="projectDescription"></p>
+                    </div>
+
+                    <div class="modal-features">
+                        <h3>Key Features</h3>
+                        <ul id="projectFeatures"></ul>
                     </div>
                 </div>
 
-                <!-- Project 4 -->
-                <div class="project">
-                    <div
-                        class="project-img"
-                        style="
-                            background-image: url('https://images.unsplash.com/photo-1469122312224-c5846569feb1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80');
-                        "
-                    ></div>
-                    <div class="project-content">
-                        <h3>Weather Sphere</h3>
-                        <p>
-                            A beautiful weather dashboard with icons, background
-                            changes, and OpenWeather API integration.
-                        </p>
-                        <div class="tech-tags">
-                            <span>HTML</span>
-                            <span>CSS</span>
-                            <span>JavaScript</span>
-                            <span>API</span>
-                        </div>
-                        <div class="project-buttons">
-                            <a href="#" target="_blank">Live Demo</a>
-                            <a href="#" target="_blank">View Code</a>
-                        </div>
-                    </div>
+                <div class="modal-footer">
+                    <a
+                        href="#"
+                        class="modal-link"
+                        target="_blank"
+                        id="codeLink"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            fill="currentColor"
+                            viewBox="0 0 16 16"
+                        >
+                            <path
+                                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+                            />
+                        </svg>
+                        View Code
+                    </a>
+                    <a
+                        href="#"
+                        class="modal-link"
+                        target="_blank"
+                        id="demoLink"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            fill="currentColor"
+                            viewBox="0 0 16 16"
+                        >
+                            <path
+                                d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"
+                            />
+                        </svg>
+                        Live Demo
+                    </a>
                 </div>
             </div>
-        </section>
+        </div>
 
         <script
             type="module"
