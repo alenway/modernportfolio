@@ -1,0 +1,113 @@
+/* dropdown menu */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    width: 130px;
+}
+
+.dropdown-toggle {
+    padding: 10px 16px;
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border: 1px solid var(--secondary-text);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: var(--radius-md);
+    user-select: none;
+}
+
+.arrow {
+    border: solid var(--text-color);
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(45deg);
+    margin-left: auto;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: var(--card-bg);
+    border: 1px solid var(--secondary-text);
+    border-radius: var(--radius-md);
+    margin-top: 5px;
+    width: 100%;
+    z-index: 1;
+}
+
+.dropdown-menu.show {
+    display: block;
+}
+
+.theme-item {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.theme-item:hover {
+    background-color: var(--primary-hover);
+    color: #fff;
+}
+
+.theme-ball {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+}
+
+.ball-dark {
+    background: linear-gradient(45deg, #121212, #bb86fc);
+}
+.ball-light {
+    background: linear-gradient(45deg, #ffffff, #f3f4f6);
+}
+.ball-purple {
+    background: linear-gradient(45deg, #7c3aed, #a78bfa);
+}
+.ball-solarized {
+    background: linear-gradient(45deg, #268bd2, #b58900);
+}
+.ball-ocean {
+    background: linear-gradient(45deg, #0284c7, #06b6d4);
+}
+.ball-catppuccin {
+    background: linear-gradient(
+        45deg,
+        #1e1e2e,
+        #89b4fa
+    ); /* Catppuccin base to soft blue */
+}
+
+.ball-evergreen {
+    background: linear-gradient(
+        45deg,
+        #064e3b,
+        #10b981
+    ); /* deep green to vibrant green */
+}
+
+.ball-vintage {
+    background: linear-gradient(
+        45deg,
+        #4c1d95,
+        #9333ea
+    ); /* rich purple tones */
+}
+
+.ball-aurora {
+    background: linear-gradient(
+        45deg,
+        #0f172a,
+        #7dd3fc
+    ); /* dark night to aurora blue */
+}
+
+.ball-system {
+    background: repeating-linear-gradient(45deg, #aaa, #ccc 5px);
+}

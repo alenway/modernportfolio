@@ -1,0 +1,98 @@
+/* hero section */
+
+main .hero-section {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    width: 90%;
+    margin: 0 auto;
+    background: linear-gradient(
+        to bottom,
+        #000000 0%,
+        #000000 60%,
+        #360f2a 70%,
+        #752e6b 100%
+    );
+
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+}
+
+main .hero-section .part1,
+main .hero-section .part2 {
+    width: 100%;
+    color: var(--accent);
+    padding: var(--space-xl);
+}
+
+main .hero-section .part1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+main .hero-section .part1 h1 {
+    font-size: var(--font-2xl);
+}
+
+main .hero-section .part1 p {
+    font-size: var(--font-xl);
+    letter-spacing: 0.05em;
+    max-width: 35rem;
+    color: gray;
+}
+
+/* === Fixed Theme-Aware Button === */
+.theme-aware-resume-btn {
+    /* Structure */
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 24px;
+    border-radius: 8px;
+
+    /* Text always uses --button-text (never changes) */
+    color: var(
+        --button-text
+    ) !important; /* Forces text color to stay visible */
+    font-family: inherit;
+    font-weight: 600;
+
+    /* Dynamic background */
+    background-color: var(--primary-color);
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hover State - Only background changes */
+.theme-aware-resume-btn:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    /* Text color remains --button-text */
+}
+
+/* Active State */
+.theme-aware-resume-btn:active {
+    transform: translateY(0);
+}
+
+/* Icon - Inherits button text color */
+.btn-icon {
+    display: flex;
+    transition: transform 0.3s ease;
+}
+.theme-aware-resume-btn:hover .btn-icon {
+    transform: translateX(3px) rotate(10deg);
+}
+
+/* Ripple uses --accent color */
+.theme-aware-resume-btn::after {
+    background: radial-gradient(circle, var(--accent) 1%, transparent 1%);
+}
