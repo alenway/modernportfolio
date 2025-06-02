@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Download Resume</title>
+        <style>
+            @import url("https://fonts.googleapis.com/css?family=Teko|Yanone+Kaffeesatz");
+
+            #body {
+                display: flex;
+                flex-flow: column wrap;
+                align-items: center;
+            }
+            h1,
+            h3 {
+                font-family: Teko;
+                margin-bottom: 0;
+            }
+            #wrapper {
+                display: flex;
+                flex-flow: row wrap;
+            }
+            .inner-wrapper {
+                text-align: center;
+                margin-right: 10px;
+            }
+            .cta,
+            .cta-2 {
+                font-family: Yanone Kaffeesatz;
+                display: inline-block;
+                cursor: pointer;
+                color: white;
+                padding: 15px 10px;
+                background-color: black;
+                border: 2px solid black;
+                text-transform: uppercase;
+            }
+            .cta a,
+            .cta-2 a {
+                color: white;
+                text-decoration: none;
+            }
+            .cta:hover,
+            .cta-2:hover {
+                background-color: white;
+                color: black;
+            }
+            .cta:hover a {
+                color: black;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="body">
+            <h1>Button To Download File</h1>
+            <div id="wrapper">
+                <div class="inner-wrapper">
+                    <h3>Just HTML</h3>
+                    <div class="cta">
+                        <a
+                            href="../root/resume/NarendraSamtani.pdf"
+                            download="Narendra_Samtani_Resume.pdf"
+                            >Download File</a
+                        >
+                    </div>
+                </div>
+                <div class="inner-wrapper">
+                    <h3>Javascript</h3>
+                    <div class="cta-2" id="downloadBtn2">Download File 2</div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            document
+                .getElementById("downloadBtn2")
+                .addEventListener("click", function () {
+                    const anchor = document.createElement("a");
+                    anchor.href = "../root/resume/NarendraSamtani.pdf";
+                    anchor.download = "Narendra_Samtani_Resume.pdf";
+                    document.body.appendChild(anchor);
+                    anchor.click();
+                    document.body.removeChild(anchor);
+                });
+        </script>
+    </body>
+</html>

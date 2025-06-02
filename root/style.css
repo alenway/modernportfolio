@@ -15,6 +15,8 @@
     --font-md: 1rem; /* 16px */
     --font-lg: 1.25rem; /* 20px */
     --font-xl: 1.5rem; /* 24px */
+    --font-xxl: 2rem;
+    --font-2xl: 4rem;
 
     /* Font Family */
     --font-sans: "Helvetica Neue", Arial, sans-serif;
@@ -702,24 +704,69 @@ main .hero-section {
     justify-content: center;
     width: 90%;
     margin: 0 auto;
-    background-color: var(--card-bg);
+    background: linear-gradient(
+        to bottom,
+        #000000 0%,
+        #000000 60%,
+        #360f2a 70%,
+        #752e6b 100%
+    );
+
     border-radius: var(--radius-lg);
     padding: var(--space-lg);
 }
 
 main .hero-section .part1,
 main .hero-section .part2 {
-    height: 600px;
     width: 100%;
-    font-size: var(--font-lg);
-    background-color: var(--primary-color);
     color: var(--accent);
     padding: var(--space-xl);
 }
 
-/* Section ( Project )  */
+main .hero-section .part1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
-/* project */
+main .hero-section .part1 h1 {
+    font-size: var(--font-2xl);
+}
+
+main .hero-section .part1 p {
+    font-size: var(--font-xl);
+    letter-spacing: 0.05em;
+    max-width: 35rem;
+    color: gray;
+}
+
+.hero-section .themed-download-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--button-text);
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 12px rgba(187, 134, 252, 0.2);
+}
+
+.hero-section .themed-download-btn:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(157, 78, 221, 0.3);
+}
+
+.hero-section .themed-download-btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 3px 8px rgba(157, 78, 221, 0.2);
+}
+
+/* Section ( Project )  */
 
 #projects {
     background-color: var(--dark-bg);
