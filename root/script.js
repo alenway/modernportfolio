@@ -228,67 +228,126 @@ if ("serviceWorker" in navigator) {
     });
 }
 
-// Project data with real image URLs
+// =======================================
+// === *** === *** === *** === *** === *** === *** === *** === *** === *** ===
+// Section Project data
 const projects = {
     1: {
         title: "E-commerce Platform",
-        tags: ["React", "Node.js", "MongoDB"],
+        tags: ["React", "Node.js", "MongoDB", "Stripe"],
         description:
-            "A full-featured e-commerce platform built with modern technologies. Includes product catalog, shopping cart, user authentication, and Stripe payment integration. The admin dashboard allows for inventory management and order processing.",
+            "A comprehensive e-commerce platform featuring advanced product management, secure payment processing, real-time inventory tracking, and detailed analytics. Built with modern technologies to ensure scalability and performance.",
         features: [
-            "Responsive product catalog with filters",
-            "User authentication (JWT)",
-            "Stripe payment processing",
-            "Admin dashboard",
-            "Product reviews and ratings",
+            "Advanced product catalog with smart filtering",
+            "Secure JWT-based authentication system",
+            "Integrated Stripe payment processing",
+            "Real-time inventory management",
+            "Comprehensive admin dashboard",
+            "Customer review and rating system",
+            "Order tracking and notifications",
+            "Mobile-responsive design",
         ],
-        images: [
-            "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
-        ],
-        codeLink: "#",
-        demoLink: "#",
+        images: ["./images/cat5.jpg", "./images/cat2.jpg", "./images/cat3.jpg"],
+        codeLink: "https://github.com/yourusername/ecommerce-platform",
+        demoLink: "https://ecommerce-demo.vercel.app",
     },
     2: {
-        title: "Task Manager",
-        tags: ["Vue.js", "Firebase"],
+        title: "Task Manager Pro",
+        tags: ["Vue.js", "Firebase", "PWA"],
         description:
-            "A collaborative task management application with real-time updates and drag-and-drop interface. Built with Vue.js for the frontend and Firebase for backend services including authentication and database.",
+            "A collaborative task management application with real-time synchronization, drag-and-drop interface, and comprehensive project tracking. Designed for teams to enhance productivity and streamline workflow management.",
         features: [
-            "Real-time task updates",
-            "Drag-and-drop interface",
-            "User authentication",
-            "Team collaboration",
-            "Task categories and labels",
+            "Real-time collaboration with live updates",
+            "Intuitive drag-and-drop task management",
+            "Team member assignment and permissions",
+            "Project timeline and milestone tracking",
+            "Customizable task categories and labels",
+            "File attachment and commenting system",
+            "Progressive Web App capabilities",
+            "Dark and light theme options",
         ],
-        images: [
-            "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
-        ],
-        codeLink: "#",
-        demoLink: "#",
+        images: ["./images/cat2.jpg", "./images/cat3.jpg", "./images/cat4.jpg"],
+        codeLink: "https://github.com/yourusername/task-manager-pro",
+        demoLink: "https://taskmanager-demo.vercel.app",
     },
     3: {
-        title: "CMS System",
-        tags: ["Django", "PostgreSQL"],
+        title: "CMS Enterprise",
+        tags: ["Django", "PostgreSQL", "Docker"],
         description:
-            "A customizable content management system with rich text editing, user roles, and media management. Built with Django for the backend and PostgreSQL for data storage.",
+            "A scalable content management system with AI-powered features, advanced user management, and comprehensive analytics. Built for enterprise-level content operations with robust security and performance optimization.",
         features: [
-            "Rich text editor",
-            "User role management",
-            "Media library",
-            "Custom content types",
-            "SEO optimization tools",
+            "AI-powered content recommendations",
+            "Advanced user role and permission system",
+            "Multi-site management capabilities",
+            "SEO optimization tools and analytics",
+            "Custom content types and fields",
+            "Automated backup and version control",
+            "API-first architecture with GraphQL",
+            "Enterprise-grade security features",
         ],
-        images: [
-            "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+        images: ["./images/cat3.jpg", "./images/cat4.jpg", "./images/cat5.jpg"],
+        codeLink: "https://github.com/yourusername/cms-enterprise",
+        demoLink: "https://cms-demo.vercel.app",
+    },
+
+    4: {
+        title: "CMS Enterprise",
+        tags: ["Django", "PostgreSQL", "Docker"],
+        description:
+            "A scalable content management system with AI-powered features, advanced user management, and comprehensive analytics. Built for enterprise-level content operations with robust security and performance optimization.",
+        features: [
+            "AI-powered content recommendations",
+            "Advanced user role and permission system",
+            "Multi-site management capabilities",
+            "SEO optimization tools and analytics",
+            "Custom content types and fields",
+            "Automated backup and version control",
+            "API-first architecture with GraphQL",
+            "Enterprise-grade security features",
         ],
-        codeLink: "#",
-        demoLink: "#",
+        images: ["./images/cat3.jpg", "./images/cat4.jpg", "./images/cat5.jpg"],
+        codeLink: "https://github.com/yourusername/cms-enterprise",
+        demoLink: "https://cms-demo.vercel.app",
+    },
+
+    5: {
+        title: "CMS Enterprise",
+        tags: ["Django", "PostgreSQL", "Docker"],
+        description:
+            "A scalable content management system with AI-powered features, advanced user management, and comprehensive analytics. Built for enterprise-level content operations with robust security and performance optimization.",
+        features: [
+            "AI-powered content recommendations",
+            "Advanced user role and permission system",
+            "Multi-site management capabilities",
+            "SEO optimization tools and analytics",
+            "Custom content types and fields",
+            "Automated backup and version control",
+            "API-first architecture with GraphQL",
+            "Enterprise-grade security features",
+        ],
+        images: ["./images/cat3.jpg", "./images/cat4.jpg", "./images/cat5.jpg"],
+        codeLink: "https://github.com/yourusername/cms-enterprise",
+        demoLink: "https://cms-demo.vercel.app",
+    },
+
+    6: {
+        title: "CMS Enterprise",
+        tags: ["Django", "PostgreSQL", "Docker"],
+        description:
+            "A scalable content management system with AI-powered features, advanced user management, and comprehensive analytics. Built for enterprise-level content operations with robust security and performance optimization.",
+        features: [
+            "AI-powered content recommendations",
+            "Advanced user role and permission system",
+            "Multi-site management capabilities",
+            "SEO optimization tools and analytics",
+            "Custom content types and fields",
+            "Automated backup and version control",
+            "API-first architecture with GraphQL",
+            "Enterprise-grade security features",
+        ],
+        images: ["./images/cat3.jpg", "./images/cat4.jpg", "./images/cat5.jpg"],
+        codeLink: "https://github.com/yourusername/cms-enterprise",
+        demoLink: "https://cms-demo.vercel.app",
     },
 };
 
@@ -305,12 +364,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const projectCards = document.querySelectorAll(".project-card");
 
+    // Add click event to project cards
     projectCards.forEach((card) => {
-        card.addEventListener("click", function () {
+        card.addEventListener("click", function (e) {
+            // Prevent modal from opening when clicking on links
+            if (e.target.closest("a")) return;
+
             const projectId = this.getAttribute("data-project");
             const project = projects[projectId];
 
-            // Set project info
+            if (!project) return;
+
+            // Populate modal content
             modalTitle.textContent = project.title;
             modalDescription.textContent = project.description;
 
@@ -318,7 +383,10 @@ document.addEventListener("DOMContentLoaded", function () {
             modalTags.innerHTML = "";
             project.tags.forEach((tag) => {
                 const tagElement = document.createElement("span");
-                tagElement.className = "tag";
+                tagElement.className = `tag tag-${tag
+                    .toLowerCase()
+                    .replace(".", "")
+                    .replace("+", "plus")}`;
                 tagElement.textContent = tag;
                 modalTags.appendChild(tagElement);
             });
@@ -335,27 +403,22 @@ document.addEventListener("DOMContentLoaded", function () {
             mainImage.src = project.images[0];
             mainImage.alt = project.title;
 
-            // Create thumbnails
+            // Set thumbnails
             thumbnailContainer.innerHTML = "";
             project.images.forEach((image, index) => {
                 const thumbnail = document.createElement("div");
-                thumbnail.className =
-                    "thumbnail" + (index === 0 ? " active" : "");
+                thumbnail.className = `thumbnail${
+                    index === 0 ? " active" : ""
+                }`;
                 thumbnail.innerHTML = `<img src="${image}" alt="${
                     project.title
-                } Thumbnail ${index + 1}">`;
+                } Screenshot ${index + 1}">`;
 
                 thumbnail.addEventListener("click", () => {
-                    // Update main image
                     mainImage.src = image;
-                    mainImage.alt = `${project.title} Image ${index + 1}`;
-
-                    // Update active thumbnail
                     thumbnailContainer
                         .querySelectorAll(".thumbnail")
-                        .forEach((t) => {
-                            t.classList.remove("active");
-                        });
+                        .forEach((t) => t.classList.remove("active"));
                     thumbnail.classList.add("active");
                 });
 
@@ -372,22 +435,54 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // Close modal
-    modal.querySelector(".close-modal").addEventListener("click", closeModal);
-    modal.addEventListener("click", function (e) {
-        if (e.target === modal) {
-            closeModal();
-        }
-    });
-
-    document.addEventListener("keydown", function (e) {
-        if (e.key === "Escape") {
-            closeModal();
-        }
-    });
-
+    // Close modal functionality
     function closeModal() {
         modal.classList.remove("active");
         document.body.style.overflow = "auto";
     }
+
+    modal.querySelector(".close-modal").addEventListener("click", closeModal);
+    modal
+        .querySelector(".modal-backdrop")
+        .addEventListener("click", closeModal);
+
+    // Close modal with Escape key
+    document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && modal.classList.contains("active")) {
+            closeModal();
+        }
+    });
+
+    // Add smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute("href"));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                });
+            }
+        });
+    });
+
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.style.animationPlayState = "running";
+            }
+        });
+    }, observerOptions);
+
+    // Observe all project cards
+    projectCards.forEach((card) => {
+        observer.observe(card);
+    });
 });

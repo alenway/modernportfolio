@@ -93,6 +93,17 @@
             </div>
         </div>
 
+        <!-- Animated Background -->
+        <div class="animated-bg">
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+                <div class="shape shape-4"></div>
+                <div class="shape shape-5"></div>
+            </div>
+        </div>
+
         <!-- Header -->
         <div class="container">
             <header>
@@ -210,75 +221,640 @@
             </div>
         </main>
 
+        <!-- Project Section -->
         <section class="projects-section">
-            <h2 class="section-title">My Projects</h2>
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="title-gradient">Featured Projects</span>
+                    <div class="title-underline"></div>
+                </h2>
+                <p class="section-subtitle">
+                    Crafting digital experiences with passion and precision
+                </p>
+            </div>
+
             <div class="projects-grid">
                 <!-- Project 1 -->
-                <article class="project-card" data-project="1">
+                <article
+                    class="project-card"
+                    data-project="1"
+                    data-category="fullstack"
+                >
+                    <div class="card-glow"></div>
                     <div class="project-image">
                         <img
-                            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+                            src="./images/cat5.jpg"
                             alt="E-commerce Platform"
                         />
+                        <div class="image-overlay">
+                            <div class="overlay-content">
+                                <button class="quick-view-btn">
+                                    <svg
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                    >
+                                        <path
+                                            d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"
+                                        ></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                    Quick View
+                                </button>
+                            </div>
+                        </div>
                     </div>
                     <div class="project-content">
-                        <div class="project-tags">
-                            <span class="tag">React</span>
-                            <span class="tag">Node.js</span>
+                        <div class="project-header">
+                            <div class="project-tags">
+                                <span class="tag tag-react">React</span>
+                                <span class="tag tag-node">Node.js</span>
+                                <span class="tag tag-mongo">MongoDB</span>
+                            </div>
+                            <div class="project-status">
+                                <span class="status-dot"></span>
+                                <span class="status-text">Live</span>
+                            </div>
                         </div>
                         <h3 class="project-title">E-commerce Platform</h3>
                         <p class="project-description">
-                            Full-stack online store with payment integration
+                            Full-stack online store with advanced payment
+                            integration and real-time analytics
                         </p>
+                        <div class="project-stats">
+                            <div class="stat">
+                                <span class="stat-number">15k+</span>
+                                <span class="stat-label">Users</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">99%</span>
+                                <span class="stat-label">Uptime</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">4.9</span>
+                                <span class="stat-label">Rating</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                <svg
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                >
+                                    <path
+                                        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+                                    ></path>
+                                </svg>
+                            </a>
+                            <a href="#" class="project-link">
+                                <svg
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                >
+                                    <path
+                                        d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                                    ></path>
+                                    <polyline
+                                        points="15,3 21,3 21,9"
+                                    ></polyline>
+                                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                                </svg>
+                            </a>
+                        </div>
                     </div>
                 </article>
 
                 <!-- Project 2 -->
-                <article class="project-card" data-project="2">
+                <article
+                    class="project-card"
+                    data-project="2"
+                    data-category="frontend"
+                >
+                    <div class="card-glow"></div>
                     <div class="project-image">
-                        <img
-                            src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
-                            alt="Task Manager"
-                        />
+                        <img src="./images/cat2.jpg" alt="Task Manager" />
+                        <div class="image-overlay">
+                            <div class="overlay-content">
+                                <button class="quick-view-btn">
+                                    <svg
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                    >
+                                        <path
+                                            d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"
+                                        ></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                    Quick View
+                                </button>
+                            </div>
+                        </div>
                     </div>
                     <div class="project-content">
-                        <div class="project-tags">
-                            <span class="tag">Vue.js</span>
-                            <span class="tag">Firebase</span>
+                        <div class="project-header">
+                            <div class="project-tags">
+                                <span class="tag tag-vue">Vue.js</span>
+                                <span class="tag tag-firebase">Firebase</span>
+                                <span class="tag tag-pwa">PWA</span>
+                            </div>
+                            <div class="project-status">
+                                <span class="status-dot status-beta"></span>
+                                <span class="status-text">Beta</span>
+                            </div>
                         </div>
-                        <h3 class="project-title">Task Manager</h3>
+                        <h3 class="project-title">Task Manager Pro</h3>
                         <p class="project-description">
-                            Real-time collaborative task management
+                            Real-time collaborative workspace with advanced
+                            project management features
                         </p>
+                        <div class="project-stats">
+                            <div class="stat">
+                                <span class="stat-number">2.5k+</span>
+                                <span class="stat-label">Teams</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">50k+</span>
+                                <span class="stat-label">Tasks</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">4.8</span>
+                                <span class="stat-label">Rating</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                <svg
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                >
+                                    <path
+                                        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+                                    ></path>
+                                </svg>
+                            </a>
+                            <a href="#" class="project-link">
+                                <svg
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                >
+                                    <path
+                                        d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                                    ></path>
+                                    <polyline
+                                        points="15,3 21,3 21,9"
+                                    ></polyline>
+                                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                                </svg>
+                            </a>
+                        </div>
                     </div>
                 </article>
 
                 <!-- Project 3 -->
-                <article class="project-card" data-project="3">
+                <article
+                    class="project-card"
+                    data-project="3"
+                    data-category="backend"
+                >
+                    <div class="card-glow"></div>
                     <div class="project-image">
-                        <img
-                            src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
-                            alt="CMS System"
-                        />
+                        <img src="./images/cat1.jpg" alt="CMS System" />
+                        <div class="image-overlay">
+                            <div class="overlay-content">
+                                <button class="quick-view-btn">
+                                    <svg
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                    >
+                                        <path
+                                            d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"
+                                        ></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                    Quick View
+                                </button>
+                            </div>
+                        </div>
                     </div>
                     <div class="project-content">
-                        <div class="project-tags">
-                            <span class="tag">Django</span>
-                            <span class="tag">PostgreSQL</span>
+                        <div class="project-header">
+                            <div class="project-tags">
+                                <span class="tag tag-django">Django</span>
+                                <span class="tag tag-postgres">PostgreSQL</span>
+                                <span class="tag tag-docker">Docker</span>
+                            </div>
+                            <div class="project-status">
+                                <span class="status-dot"></span>
+                                <span class="status-text">Live</span>
+                            </div>
                         </div>
-                        <h3 class="project-title">CMS System</h3>
+                        <h3 class="project-title">CMS Enterprise</h3>
                         <p class="project-description">
-                            Customizable content management platform
+                            Scalable content management system with AI-powered
+                            features and analytics
                         </p>
+                        <div class="project-stats">
+                            <div class="stat">
+                                <span class="stat-number">100+</span>
+                                <span class="stat-label">Clients</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">1M+</span>
+                                <span class="stat-label">Pages</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">5.0</span>
+                                <span class="stat-label">Rating</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                <svg
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                >
+                                    <path
+                                        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+                                    ></path>
+                                </svg>
+                            </a>
+                            <a href="#" class="project-link">
+                                <svg
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                >
+                                    <path
+                                        d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1-2-2h6"
+                                    ></path>
+                                    <polyline
+                                        points="15,3 21,3 21,9"
+                                    ></polyline>
+                                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 4 -->
+                <article
+                    class="project-card"
+                    data-project="3"
+                    data-category="backend"
+                >
+                    <div class="card-glow"></div>
+                    <div class="project-image">
+                        <img src="./images/cat3.jpg" alt="CMS System" />
+                        <div class="image-overlay">
+                            <div class="overlay-content">
+                                <button class="quick-view-btn">
+                                    <svg
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                    >
+                                        <path
+                                            d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"
+                                        ></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                    Quick View
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <div class="project-tags">
+                                <span class="tag tag-django">Django</span>
+                                <span class="tag tag-postgres">PostgreSQL</span>
+                                <span class="tag tag-docker">Docker</span>
+                            </div>
+                            <div class="project-status">
+                                <span class="status-dot"></span>
+                                <span class="status-text">Live</span>
+                            </div>
+                        </div>
+                        <h3 class="project-title">CMS Enterprise</h3>
+                        <p class="project-description">
+                            Scalable content management system with AI-powered
+                            features and analytics
+                        </p>
+                        <div class="project-stats">
+                            <div class="stat">
+                                <span class="stat-number">100+</span>
+                                <span class="stat-label">Clients</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">1M+</span>
+                                <span class="stat-label">Pages</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">5.0</span>
+                                <span class="stat-label">Rating</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                <svg
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                >
+                                    <path
+                                        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+                                    ></path>
+                                </svg>
+                            </a>
+                            <a href="#" class="project-link">
+                                <svg
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                >
+                                    <path
+                                        d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1-2-2h6"
+                                    ></path>
+                                    <polyline
+                                        points="15,3 21,3 21,9"
+                                    ></polyline>
+                                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 5 -->
+                <article
+                    class="project-card"
+                    data-project="3"
+                    data-category="backend"
+                >
+                    <div class="card-glow"></div>
+                    <div class="project-image">
+                        <img src="./images/cat1.jpg" alt="CMS System" />
+                        <div class="image-overlay">
+                            <div class="overlay-content">
+                                <button class="quick-view-btn">
+                                    <svg
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                    >
+                                        <path
+                                            d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"
+                                        ></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                    Quick View
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <div class="project-tags">
+                                <span class="tag tag-django">Django</span>
+                                <span class="tag tag-postgres">PostgreSQL</span>
+                                <span class="tag tag-docker">Docker</span>
+                            </div>
+                            <div class="project-status">
+                                <span class="status-dot"></span>
+                                <span class="status-text">Live</span>
+                            </div>
+                        </div>
+                        <h3 class="project-title">CMS Enterprise</h3>
+                        <p class="project-description">
+                            Scalable content management system with AI-powered
+                            features and analytics
+                        </p>
+                        <div class="project-stats">
+                            <div class="stat">
+                                <span class="stat-number">100+</span>
+                                <span class="stat-label">Clients</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">1M+</span>
+                                <span class="stat-label">Pages</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">5.0</span>
+                                <span class="stat-label">Rating</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                <svg
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                >
+                                    <path
+                                        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+                                    ></path>
+                                </svg>
+                            </a>
+                            <a href="#" class="project-link">
+                                <svg
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                >
+                                    <path
+                                        d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1-2-2h6"
+                                    ></path>
+                                    <polyline
+                                        points="15,3 21,3 21,9"
+                                    ></polyline>
+                                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 6 -->
+                <article
+                    class="project-card"
+                    data-project="3"
+                    data-category="backend"
+                >
+                    <div class="card-glow"></div>
+                    <div class="project-image">
+                        <img src="./images/cat1.jpg" alt="CMS System" />
+                        <div class="image-overlay">
+                            <div class="overlay-content">
+                                <button class="quick-view-btn">
+                                    <svg
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                    >
+                                        <path
+                                            d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"
+                                        ></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                    Quick View
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <div class="project-tags">
+                                <span class="tag tag-django">Django</span>
+                                <span class="tag tag-postgres">PostgreSQL</span>
+                                <span class="tag tag-docker">Docker</span>
+                            </div>
+                            <div class="project-status">
+                                <span class="status-dot"></span>
+                                <span class="status-text">Live</span>
+                            </div>
+                        </div>
+                        <h3 class="project-title">CMS Enterprise</h3>
+                        <p class="project-description">
+                            Scalable content management system with AI-powered
+                            features and analytics
+                        </p>
+                        <div class="project-stats">
+                            <div class="stat">
+                                <span class="stat-number">100+</span>
+                                <span class="stat-label">Clients</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">1M+</span>
+                                <span class="stat-label">Pages</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">5.0</span>
+                                <span class="stat-label">Rating</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                <svg
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                >
+                                    <path
+                                        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+                                    ></path>
+                                </svg>
+                            </a>
+                            <a href="#" class="project-link">
+                                <svg
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                >
+                                    <path
+                                        d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1-2-2h6"
+                                    ></path>
+                                    <polyline
+                                        points="15,3 21,3 21,9"
+                                    ></polyline>
+                                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                                </svg>
+                            </a>
+                        </div>
                     </div>
                 </article>
             </div>
         </section>
 
-        <!-- Project Modal -->
         <div class="project-modal" id="projectModal">
+            <div class="modal-backdrop"></div>
             <div class="modal-content">
-                <button class="close-modal">&times;</button>
+                <button class="close-modal">
+                    <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                    >
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
 
                 <div class="modal-header">
                     <h2 class="modal-title">Project Title</h2>
@@ -316,34 +892,38 @@
                         id="codeLink"
                     >
                         <svg
-                            xmlns="http://www.w3.org/2000/svg"
                             width="16"
                             height="16"
-                            fill="currentColor"
-                            viewBox="0 0 16 16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
                         >
                             <path
-                                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"
-                            />
+                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+                            ></path>
                         </svg>
                         View Code
                     </a>
                     <a
                         href="#"
-                        class="modal-link"
+                        class="modal-link primary"
                         target="_blank"
                         id="demoLink"
                     >
                         <svg
-                            xmlns="http://www.w3.org/2000/svg"
                             width="16"
                             height="16"
-                            fill="currentColor"
-                            viewBox="0 0 16 16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
                         >
                             <path
-                                d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"
-                            />
+                                d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1-2-2h6"
+                            ></path>
+                            <polyline points="15,3 21,3 21,9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
                         </svg>
                         Live Demo
                     </a>
