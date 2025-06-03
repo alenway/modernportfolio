@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            body,
+            html {
+                margin: 0;
+                padding: 0;
+                height: 100%;
+            }
+
+            #loading-screen {
+                background-color: #1a1a1a; /* Dark background for loading */
+                color: white;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 100vh;
+                font-size: 2rem;
+            }
+
+            #main-content {
+                background-color: #f0f0f0; /* Light background after loading */
+                height: 100vh;
+                padding: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="loading-screen">Loading...</div>
+        <div id="main-content" style="display: none">
+            <h1>Welcome to the site!</h1>
+        </div>
+
+        <script>
+            window.addEventListener("load", () => {
+                setTimeout(() => {
+                    const loadingScreen =
+                        document.getElementById("loading-screen");
+                    const mainContent = document.getElementById("main-content");
+
+                    loadingScreen.style.display = "none";
+                    mainContent.style.display = "block";
+                }, 2000); // 2000ms = 2 seconds delay
+            });
+        </script>
+    </body>
+</html>

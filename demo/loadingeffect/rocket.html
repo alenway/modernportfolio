@@ -2,18 +2,100 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Beautiful Space Rocket</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Space Rocket Loading Animation</title>
         <style>
+            html,
             body {
-                background-color: #151845;
-                padding: 0;
                 margin: 0;
+                padding: 0;
+                height: 100%;
+                background: radial-gradient(ellipse at center, #0d0d2b, #000);
+                overflow: hidden;
+                font-family: "Arial", sans-serif;
             }
+
+            /* Loading Container */
+            .loading-container {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 1000;
+                transition: opacity 1.5s ease-out;
+            }
+
+            /* Website Content (hidden initially) */
+            .website-content {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                display: none;
+                color: white;
+                text-align: center;
+                padding-top: 50px;
+            }
+
+            /* Stars */
+            .stars {
+                position: absolute;
+                width: 100vw;
+                height: 100vh;
+                top: 0;
+                left: 0;
+                z-index: 0;
+            }
+
+            .star {
+                position: absolute;
+                width: 2px;
+                height: 2px;
+                background: white;
+                border-radius: 50%;
+                animation: twinkle 2s infinite ease-in-out;
+            }
+
+            @keyframes twinkle {
+                0%,
+                100% {
+                    opacity: 0.3;
+                }
+                50% {
+                    opacity: 1;
+                }
+            }
+
+            /* Scene Container */
+            .space-scene {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 300px;
+                height: 300px;
+            }
+
+            /* Orbit ring - will be hidden after loading */
+            .orbit {
+                position: absolute;
+                width: 250px;
+                height: 250px;
+                border: 1px dashed rgba(255, 255, 255, 0.2);
+                border-radius: 50%;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                z-index: 0;
+                transition: opacity 0.5s ease;
+            }
+
             .container {
                 height: 370px;
                 width: 370px;
-                /* border: 1px solid #fff; */
                 position: absolute;
                 margin: auto;
                 left: 0;
@@ -21,6 +103,8 @@
                 top: 0;
                 bottom: 0;
             }
+
+            /* Moon */
             .moon {
                 background-color: #39beff;
                 height: 170px;
@@ -33,7 +117,9 @@
                 top: 0;
                 bottom: 0;
                 overflow: hidden;
+                box-shadow: 0 0 30px rgba(57, 190, 255, 0.4);
             }
+
             .crater {
                 background-color: #31b4ff;
                 height: 30px;
@@ -41,6 +127,7 @@
                 border-radius: 50%;
                 position: relative;
             }
+
             .crater:before {
                 content: "";
                 position: absolute;
@@ -51,6 +138,7 @@
                 top: 2px;
                 left: 7px;
             }
+
             .crater1 {
                 top: 27px;
                 left: 90px;
@@ -75,6 +163,7 @@
                 bottom: 4px;
                 transform: scale(0.65);
             }
+
             .shadow {
                 height: 190px;
                 width: 190px;
@@ -84,61 +173,25 @@
                 bottom: 157.5px;
                 right: 46px;
             }
-            .eye {
-                background-color: #161616;
-                height: 12px;
-                width: 12px;
-                position: relative;
-                border-radius: 50%;
-            }
-            .eye-l {
-                bottom: 255px;
-                left: 59px;
-            }
-            .eye-r {
-                bottom: 267px;
-                left: 101px;
-            }
-            .mouth {
-                height: 5px;
-                width: 10px;
-                border: 3px solid #161616;
-                position: relative;
-                bottom: 262px;
-                left: 79px;
-                border-top: none;
-                border-radius: 0 0 10px 10px;
-            }
-            .blush {
-                background-color: #1ca4f9;
-                height: 7.5px;
-                width: 7.5px;
-                position: relative;
-                border-radius: 50%;
-            }
-            .blush1 {
-                bottom: 273px;
-                left: 50px;
-            }
-            .blush2 {
-                bottom: 281px;
-                left: 115px;
-            }
-            .orbit {
-                height: 280px;
-                width: 280px;
-                /* border: 1px solid #fff; */
-                border-radius: 50%;
+
+            /* Rocket */
+            .rocket-path {
                 position: absolute;
-                margin: auto;
-                left: 0;
-                right: 0;
-                top: 0;
-                bottom: 0;
-                animation: spin 10s infinite linear;
+                top: 50%;
+                left: 50%;
+                width: 250px;
+                height: 250px;
+                margin: -125px 0 0 -125px;
+                animation: rotate 10s linear infinite;
+                transform-origin: center;
+                transition: all 1s ease;
             }
-            @keyframes spin {
-                100% {
+
+            @keyframes rotate {
+                from {
+                    transform: rotate(0deg);
+                }
+                to {
                     transform: rotate(360deg);
                 }
             }
@@ -151,7 +204,9 @@
                 position: relative;
                 left: -11px;
                 top: 115px;
+                transition: all 1s ease;
             }
+
             .rocket:before {
                 content: "";
                 position: absolute;
@@ -163,6 +218,7 @@
                 right: -15px;
                 bottom: 0;
             }
+
             .rocket:after {
                 content: "";
                 position: absolute;
@@ -173,6 +229,7 @@
                 bottom: -4px;
                 left: 4.3px;
             }
+
             .window {
                 background-color: #151845;
                 height: 10px;
@@ -183,28 +240,496 @@
                 top: 17px;
                 left: 5px;
             }
+
+            /* Landed Rocket */
+            .landed-rocket {
+                position: absolute;
+                width: 25px;
+                height: 50px;
+                background-color: #fafcf7;
+                border-radius: 50% 50% 0 0;
+                bottom: 80px;
+                left: 50%;
+                transform: translateX(-50%) rotate(0deg);
+                z-index: 5;
+                opacity: 0;
+                transition: all 1s ease 0.5s;
+            }
+
+            .landed-rocket:before {
+                content: "";
+                position: absolute;
+                background-color: #39beff;
+                height: 20px;
+                width: 55px;
+                border-radius: 50% 50% 0 0;
+                z-index: -1;
+                right: -15px;
+                bottom: 0;
+            }
+
+            .landed-rocket:after {
+                content: "";
+                position: absolute;
+                background-color: #39beff;
+                height: 4px;
+                width: 15px;
+                border-radius: 0 0 2px 2px;
+                bottom: -4px;
+                left: 4.3px;
+            }
+
+            .landed-window {
+                background-color: #151845;
+                height: 10px;
+                width: 10px;
+                border: 2px solid #b8d2ec;
+                border-radius: 50%;
+                position: relative;
+                top: 17px;
+                left: 5px;
+            }
+
+            /* Astronaut */
+            .astronaut {
+                position: absolute;
+                width: 30px;
+                height: 40px;
+                bottom: 80px;
+                left: 60%;
+                z-index: 5;
+                opacity: 0;
+                transform: translateY(20px);
+                transition: all 1s ease 1.5s;
+            }
+
+            .astronaut-body {
+                width: 20px;
+                height: 25px;
+                background-color: white;
+                border-radius: 10px 10px 5px 5px;
+                position: relative;
+            }
+
+            .astronaut-helmet {
+                width: 22px;
+                height: 22px;
+                background-color: white;
+                border-radius: 50%;
+                position: absolute;
+                top: -15px;
+                left: -1px;
+            }
+
+            .astronaut-visor {
+                width: 15px;
+                height: 8px;
+                background-color: #39beff;
+                border-radius: 8px 8px 0 0;
+                position: absolute;
+                top: 5px;
+                left: 3.5px;
+            }
+
+            .astronaut-flag {
+                position: absolute;
+                width: 30px;
+                height: 3px;
+                background-color: white;
+                top: 15px;
+                left: 20px;
+            }
+
+            .astronaut-flag:after {
+                content: "";
+                position: absolute;
+                width: 15px;
+                height: 10px;
+                background-color: red;
+                right: 0;
+                top: -3px;
+                border-radius: 2px 0 0 2px;
+            }
+
+            /* Planets */
+            .planets {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                z-index: 0;
+                pointer-events: none;
+            }
+
+            .planet {
+                position: absolute;
+                border-radius: 50%;
+                opacity: 0.9;
+                filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.4));
+                animation: float 15s infinite ease-in-out;
+                transition: all 1.5s ease;
+            }
+
+            /* Cute Jupiter with face */
+            .jupiter {
+                width: 80px;
+                height: 80px;
+                background: radial-gradient(
+                    circle at 30% 30%,
+                    #f8d878,
+                    #e67e22
+                );
+                top: 10%;
+                left: 15%;
+                animation-delay: 0s;
+                box-shadow: 0 0 25px rgba(230, 126, 34, 0.5);
+            }
+
+            .jupiter::before,
+            .jupiter::after {
+                content: "";
+                position: absolute;
+                background-color: #fff;
+                border-radius: 50%;
+            }
+
+            .jupiter::before {
+                width: 12px;
+                height: 12px;
+                top: 25px;
+                left: 25px;
+                box-shadow: 25px 10px 0 0 #fff;
+            }
+
+            .jupiter::after {
+                width: 8px;
+                height: 8px;
+                bottom: 20px;
+                left: 35px;
+                transform: rotate(45deg);
+            }
+
+            /* Adorable Saturn */
+            .saturn {
+                width: 65px;
+                height: 65px;
+                background: radial-gradient(
+                    circle at 40% 40%,
+                    #f8e58c,
+                    #f39c12
+                );
+                top: 75%;
+                left: 70%;
+                animation-delay: 1s;
+                box-shadow: 0 0 20px rgba(243, 156, 18, 0.5);
+            }
+
+            .saturn::before {
+                content: "";
+                position: absolute;
+                width: 110px;
+                height: 30px;
+                background: transparent;
+                border: 3px solid rgba(255, 255, 255, 0.3);
+                border-top-color: transparent;
+                border-bottom-color: transparent;
+                border-radius: 50%;
+                top: 17px;
+                left: -22px;
+                transform: rotate(20deg);
+                box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+            }
+
+            /* Cute Mars with blush */
+            .mars {
+                width: 45px;
+                height: 45px;
+                background: radial-gradient(
+                    circle at 30% 30%,
+                    #ff8c7a,
+                    #c0392b
+                );
+                top: 30%;
+                left: 80%;
+                animation-delay: 2s;
+                box-shadow: 0 0 20px rgba(231, 76, 60, 0.4);
+            }
+
+            /* Earth with cute cloud */
+            .earth {
+                width: 60px;
+                height: 60px;
+                background: radial-gradient(
+                    circle at 30% 30%,
+                    #6bb9ff,
+                    #2980b9
+                );
+                top: 50%;
+                left: 35%;
+                animation-delay: 3s;
+                box-shadow: 0 0 25px rgba(52, 152, 219, 0.5);
+            }
+
+            /* Loading Progress */
+            .loading-text {
+                position: absolute;
+                bottom: 20%;
+                left: 50%;
+                transform: translateX(-50%);
+                color: white;
+                font-size: 18px;
+                text-align: center;
+                width: 100%;
+            }
+
+            .progress-bar {
+                width: 200px;
+                height: 4px;
+                background: rgba(255, 255, 255, 0.2);
+                border-radius: 2px;
+                margin: 10px auto;
+                overflow: hidden;
+            }
+
+            .progress {
+                height: 100%;
+                width: 0;
+                background: linear-gradient(to right, #39beff, #6bb9ff);
+                border-radius: 2px;
+                transition: width 0.3s ease;
+            }
+
+            /* Animation when loading completes */
+            .loading-complete .orbit {
+                opacity: 0;
+            }
+
+            .loading-complete .rocket-path {
+                animation: none;
+                opacity: 0;
+            }
+
+            .loading-complete .landed-rocket {
+                opacity: 1;
+                transform: translateX(-50%) rotate(0deg);
+            }
+
+            .loading-complete .astronaut {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            @keyframes float {
+                0%,
+                100% {
+                    transform: translateY(0) rotate(0deg);
+                }
+                50% {
+                    transform: translateY(-20px) rotate(2deg);
+                }
+            }
+
+            @keyframes astronaut-wave {
+                0%,
+                100% {
+                    transform: rotate(0deg);
+                }
+                50% {
+                    transform: rotate(15deg);
+                }
+            }
         </style>
     </head>
     <body>
-        <div class="container">
-            <div class="moon">
-                <div class="crater crater1"></div>
-                <div class="crater crater2"></div>
-                <div class="crater crater3"></div>
-                <div class="crater crater4"></div>
-                <div class="crater crater5"></div>
-                <div class="shadow"></div>
-                <div class="eye eye-l"></div>
-                <div class="eye eye-r"></div>
-                <div class="mouth"></div>
-                <div class="blush blush1"></div>
-                <div class="blush blush2"></div>
+        <!-- Loading Animation -->
+        <div class="loading-container" id="loadingContainer">
+            <div class="stars" id="stars"></div>
+
+            <div class="planets">
+                <div class="planet jupiter"></div>
+                <div class="planet saturn"></div>
+                <div class="planet mars"></div>
+                <div class="planet earth"></div>
             </div>
-            <div class="orbit">
-                <div class="rocket">
-                    <div class="window"></div>
+
+            <div class="space-scene">
+                <div class="orbit"></div>
+                <div class="rocket-path">
+                    <div class="rocket">
+                        <div class="window"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="moon">
+                    <div class="crater crater1"></div>
+                    <div class="crater crater2"></div>
+                    <div class="crater crater3"></div>
+                    <div class="crater crater4"></div>
+                    <div class="crater crater5"></div>
+                    <div class="shadow"></div>
+
+                    <!-- Landed Rocket -->
+                    <div class="landed-rocket">
+                        <div class="landed-window"></div>
+                    </div>
+
+                    <!-- Astronaut with Flag -->
+                    <div class="astronaut">
+                        <div class="astronaut-helmet">
+                            <div class="astronaut-visor"></div>
+                        </div>
+                        <div class="astronaut-body"></div>
+                        <div class="astronaut-flag"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="loading-text">
+                <div>Launching into space...</div>
+                <div class="progress-bar">
+                    <div class="progress" id="progressBar"></div>
                 </div>
             </div>
         </div>
+
+        <!-- Website Content (hidden initially) -->
+        <div class="website-content" id="websiteContent">
+            <h1>Welcome to Our Universe!</h1>
+            <p>The rocket has successfully landed on the moon!</p>
+            <button id="exploreBtn">Explore the Cosmos</button>
+        </div>
+
+        <script>
+            // Generate twinkling stars in the background
+            function createStars() {
+                const starsContainer = document.getElementById("stars");
+
+                // Create 200 stars with random positions and twinkle delays
+                for (let i = 0; i < 200; i++) {
+                    const star = document.createElement("div");
+                    star.className = "star";
+
+                    // Random size between 1px and 3px
+                    const size = Math.random() * 2 + 1;
+                    star.style.width = `${size}px`;
+                    star.style.height = `${size}px`;
+
+                    // Random position
+                    star.style.left = `${Math.random() * 100}vw`;
+                    star.style.top = `${Math.random() * 100}vh`;
+
+                    // Random twinkle timing
+                    star.style.animationDelay = `${Math.random() * 2}s`;
+                    star.style.opacity = Math.random() * 0.7 + 0.3; // 30-100% opacity
+
+                    starsContainer.appendChild(star);
+                }
+            }
+
+            // Simulate the loading progress
+            function simulateLoading() {
+                const progressBar = document.getElementById("progressBar");
+                const loadingContainer =
+                    document.getElementById("loadingContainer");
+                const websiteContent =
+                    document.getElementById("websiteContent");
+                const astronaut = document.querySelector(".astronaut");
+
+                let progress = 0;
+
+                // Update progress bar at random intervals
+                const interval = setInterval(() => {
+                    // Increment progress randomly (faster at start, slower near end)
+                    progress += Math.random() * (progress < 80 ? 10 : 5);
+
+                    // Cap at 100%
+                    if (progress > 100) progress = 100;
+
+                    // Update progress bar width
+                    progressBar.style.width = `${progress}%`;
+
+                    // When loading completes
+                    if (progress >= 100) {
+                        clearInterval(interval);
+
+                        // 1. Trigger loading complete animations
+                        loadingContainer.classList.add("loading-complete");
+
+                        // 2. Make astronaut wave after landing (2 second delay)
+                        setTimeout(() => {
+                            astronaut.style.animation = "astronaut-wave 1s 3";
+                        }, 2000);
+
+                        // 3. Transition to website content (3.5 second delay)
+                        setTimeout(() => {
+                            // Hide loading container
+                            loadingContainer.style.display = "none";
+
+                            // Show website content
+                            websiteContent.style.display = "block";
+
+                            // Add stars to website background
+                            addStarsToWebsite();
+
+                            // Set up explore button
+                            setupExploreButton();
+                        }, 3500);
+                    }
+                }, 300); // Update every 300ms
+            }
+
+            // Add stars to the website background after loading
+            function addStarsToWebsite() {
+                const websiteContent =
+                    document.getElementById("websiteContent");
+                const bgStars = document.createElement("div");
+                bgStars.className = "stars";
+                websiteContent.appendChild(bgStars);
+
+                // Create 100 stars for the website background
+                for (let i = 0; i < 100; i++) {
+                    const star = document.createElement("div");
+                    star.className = "star";
+                    star.style.left = `${Math.random() * 100}vw`;
+                    star.style.top = `${Math.random() * 100}vh`;
+                    star.style.animationDelay = `${Math.random() * 2}s`;
+                    star.style.opacity = Math.random() * 0.5 + 0.1; // 10-60% opacity
+                    bgStars.appendChild(star);
+                }
+            }
+
+            // Set up the explore button functionality
+            function setupExploreButton() {
+                const exploreBtn = document.getElementById("exploreBtn");
+
+                if (exploreBtn) {
+                    exploreBtn.addEventListener("click", () => {
+                        alert("Ready to explore the cosmos! 🚀");
+                        // You would replace this with actual navigation code
+                    });
+                }
+            }
+
+            // Initialize everything when the DOM is loaded
+            document.addEventListener("DOMContentLoaded", () => {
+                createStars();
+                simulateLoading();
+
+                // Add astronaut wave animation keyframes dynamically
+                const style = document.createElement("style");
+                style.textContent = `
+        @keyframes astronaut-wave {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-5px) rotate(15deg); }
+            50% { transform: translateY(0) rotate(0deg); }
+            75% { transform: translateY(-5px) rotate(-15deg); }
+        }
+    `;
+                document.head.appendChild(style);
+            });
+        </script>
     </body>
 </html>
