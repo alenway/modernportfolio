@@ -32,14 +32,6 @@ const themeConfig = {
         "theme-aurora": "Aurora",
         "theme-vintage": "Vintage",
     },
-    animation: {
-        textToType: "Portfèlio",
-        typingSpeed: 100,
-        highlightDelay: 800,
-        zoomDuration: 1200,
-        fadeDuration: 800,
-        finalHideDelay: 500,
-    },
 };
 
 // Theme Management
@@ -77,10 +69,10 @@ const themeManager = {
     },
 
     setupEventListeners() {
-        themeConfig.elements.dropdownToggle.addEventListener(
-            "click",
-            this.toggleMenu
-        );
+        themeConfig.elements.dropdownToggle.addEventListener("click", (e) => {
+            e.stopPropagation();
+            this.toggleMenu();
+        });
 
         themeConfig.elements.themeItems.forEach((item) => {
             item.addEventListener("click", () => {
@@ -97,10 +89,13 @@ const themeManager = {
                 }
             });
 
-        window.addEventListener("click", (e) => {
-            if (!e.target.closest(".dropdown")) {
-                themeConfig.elements.dropdownMenu.classList.remove("show");
-            }
+        document.addEventListener("click", () => {
+            themeConfig.elements.dropdownMenu.classList.remove("show");
+        });
+
+        // Prevent dropdown from closing when clicking inside it
+        themeConfig.elements.dropdownMenu.addEventListener("click", (e) => {
+            e.stopPropagation();
         });
     },
 
@@ -109,8 +104,13 @@ const themeManager = {
     },
 };
 
-// manifest json
-// In script.js
+// Initialize the theme manager when DOM is loaded
+document.addEventListener("DOMContentLoaded", () => {
+    themeManager.initTheme();
+    themeManager.setupEventListeners();
+});
+
+// Service Worker Registration
 if ("serviceWorker" in navigator) {
     window.addEventListener("load", () => {
         navigator.serviceWorker
