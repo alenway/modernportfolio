@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Particle Loading</title>
+        <style>
+            body {
+                margin: 0;
+                height: 100vh;
+                background: linear-gradient(
+                    -45deg,
+                    #ee7752,
+                    #e73c7e,
+                    #23a6d5,
+                    #23d5ab
+                );
+                background-size: 400% 400%;
+                animation: gradientBG 10s ease infinite;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                overflow: hidden;
+                font-family: Arial, sans-serif;
+            }
+
+            @keyframes gradientBG {
+                0% {
+                    background-position: 0% 50%;
+                }
+                50% {
+                    background-position: 100% 50%;
+                }
+                100% {
+                    background-position: 0% 50%;
+                }
+            }
+
+            .particles {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+            }
+
+            .particle {
+                position: absolute;
+                background: rgba(255, 255, 255, 0.6);
+                border-radius: 50%;
+                filter: blur(5px);
+                animation: float 8s infinite ease-in-out;
+            }
+
+            @keyframes float {
+                0%,
+                100% {
+                    transform: translate(0, 0) rotate(0deg);
+                }
+                25% {
+                    transform: translate(50px, -50px) rotate(90deg);
+                }
+                50% {
+                    transform: translate(0, -100px) rotate(180deg);
+                }
+                75% {
+                    transform: translate(-50px, -50px) rotate(270deg);
+                }
+            }
+
+            .typing-effect {
+                color: white;
+                font-size: 2rem;
+                position: relative;
+                z-index: 10;
+            }
+
+            .typing-effect::after {
+                content: "|";
+                animation: blink 0.7s infinite;
+            }
+
+            @keyframes blink {
+                0%,
+                100% {
+                    opacity: 1;
+                }
+                50% {
+                    opacity: 0;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="particles" id="particles"></div>
+        <div class="typing-effect" id="typing"></div>
+
+        <script>
+            // Typing Effect
+            const text = "Loading...";
+            const typingElement = document.getElementById("typing");
+            let i = 0;
+
+            function typeWriter() {
+                if (i < text.length) {
+                    typingElement.innerHTML = text.substring(0, i + 1);
+                    i++;
+                    setTimeout(typeWriter, 150);
+                }
+            }
+
+            // Generate Floating Particles
+            const particlesContainer = document.getElementById("particles");
+            const particleCount = 15;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement("div");
+                particle.classList.add("particle");
+
+                // Random size (10px to 30px)
+                const size = Math.random() * 20 + 10;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+
+                // Random position
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+
+                // Random animation delay
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+
+                particlesContainer.appendChild(particle);
+            }
+
+            typeWriter();
+        </script>
+    </body>
+</html>

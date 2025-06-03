@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Hypnotic Spiral Loading</title>
+        <style>
+            body {
+                margin: 0;
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: #000;
+                overflow: hidden;
+            }
+
+            .spiral {
+                position: relative;
+                width: 200px;
+                height: 200px;
+            }
+
+            .dot {
+                position: absolute;
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background: linear-gradient(45deg, #ff6e6c, #7f5af0);
+                transform-origin: center;
+                animation: spiral 3s infinite linear;
+            }
+
+            @keyframes spiral {
+                0% {
+                    transform: rotate(0deg) translateX(80px) scale(0.2);
+                    opacity: 0;
+                }
+                50% {
+                    opacity: 1;
+                }
+                100% {
+                    transform: rotate(360deg) translateX(80px) scale(0.2);
+                    opacity: 0;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="spiral" id="spiral"></div>
+
+        <script>
+            const spiral = document.getElementById("spiral");
+            const dots = 30;
+
+            for (let i = 0; i < dots; i++) {
+                const dot = document.createElement("div");
+                dot.classList.add("dot");
+                dot.style.animationDelay = `${i * 0.1}s`;
+                spiral.appendChild(dot);
+            }
+        </script>
+    </body>
+</html>

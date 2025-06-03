@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Ink Ripple Loading</title>
+        <style>
+            body {
+                margin: 0;
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: #000;
+                overflow: hidden;
+            }
+
+            canvas {
+                display: block;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="ink"></canvas>
+
+        <script>
+            const canvas = document.getElementById("ink");
+            const ctx = canvas.getContext("2d");
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const drops = [];
+            let time = 0;
+
+            class Drop {
+                constructor(x, y) {
+                    this.x = x;
+                    this.y = y;
+                    this.size = 5;
+                    this.life = 0;
+                }
+
+                update() {
+                    this.life += 0.5;
+                    this.size += 0.3;
+                    if (this.life > 100) this.life = 100;
+                }
+
+                draw() {
+                    const alpha = 1 - this.life / 100;
+                    ctx.strokeStyle = `rgba(100, 200, 255, ${alpha})`;
+                    ctx.lineWidth = 2;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.stroke();
+                }
+            }
+
+            function animate() {
+                ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                time++;
+                if (time % 30 === 0) {
+                    drops.push(
+                        new Drop(
+                            Math.random() * canvas.width,
+                            Math.random() * canvas.height
+                        )
+                    );
+                }
+
+                for (let i = 0; i < drops.length; i++) {
+                    drops[i].update();
+                    drops[i].draw();
+                    if (drops[i].life >= 100) drops.splice(i, 1);
+                }
+
+                requestAnimationFrame(animate);
+            }
+
+            animate();
+        </script>
+    </body>
+</html>

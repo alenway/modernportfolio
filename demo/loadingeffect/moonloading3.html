@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Beautiful Moon</title>
+        <style>
+            /* General Reset */
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            /* Background */
+            body {
+                background: radial-gradient(ellipse at bottom, #0d1b2a, #000);
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            /* Moon Container */
+            .moon-container {
+                position: relative;
+                width: 250px;
+                height: 250px;
+                filter: drop-shadow(0 0 40px #ccc);
+            }
+
+            /* Moon Core */
+            .moon {
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+                background: radial-gradient(circle at 30% 30%, #f4f4f4, #ccc);
+                box-shadow: inset -8px -8px 20px rgba(0, 0, 0, 0.2),
+                    inset 8px 8px 20px rgba(255, 255, 255, 0.1);
+                position: relative;
+                animation: glow 6s ease-in-out infinite alternate;
+            }
+
+            /* Craters using pseudo-elements */
+            .moon::before,
+            .moon::after {
+                content: "";
+                position: absolute;
+                border-radius: 50%;
+                background: rgba(0, 0, 0, 0.2);
+                filter: blur(0.5px);
+            }
+
+            .moon::before {
+                width: 30px;
+                height: 30px;
+                top: 20%;
+                left: 15%;
+                box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.25),
+                    40px 40px 0 rgba(0, 0, 0, 0.15),
+                    70px 20px 0 rgba(0, 0, 0, 0.1),
+                    90px 60px 0 rgba(0, 0, 0, 0.3);
+            }
+
+            .moon::after {
+                width: 20px;
+                height: 20px;
+                bottom: 20%;
+                right: 20%;
+                box-shadow: -20px -10px 0 rgba(0, 0, 0, 0.25),
+                    -60px 10px 0 rgba(0, 0, 0, 0.15),
+                    -30px 50px 0 rgba(0, 0, 0, 0.2);
+            }
+
+            /* Moonlight Glow */
+            @keyframes glow {
+                0% {
+                    box-shadow: 0 0 10px 10px rgba(255, 255, 255, 0.3);
+                }
+                100% {
+                    box-shadow: 0 0 30px 20px rgba(255, 255, 255, 0.6);
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="moon-container">
+            <div class="moon"></div>
+        </div>
+    </body>
+</html>

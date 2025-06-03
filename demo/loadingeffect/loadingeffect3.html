@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Fractal Tree Loading</title>
+        <style>
+            body {
+                margin: 0;
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: #1a1a2e;
+                overflow: hidden;
+            }
+
+            canvas {
+                display: block;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="tree"></canvas>
+
+        <script>
+            const canvas = document.getElementById("tree");
+            const ctx = canvas.getContext("2d");
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            let angle = 0;
+            let growthSpeed = 0;
+
+            function drawTree(x, y, len, angle, branchWidth) {
+                ctx.beginPath();
+                ctx.save();
+                ctx.strokeStyle = `hsl(${growthSpeed * 2}, 100%, 50%)`;
+                ctx.lineWidth = branchWidth;
+                ctx.translate(x, y);
+                ctx.rotate((angle * Math.PI) / 180);
+                ctx.moveTo(0, 0);
+                ctx.lineTo(0, -len);
+                ctx.stroke();
+
+                if (len < 3) {
+                    ctx.restore();
+                    return;
+                }
+
+                drawTree(0, -len, len * 0.75, angle + 15, branchWidth * 0.7);
+                drawTree(0, -len, len * 0.75, angle - 15, branchWidth * 0.7);
+                ctx.restore();
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                growthSpeed += 0.5;
+                angle = Math.sin(growthSpeed * 0.02) * 5;
+                drawTree(
+                    canvas.width / 2,
+                    canvas.height,
+                    100 + growthSpeed,
+                    angle,
+                    10
+                );
+                requestAnimationFrame(animate);
+            }
+
+            animate();
+        </script>
+    </body>
+</html>

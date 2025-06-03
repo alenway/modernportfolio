@@ -52,9 +52,86 @@
                     background-position: 0% 50%;
                 }
             }
+
+            .loading-container {
+                background: linear-gradient(
+                    -45deg,
+                    #ee7752,
+                    #e73c7e,
+                    #23a6d5,
+                    #23d5ab
+                );
+                background-size: 400% 400%;
+                animation: gradientBG 8s ease infinite;
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            @keyframes gradientBG {
+                0% {
+                    background-position: 0% 50%;
+                }
+                50% {
+                    background-position: 100% 50%;
+                }
+                100% {
+                    background-position: 0% 50%;
+                }
+            }
+
+            .particles span {
+                position: absolute;
+                background: rgba(255, 255, 255, 0.5);
+                border-radius: 50%;
+                animation: float 5s infinite ease-in-out;
+            }
+
+            @keyframes float {
+                0%,
+                100% {
+                    transform: translateY(0) rotate(0deg);
+                }
+                50% {
+                    transform: translateY(-50px) rotate(180deg);
+                }
+            }
+
+            /* Randomize particle positions & sizes */
+            .particles span:nth-child(1) {
+                width: 20px;
+                height: 20px;
+                left: 20%;
+                top: 30%;
+                animation-delay: 0s;
+            }
+            .particles span:nth-child(2) {
+                width: 15px;
+                height: 15px;
+                left: 60%;
+                top: 50%;
+                animation-delay: 1s;
+            }
+            .particles span:nth-child(3) {
+                width: 25px;
+                height: 25px;
+                left: 40%;
+                top: 70%;
+                animation-delay: 2s;
+            }
         </style>
     </head>
     <body>
+        <div class="loading-container">
+            <div class="typing-effect">Loading...</div>
+            <div class="particles">
+                <span></span>
+                <span></span>
+                <span></span>
+                <!-- Add more spans for more particles -->
+            </div>
+        </div>
         <div id="particles-js"></div>
         <div class="content">
             <h1>Background Animation Effect</h1>

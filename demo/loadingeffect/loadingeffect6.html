@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Out of the World Loader</title>
+        <style>
+            body {
+                margin: 0;
+                background: radial-gradient(ellipse at center, #0d0d2b, #000);
+                height: 100vh;
+                overflow: hidden;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                font-family: "Segoe UI", sans-serif;
+            }
+
+            .loader-container {
+                position: relative;
+                width: 200px;
+                height: 200px;
+                animation: zoomPulse 3s ease-in-out infinite;
+            }
+
+            .planet {
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+                background: radial-gradient(
+                    circle at 30% 30%,
+                    #3ccfff,
+                    #0a529f
+                );
+                box-shadow: 0 0 40px #3ccfff80;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .continent {
+                position: absolute;
+                width: 60%;
+                height: 30%;
+                top: 35%;
+                left: 20%;
+                background-color: #34e89e;
+                border-radius: 50% 50% 40% 40%;
+                transform: rotate(20deg);
+                animation: drift 6s linear infinite;
+                opacity: 0.8;
+            }
+
+            .orbit {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                border: 1px dashed rgba(255, 255, 255, 0.2);
+                border-radius: 50%;
+                animation: orbitSpin 12s linear infinite;
+                transform: rotate(45deg);
+            }
+
+            .stars {
+                position: absolute;
+                width: 100vw;
+                height: 100vh;
+                top: 0;
+                left: 0;
+                background-image: radial-gradient(white 1px, transparent 1px);
+                background-size: 4px 4px;
+                animation: starTwinkle 10s linear infinite;
+                opacity: 0.2;
+            }
+
+            .loading-text {
+                position: absolute;
+                top: 110%;
+                width: 100%;
+                text-align: center;
+                font-size: 1.2rem;
+                letter-spacing: 1.5px;
+                animation: blink 1.4s steps(2, start) infinite;
+            }
+
+            @keyframes orbitSpin {
+                0% {
+                    transform: rotate(0deg);
+                }
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+
+            @keyframes drift {
+                0% {
+                    left: 20%;
+                }
+                50% {
+                    left: 30%;
+                }
+                100% {
+                    left: 20%;
+                }
+            }
+
+            @keyframes starTwinkle {
+                0% {
+                    background-position: 0 0;
+                }
+                100% {
+                    background-position: 100% 100%;
+                }
+            }
+
+            @keyframes zoomPulse {
+                0%,
+                100% {
+                    transform: scale(1);
+                }
+                50% {
+                    transform: scale(1.05);
+                }
+            }
+
+            @keyframes blink {
+                0%,
+                100% {
+                    opacity: 1;
+                }
+                50% {
+                    opacity: 0.3;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="stars"></div>
+
+        <div class="loader-container">
+            <div class="planet">
+                <div class="continent"></div>
+            </div>
+            <div class="orbit"></div>
+            <div class="loading-text">Loading the World...</div>
+        </div>
+    </body>
+</html>

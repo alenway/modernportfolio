@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Neon Grid Loading</title>
+        <style>
+            body {
+                margin: 0;
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: #000;
+                overflow: hidden;
+            }
+
+            canvas {
+                display: block;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="grid"></canvas>
+
+        <script>
+            const canvas = document.getElementById("grid");
+            const ctx = canvas.getContext("2d");
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const gridSize = 30;
+            let time = 0;
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.strokeStyle = `rgba(0, 255, 255, 0.3)`;
+                ctx.lineWidth = 1;
+
+                for (let x = 0; x < canvas.width; x += gridSize) {
+                    for (let y = 0; y < canvas.height; y += gridSize) {
+                        const distortionX =
+                            Math.sin(time * 0.001 + x * 0.01 + y * 0.01) * 20;
+                        const distortionY =
+                            Math.cos(time * 0.001 + x * 0.01) * 20;
+
+                        ctx.beginPath();
+                        ctx.moveTo(x + distortionX, y + distortionY);
+                        ctx.lineTo(x + gridSize + distortionX, y + distortionY);
+                        ctx.lineTo(
+                            x + gridSize + distortionX,
+                            y + gridSize + distortionY
+                        );
+                        ctx.stroke();
+                    }
+                }
+
+                time += 16;
+                requestAnimationFrame(animate);
+            }
+
+            animate();
+        </script>
+    </body>
+</html>

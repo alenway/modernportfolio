@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Liquid Blobs Loading</title>
+        <style>
+            body {
+                margin: 0;
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: #0f0f1a;
+                overflow: hidden;
+            }
+
+            .blob-container {
+                position: relative;
+                width: 300px;
+                height: 300px;
+                filter: blur(40px) contrast(30);
+            }
+
+            .blob {
+                position: absolute;
+                width: 100px;
+                height: 100px;
+                background: #7f5af0;
+                border-radius: 50%;
+                animation: float 5s infinite ease-in-out;
+            }
+
+            .blob:nth-child(1) {
+                left: 0;
+                top: 0;
+                animation-delay: 0s;
+                background: #2cb67d;
+            }
+
+            .blob:nth-child(2) {
+                left: 150px;
+                top: 0;
+                animation-delay: 1s;
+                background: #7f5af0;
+            }
+
+            .blob:nth-child(3) {
+                left: 75px;
+                top: 150px;
+                animation-delay: 2s;
+                background: #ff6e6c;
+            }
+
+            @keyframes float {
+                0%,
+                100% {
+                    transform: translate(0, 0);
+                }
+                25% {
+                    transform: translate(50px, 50px);
+                }
+                50% {
+                    transform: translate(0, 100px);
+                }
+                75% {
+                    transform: translate(-50px, 50px);
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="blob-container">
+            <div class="blob"></div>
+            <div class="blob"></div>
+            <div class="blob"></div>
+        </div>
+    </body>
+</html>

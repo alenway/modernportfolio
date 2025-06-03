@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Digital Rain Loading</title>
+        <style>
+            body {
+                margin: 0;
+                height: 100vh;
+                background: #000;
+                overflow: hidden;
+                font-family: "Courier New", monospace;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .matrix-rain {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                opacity: 0.8;
+            }
+
+            .matrix-column {
+                display: inline-block;
+                color: #0f0;
+                font-size: 16px;
+                writing-mode: vertical-rl;
+                text-orientation: upright;
+                margin-right: 15px;
+                text-shadow: 0 0 5px #0f0;
+                animation: fall 3s linear infinite;
+            }
+
+            @keyframes fall {
+                0% {
+                    transform: translateY(-100%);
+                }
+                100% {
+                    transform: translateY(100vh);
+                }
+            }
+
+            .typing-text {
+                position: relative;
+                z-index: 10;
+                color: #0f0;
+                font-size: 2rem;
+                text-shadow: 0 0 10px #0f0;
+            }
+
+            .typing-text::after {
+                content: "|";
+                animation: blink 0.7s infinite;
+            }
+
+            @keyframes blink {
+                0%,
+                100% {
+                    opacity: 1;
+                }
+                50% {
+                    opacity: 0;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="matrix-rain" id="matrixRain"></div>
+        <div class="typing-text" id="typing"></div>
+
+        <script>
+            // Typing Effect
+            const text = "System Loading...";
+            const typingElement = document.getElementById("typing");
+            let i = 0;
+
+            function typeWriter() {
+                if (i < text.length) {
+                    typingElement.innerHTML = text.substring(0, i + 1);
+                    i++;
+                    setTimeout(typeWriter, 100);
+                }
+            }
+
+            // Matrix Rain Effect
+            const matrixRain = document.getElementById("matrixRain");
+            const columns = 30;
+            const chars = "01アイウエオカキクケコサシスセソ";
+
+            for (let i = 0; i < columns; i++) {
+                const column = document.createElement("div");
+                column.classList.add("matrix-column");
+
+                // Random delay
+                column.style.animationDelay = `${Math.random() * 2}s`;
+
+                // Fill column with random characters
+                let content = "";
+                for (let j = 0; j < 30; j++) {
+                    content += chars.charAt(
+                        Math.floor(Math.random() * chars.length)
+                    );
+                }
+                column.textContent = content;
+
+                matrixRain.appendChild(column);
+            }
+
+            typeWriter();
+        </script>
+    </body>
+</html>
