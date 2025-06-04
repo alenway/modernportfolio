@@ -84,6 +84,7 @@
         <link rel="stylesheet" href="./style/header.css" />
         <link rel="stylesheet" href="./style/herosection.css" />
         <link rel="stylesheet" href="./style/projectsection.css" />
+        <link rel="stylesheet" href="./style/audio.css" />
     </head>
 
     <body class="theme-light">
@@ -152,22 +153,59 @@
             <!-- Animated Background -->
             <div id="particles-js" class="particles-bg"></div>
             <!-- Header -->
-            <div class="container">
-                <header>
-                    <a href="#">
-                        <h1 class="logo">Portfèlio</h1>
-                    </a>
+            <header>
+                <div class="container">
+                    <a href="index.html"><h1 class="logo">Portfèlio</h1></a>
 
                     <nav>
-                        <img src="./assets/circleiconimage.png" alt="" />
+                        <img src="./assets/circleiconimage.png" alt="Logo" />
                         <a href="#projects">Projects</a>
-                        <a href="#">features</a>
-                        <a href="#">resources</a>
-                        <a href="#">docs</a>
+                        <a href="#">Features</a>
+                        <a href="#">Resources</a>
+                        <a href="#">Docs</a>
                     </nav>
-                    <!-- <button class="btn-signing">signing</button> -->
-                    <!-- dropdown theme switcher -->
+
                     <div class="dropdown">
+                        <!-- music button -->
+                        <div class="audiobuttonmm">
+                            <button
+                                class="audio-button"
+                                aria-label="Play/Pause background music"
+                            >
+                                <svg
+                                    class="icon icon-play"
+                                    viewBox="0 0 64 64"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <polygon points="16,12 52,32 16,52" />
+                                </svg>
+                                <svg
+                                    class="icon icon-pause"
+                                    viewBox="0 0 64 64"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    style="display: none"
+                                >
+                                    <rect
+                                        x="14"
+                                        y="12"
+                                        width="10"
+                                        height="40"
+                                    />
+                                    <rect
+                                        x="40"
+                                        y="12"
+                                        width="10"
+                                        height="40"
+                                    />
+                                </svg>
+                            </button>
+                        </div>
+
+                        <audio id="bg-audio" loop>
+                            <source src="./sound/audio.mp3" type="audio/mpeg" />
+                            Your browser does not support the audio element.
+                        </audio>
+                        <!-- music button ends here -->
                         <div class="dropdown-toggle" id="dropdownToggle">
                             Select Theme <i class="arrow"></i>
                         </div>
@@ -223,10 +261,8 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- dropdown ends -->
-                </header>
-            </div>
+                </div>
+            </header>
 
             <!-- Hero section -->
             <main>
@@ -1065,6 +1101,12 @@
 
         <!-- custom js -->
         <script src="./script/script.js"></script>
+
+        <!-- dropdown js -->
+        <!-- <script src="./script/dropdowntheme.js"></script> -->
+
+        <!-- audio js -->
+        <script src="./script/audio.js"></script>
 
         <!-- project js -->
         <script src="./script/project.js"></script>

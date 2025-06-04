@@ -1,108 +1,65 @@
-/* header  */
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem 5%;
-    z-index: 999;
     position: sticky;
     top: 0;
-    /* background-color: var(--card-bg); */
-    /* backdrop-filter: blur(10px); */
-    /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); */
-    /* border-bottom: 1px solid var(--input-border); */
+    z-index: 999;
+    background-color: transparent;
+    /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); */
     transition: all var(--transition-speed) ease;
 }
-
-/* Better link transitions */
-a {
-    color: var(--primary-color);
-    text-decoration: none;
-    transition: color 0.2s ease, text-decoration 0.2s ease;
-}
-
-a:hover {
-    color: var(--primary-hover);
-}
-
-.links,
-.list {
-    background-color: var(--card-bg);
-    border-radius: var(--radius-md);
-    padding: 20px;
-    margin-top: 20px;
-}
-
-.card {
-    background-color: var(--card-bg);
-    padding: 20px;
-    border-radius: var(--radius-lg);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-    transition: background-color var(--transition-speed),
-        color var(--transition-speed);
+header .container a {
+    text-decoration: none !important;
 }
 
 .container {
-    width: 100%;
+    max-width: 1200px;
     margin: 0 auto;
-    position: relative;
-}
-
-h1 {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    color: var(--accent);
-}
-
-p {
-    text-align: center;
-    font-size: 1.1rem;
-    color: var(--secondary-text);
-    margin-bottom: 2rem;
-}
-
-p,
-li {
-    color: var(--secondary-text);
+    padding: 1.5rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .logo {
-    margin: 0;
     font-weight: 600;
     font-size: 1.8rem;
     background: linear-gradient(to right, var(--primary-color), var(--accent));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    transition: all var(--transition-speed) ease;
+    text-decoration: none;
 }
 
-header nav {
-    background-color: var(--nav-bg);
+nav {
+    background-color: rgba(
+        var(--nav-bg-rgb),
+        0.3
+    ); /* use rgba for transparency */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px); /* Safari support */
+
     padding: 0.5rem 2rem 0.5rem 0.5rem;
     border-radius: var(--radius-xxl);
     display: flex;
     align-items: center;
     gap: 2.5rem;
-    margin: 0 auto;
+
+    border: 1px solid var(--border-color);
 }
 
-header nav img {
+nav img {
     height: 45px;
     width: 45px;
 }
 
-header nav a {
+nav a {
     font-size: 1.05rem;
     letter-spacing: 0.05rem;
-    transition: all 0.2s ease;
     text-decoration: none;
     color: var(--nav-text);
     font-weight: 500;
     position: relative;
     padding: 0.5rem 0;
+    transition: all 0.2s ease;
 }
 
 nav a:hover {
@@ -124,79 +81,17 @@ nav a:hover::after {
     width: 100%;
 }
 
-.header-right {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-}
-
-.btn-signing {
-    background-color: var(--primary-color);
-    color: var(--button-text);
-    padding: 0.7rem 1.8rem;
-    border-radius: var(--radius-xxl);
-    border: none;
-    font-size: 1rem;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    white-space: nowrap;
-}
-
-.btn-signing:hover {
-    background-color: var(--primary-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-/* Dropdown adjustments */
-.dropdown {
-    position: relative;
-    margin-left: 1rem;
-}
-
-.dropdown-toggle {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    cursor: pointer;
-    padding: 0.5rem 1rem;
-    border-radius: var(--radius-xxl);
-    background-color: var(--input-bg);
-    transition: all 0.2s ease;
-}
-
-.dropdown-toggle:hover {
-    background-color: var(--input-border);
-}
-
-/* Responsive adjustments */
-@media (max-width: 1024px) {
-    nav {
-        gap: 1.5rem;
-    }
-
-    .header-right {
-        gap: 1rem;
-    }
-}
-
+/* Responsive */
 @media (max-width: 768px) {
-    header {
+    .container {
         flex-direction: column;
-        padding: 1rem;
         gap: 1rem;
+        align-items: flex-start;
     }
 
     nav {
-        margin: 0;
-        gap: 1rem;
         flex-wrap: wrap;
         justify-content: center;
-    }
-
-    .header-right {
-        width: 100%;
-        justify-content: center;
+        gap: 1rem;
     }
 }

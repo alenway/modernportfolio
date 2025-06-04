@@ -34,15 +34,16 @@ const themeConfig = {
     },
 };
 
-// Theme Management
+// Theme Manager
 const themeManager = {
     applyTheme(theme) {
-        document.body.classList.remove(...themeConfig.themes);
+        const body = document.body;
+        body.classList.remove(...themeConfig.themes);
 
         if (theme === "system") {
             this.applySystemTheme();
         } else {
-            document.body.classList.add(theme);
+            body.classList.add(theme);
         }
 
         this.updateDropdownText(theme);
@@ -58,14 +59,32 @@ const themeManager = {
     },
 
     updateDropdownText(theme) {
-        themeConfig.elements.dropdownToggle.innerHTML = `${
-            themeConfig.themeNames[theme] || "Select Theme"
-        } <i class="arrow"></i>`;
+        const name = themeConfig.themeNames[theme] || "Select Theme";
+        themeConfig.elements.dropdownToggle.innerHTML = `${name} <i class="arrow"></i>`;
     },
 
-    initTheme() {
-        const savedTheme = localStorage.getItem("selectedTheme") || "system";
-        this.applyTheme(savedTheme);
+    updateAriaExpanded(isOpen) {
+        themeConfig.elements.dropdownToggle.setAttribute(
+            "aria-expanded",
+            isOpen
+        );
+    },
+
+    toggleMenu() {
+        const dropdown =
+            themeConfig.elements.dropdownToggle.closest(".dropdown");
+        const isOpen =
+            themeConfig.elements.dropdownMenu.classList.toggle("show");
+        dropdown.classList.toggle("open", isOpen);
+        this.updateAriaExpanded(isOpen);
+    },
+
+    closeMenu() {
+        const dropdown =
+            themeConfig.elements.dropdownToggle.closest(".dropdown");
+        themeConfig.elements.dropdownMenu.classList.remove("show");
+        dropdown.classList.remove("open");
+        this.updateAriaExpanded(false);
     },
 
     setupEventListeners() {
@@ -76,9 +95,18 @@ const themeManager = {
 
         themeConfig.elements.themeItems.forEach((item) => {
             item.addEventListener("click", () => {
-                this.applyTheme(item.dataset.theme);
-                themeConfig.elements.dropdownMenu.classList.remove("show");
+                const theme = item.dataset.theme;
+                this.applyTheme(theme);
+                this.closeMenu();
             });
+        });
+
+        document.addEventListener("click", () => {
+            this.closeMenu();
+        });
+
+        themeConfig.elements.dropdownMenu.addEventListener("click", (e) => {
+            e.stopPropagation(); // Prevent closing when clicking inside
         });
 
         window
@@ -89,22 +117,20 @@ const themeManager = {
                 }
             });
 
-        document.addEventListener("click", () => {
-            themeConfig.elements.dropdownMenu.classList.remove("show");
-        });
-
-        // Prevent dropdown from closing when clicking inside it
-        themeConfig.elements.dropdownMenu.addEventListener("click", (e) => {
-            e.stopPropagation();
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") {
+                this.closeMenu();
+            }
         });
     },
 
-    toggleMenu() {
-        themeConfig.elements.dropdownMenu.classList.toggle("show");
+    initTheme() {
+        const savedTheme = localStorage.getItem("selectedTheme") || "system";
+        this.applyTheme(savedTheme);
     },
 };
 
-// Initialize the theme manager when DOM is loaded
+// Initialize when DOM is loaded
 document.addEventListener("DOMContentLoaded", () => {
     themeManager.initTheme();
     themeManager.setupEventListeners();

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Music Play/Pause Button</title>
+        <style>
+            /* Reset & center */
+            body {
+                margin: 0;
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: #121212;
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            }
+
+            /* The button */
+            .audio-button {
+                width: 80px;
+                height: 80px;
+                background: linear-gradient(135deg, #ff6ec4, #7873f5);
+                border-radius: 50%;
+                border: none;
+                cursor: pointer;
+                outline: none;
+                box-shadow: 0 8px 15px rgba(255, 110, 196, 0.4),
+                    0 4px 20px rgba(120, 115, 245, 0.6);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                transition: background 0.3s ease;
+                position: relative;
+            }
+            .audio-button:hover {
+                background: linear-gradient(135deg, #ff7ecc, #8a84ff);
+                box-shadow: 0 10px 20px rgba(255, 110, 196, 0.6),
+                    0 6px 25px rgba(120, 115, 245, 0.8);
+            }
+
+            /* Icon container for smooth animation */
+            .icon {
+                width: 36px;
+                height: 36px;
+                fill: white;
+                transition: transform 0.3s ease;
+            }
+
+            /* Play icon */
+            .icon-play {
+                transform-origin: center;
+            }
+
+            /* Pause icon */
+            .icon-pause {
+                transform-origin: center;
+            }
+        </style>
+    </head>
+    <body>
+        <button class="audio-button" aria-label="Play/Pause background music">
+            <svg
+                class="icon icon-play"
+                viewBox="0 0 64 64"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <polygon points="16,12 52,32 16,52" />
+            </svg>
+            <svg
+                class="icon icon-pause"
+                viewBox="0 0 64 64"
+                xmlns="http://www.w3.org/2000/svg"
+                style="display: none"
+            >
+                <rect x="14" y="12" width="10" height="40" />
+                <rect x="40" y="12" width="10" height="40" />
+            </svg>
+        </button>
+
+        <audio id="bg-audio" loop>
+            <source
+                src="https://cdn.pixabay.com/download/audio/2021/09/09/audio_69b8b05f59.mp3?filename=calm-background-ambient-11219.mp3"
+                type="audio/mpeg"
+            />
+            Your browser does not support the audio element.
+        </audio>
+
+        <script>
+            const button = document.querySelector(".audio-button");
+            const audio = document.getElementById("bg-audio");
+            const playIcon = button.querySelector(".icon-play");
+            const pauseIcon = button.querySelector(".icon-pause");
+
+            let isPlaying = false;
+
+            button.addEventListener("click", () => {
+                if (!isPlaying) {
+                    audio.play();
+                    playIcon.style.display = "none";
+                    pauseIcon.style.display = "block";
+                } else {
+                    audio.pause();
+                    playIcon.style.display = "block";
+                    pauseIcon.style.display = "none";
+                }
+                isPlaying = !isPlaying;
+            });
+
+            // Optional: Pause audio on page unload to avoid auto-play issues
+            window.addEventListener("beforeunload", () => {
+                audio.pause();
+            });
+        </script>
+    </body>
+</html>
