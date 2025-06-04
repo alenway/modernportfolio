@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Interactive Media Grid</title>
+        <style>
+            body {
+                margin: 0;
+                background: #000;
+                color: white;
+                font-family: "Arial", sans-serif;
+            }
+
+            .media-grid {
+                width: 90%;
+                height: 80vh;
+                margin: 2rem auto;
+                display: grid;
+                grid-template-columns: repeat(5, 1fr);
+                grid-template-rows: repeat(7, 1fr);
+                gap: 10px;
+            }
+
+            .media-cell {
+                position: relative;
+                border-radius: 12px;
+                overflow: hidden;
+            }
+
+            /* Background image with fade effect */
+            .media-cell::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-size: cover;
+                background-position: center;
+                opacity: 0.7;
+                z-index: 1;
+                transition: opacity 0.3s ease;
+            }
+
+            /* Background video container */
+            .video-background {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                z-index: 0;
+                opacity: 0.7;
+            }
+
+            /* Content styling */
+            .cell-content {
+                position: absolute;
+                z-index: 2;
+                color: white;
+                text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+            }
+
+            .cell-content {
+                display: flex;
+                bottom: 0;
+                font-size: 1.5rem;
+                width: 100%;
+            }
+
+            .cell-content .block {
+                display: grid;
+                width: 100%;
+                grid-template-columns: repeat(5, 1fr);
+                border: 2px solid black;
+            }
+
+            .cell-content .block .part1 {
+                grid-column: span 2;
+                border-top: 2px solid black;
+                border-right: 2px solid black;
+            }
+
+            .cell-content .block .part2 {
+                grid-column: span 3;
+                border-top: 2px solid black;
+            }
+
+            /* Hover effects */
+            .media-cell:hover::before {
+                opacity: 0.9;
+            }
+
+            /* Individual cell sizing */
+            .cell-1 {
+                grid-column: span 2;
+                grid-row: span 1;
+            }
+            .cell-2 {
+                grid-column: span 3;
+                grid-row: span 1;
+            }
+            .cell-3 {
+                grid-column: span 3;
+                grid-row: span 6;
+            }
+            .cell-4 {
+                grid-column: span 2;
+                grid-row: span 4;
+            }
+            .cell-5 {
+                grid-column: span 2;
+                grid-row: span 2;
+            }
+
+            /* Individual background images - using reliable sources */
+            .cell-1::before {
+                background-image: url("https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80");
+            }
+            .cell-2::before {
+                background-image: url("https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80");
+            }
+            .cell-3::before {
+                background-image: url("https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80");
+            }
+            .cell-4::before {
+                background-image: url("https://images.unsplash.com/photo-1499781350541-7783f6c6a0c8?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80");
+            }
+            .cell-5::before {
+                background-image: url("https://images.unsplash.com/photo-1454789548928-9efd52dc4031?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80");
+            }
+        </style>
+    </head>
+    <body>
+        <div class="media-grid">
+            <!-- Cell 1 with image background -->
+            <div class="media-cell cell-1">
+                <div class="cell-content">
+                    <h3>Nature</h3>
+                    <p>Explore the wilderness</p>
+                </div>
+            </div>
+
+            <!-- Cell 2 with video background -->
+            <div class="media-cell cell-2">
+                <video class="video-background" autoplay loop muted playsinline>
+                    <source
+                        src="https://assets.mixkit.co/videos/preview/mixkit-city-traffic-at-night-3585-large.mp4"
+                        type="video/mp4"
+                    />
+                    <!-- Fallback image if video doesn't load -->
+                    <img
+                        src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                        style="display: none"
+                    />
+                </video>
+                <div class="cell-content">
+                    <h3>City Life</h3>
+                    <p>Urban exploration</p>
+                </div>
+            </div>
+
+            <!-- Cell 3 with image background -->
+            <div class="media-cell cell-3">
+                <div class="cell-content">
+                    <div class="block">
+                        <div class="part1">slidfjslidj</div>
+                        <div class="part2">slidfjslidj</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cell 4 with video background -->
+            <div class="media-cell cell-4">
+                <video class="video-background" autoplay loop muted playsinline>
+                    <source
+                        src="https://assets.mixkit.co/videos/preview/mixkit-artist-painting-on-canvas-149-large.mp4"
+                        type="video/mp4"
+                    />
+                    <!-- Fallback image if video doesn't load -->
+                    <img
+                        src="https://images.unsplash.com/photo-1499781350541-7783f6c6a0c8?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                        style="display: none"
+                    />
+                </video>
+                <div class="cell-content">
+                    <h3>Art Studio</h3>
+                    <p>Creative space</p>
+                </div>
+            </div>
+
+            <!-- Cell 5 with image background -->
+            <div class="media-cell cell-5">
+                <div class="cell-content">
+                    <h3>Space</h3>
+                    <p>Final frontier</p>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // Fallback for videos that don't autoplay
+            document.addEventListener("DOMContentLoaded", function () {
+                const videos = document.querySelectorAll(".video-background");
+
+                videos.forEach((video) => {
+                    // Try to play the video
+                    const promise = video.play();
+
+                    if (promise !== undefined) {
+                        promise.catch((error) => {
+                            // If autoplay fails, show the fallback image
+                            const img = video.querySelector("img");
+                            if (img) {
+                                video.style.display = "none";
+                                img.style.display = "block";
+                                img.style.width = "100%";
+                                img.style.height = "100%";
+                                img.style.objectFit = "cover";
+                                img.style.position = "absolute";
+                                img.style.top = "0";
+                                img.style.left = "0";
+                            }
+                        });
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
