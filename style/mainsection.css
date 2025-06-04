@@ -1,0 +1,48 @@
+.hero-section .hero-container {
+    width: 80%;
+    margin: 0 auto;
+}
+.hero-section .hero-container .gridview {
+    height: 700px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(7, 1fr);
+    gap: 0.7rem;
+}
+
+.hero-section .hero-container .gridview .gridcolumn {
+    width: 100%;
+    height: 100%;
+    background-color: red;
+    border-radius: var(--radius-xl);
+}
+
+.hero-section .hero-container .gridview .gcel1 {
+    grid-column: span 2;
+    grid-row: span 1;
+    background-color: red;
+}
+
+.hero-section .hero-container .gridview .gcel2 {
+    grid-column: span 3;
+    grid-row: span 1;
+    background-color: blue;
+}
+
+.hero-section .hero-container .gridview .gcel3 {
+    grid-column: span 3;
+    grid-row: span 6;
+    background-color: green;
+}
+
+.hero-section .hero-container .gridview .gcel4 {
+    grid-column: span 2;
+    grid-row: span 4;
+    background-color: yellow;
+}
+
+.hero-section .hero-container .gridview .gcel5 {
+    grid-column: span 2;
+    grid-row: span 2;
+    background-color: aqua;
+}
