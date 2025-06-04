@@ -165,50 +165,57 @@
                         <a href="#">Docs</a>
                     </nav>
 
-                    <div class="dropdown">
-                        <!-- music button -->
-                        <div class="audiobuttonmm">
-                            <button
-                                class="audio-button"
-                                aria-label="Play/Pause background music"
-                            >
-                                <svg
-                                    class="icon icon-play"
-                                    viewBox="0 0 64 64"
-                                    xmlns="http://www.w3.org/2000/svg"
+                    <!-- Dropdown Container -->
+                    <div class="dropdown-container">
+                        <div class="dropdown">
+                            <!-- Music Button (separate from dropdown) -->
+                            <div class="audiobuttonmm">
+                                <button
+                                    class="audio-button"
+                                    aria-label="Play/Pause background music"
                                 >
-                                    <polygon points="16,12 52,32 16,52" />
-                                </svg>
-                                <svg
-                                    class="icon icon-pause"
-                                    viewBox="0 0 64 64"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    style="display: none"
-                                >
-                                    <rect
-                                        x="14"
-                                        y="12"
-                                        width="10"
-                                        height="40"
-                                    />
-                                    <rect
-                                        x="40"
-                                        y="12"
-                                        width="10"
-                                        height="40"
-                                    />
-                                </svg>
-                            </button>
+                                    <svg
+                                        class="icon icon-play"
+                                        viewBox="0 0 64 64"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <polygon points="16,12 52,32 16,52" />
+                                    </svg>
+                                    <svg
+                                        class="icon icon-pause"
+                                        viewBox="0 0 64 64"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        style="display: none"
+                                    >
+                                        <rect
+                                            x="14"
+                                            y="12"
+                                            width="10"
+                                            height="40"
+                                        />
+                                        <rect
+                                            x="40"
+                                            y="12"
+                                            width="10"
+                                            height="40"
+                                        />
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <audio id="bg-audio" loop>
+                                <source
+                                    src="./sound/audio.mp3"
+                                    type="audio/mpeg"
+                                />
+                                Your browser does not support the audio element.
+                            </audio>
+                            <div class="dropdown-toggle" id="dropdownToggle">
+                                Select Theme <i class="arrow"></i>
+                            </div>
                         </div>
 
-                        <audio id="bg-audio" loop>
-                            <source src="./sound/audio.mp3" type="audio/mpeg" />
-                            Your browser does not support the audio element.
-                        </audio>
-                        <!-- music button ends here -->
-                        <div class="dropdown-toggle" id="dropdownToggle">
-                            Select Theme <i class="arrow"></i>
-                        </div>
+                        <!-- Dropdown Menu (now outside main dropdown) -->
                         <div class="dropdown-menu" id="themeMenu">
                             <div class="theme-item" data-theme="system">
                                 <div class="theme-ball ball-system"></div>

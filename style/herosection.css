@@ -6,12 +6,13 @@ main .hero-section {
     justify-content: center;
     width: 90%;
     margin: 0 auto;
+
     background: linear-gradient(
         to bottom,
-        #000000 0%,
-        #000000 60%,
-        #360f2a 70%,
-        #752e6b 100%
+        var(--hero-gradient-1) 0%,
+        var(--hero-gradient-2) 40%,
+        var(--hero-gradient-3) 70%,
+        var(--hero-gradient-4) 100%
     );
 
     border-radius: var(--radius-lg);

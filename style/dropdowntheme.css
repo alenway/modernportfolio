@@ -1,26 +1,27 @@
-/* dropdown menu */
-.dropdown {
+/* Dropdown Container */
+.dropdown-container {
     position: relative;
     display: flex;
     gap: 1rem;
-    background-color: rgba(
-        var(--nav-bg-rgb),
-        0.3
-    ); /* use rgba for transparency */
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px); /* Safari support */
-    padding: 0.5rem 2rem;
-    border-radius: var(--radius-xxl);
+    align-items: center;
 }
 
-.dropdown,
-.dropdown-toggle,
-.dropdown-menu {
+/* Main Dropdown */
+.dropdown {
+    display: flex;
+    gap: 1rem;
+    position: relative;
+    background-color: rgba(var(--nav-bg-rgb), 0.3);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 0.5rem 2rem;
+    border-radius: var(--radius-xxl);
     border: 1px solid var(--border-color);
 }
 
 .dropdown-toggle {
     padding: 10px 16px;
+    width: 100px;
     background-color: transparent;
     color: var(--text-color);
     border: 1px solid var(--secondary-text);
@@ -46,19 +47,21 @@
     margin-left: auto;
 }
 
+/* Dropdown Menu */
 .dropdown-menu {
     display: none;
     position: absolute;
+    top: 100%;
     right: 0;
-    background-color: rgba(var(--nav-bg-rgb), 0.1);
-    /* light blur layer */
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background-color: rgba(var(--nav-bg-rgb), 0.3);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border: 1px solid var(--secondary-text);
     border-radius: var(--radius-md);
-    margin-top: 55px;
-    width: 100%;
-    z-index: 1;
+    margin-top: 10px;
+    min-width: 200px;
+    z-index: 100;
+    transform: translateZ(0); /* Force hardware acceleration */
 }
 
 .dropdown-menu.show {
@@ -84,6 +87,7 @@
     border-radius: 50%;
 }
 
+/* Theme ball colors remain the same as before */
 .ball-dark {
     background: linear-gradient(45deg, #121212, #bb86fc);
 }
@@ -100,37 +104,17 @@
     background: linear-gradient(45deg, #0284c7, #06b6d4);
 }
 .ball-catppuccin {
-    background: linear-gradient(
-        45deg,
-        #1e1e2e,
-        #89b4fa
-    ); /* Catppuccin base to soft blue */
+    background: linear-gradient(45deg, #1e1e2e, #89b4fa);
 }
-
 .ball-evergreen {
-    background: linear-gradient(
-        45deg,
-        #064e3b,
-        #10b981
-    ); /* deep green to vibrant green */
+    background: linear-gradient(45deg, #064e3b, #10b981);
 }
-
 .ball-vintage {
-    background: linear-gradient(
-        45deg,
-        #4c1d95,
-        #9333ea
-    ); /* rich purple tones */
+    background: linear-gradient(45deg, #4c1d95, #9333ea);
 }
-
 .ball-aurora {
-    background: linear-gradient(
-        45deg,
-        #0f172a,
-        #7dd3fc
-    ); /* dark night to aurora blue */
+    background: linear-gradient(45deg, #0f172a, #7dd3fc);
 }
-
 .ball-system {
     background: repeating-linear-gradient(45deg, #aaa, #ccc 5px);
 }

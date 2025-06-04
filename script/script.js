@@ -8,6 +8,8 @@ const themeConfig = {
         typingContainer: document.querySelector(".typing-container"),
         loader: document.querySelector(".loader"),
         mainContent: document.querySelector(".container"),
+        dropdownContainer: document.querySelector(".dropdown-container"), // Added
+        dropdown: document.querySelector(".dropdown"), // Added
     },
     themes: [
         "theme-dark",
@@ -71,19 +73,15 @@ const themeManager = {
     },
 
     toggleMenu() {
-        const dropdown =
-            themeConfig.elements.dropdownToggle.closest(".dropdown");
         const isOpen =
             themeConfig.elements.dropdownMenu.classList.toggle("show");
-        dropdown.classList.toggle("open", isOpen);
+        themeConfig.elements.dropdown.classList.toggle("open", isOpen);
         this.updateAriaExpanded(isOpen);
     },
 
     closeMenu() {
-        const dropdown =
-            themeConfig.elements.dropdownToggle.closest(".dropdown");
         themeConfig.elements.dropdownMenu.classList.remove("show");
-        dropdown.classList.remove("open");
+        themeConfig.elements.dropdown.classList.remove("open");
         this.updateAriaExpanded(false);
     },
 
@@ -101,8 +99,11 @@ const themeManager = {
             });
         });
 
-        document.addEventListener("click", () => {
-            this.closeMenu();
+        document.addEventListener("click", (e) => {
+            // Only close if clicking outside the dropdown container
+            if (!themeConfig.elements.dropdownContainer.contains(e.target)) {
+                this.closeMenu();
+            }
         });
 
         themeConfig.elements.dropdownMenu.addEventListener("click", (e) => {
@@ -136,7 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
     themeManager.setupEventListeners();
 });
 
-// Service Worker Registration
+// Service Worker Registration (unchanged)
 if ("serviceWorker" in navigator) {
     window.addEventListener("load", () => {
         navigator.serviceWorker
