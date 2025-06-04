@@ -3,48 +3,37 @@
  * Complete animation sequence with progress tracking
  */
 
-// Initialize the preloader
+// On DOM ready
 document.addEventListener("DOMContentLoaded", () => {
-    // Create starfield background
-    createStars();
-
-    // Start the loading simulation
-    simulateLoading();
-
-    // Add loading class to body
+    createStars(); // Generate starfield
+    simulateLoading(); // Start simulated loading
     document.body.classList.add("loading");
 });
 
-// Generate twinkling stars
+// Generate starfield in the background
 function createStars() {
     const starsContainer = document.getElementById("stars");
-    const starCount = 150;
+    if (!starsContainer) return;
 
+    const starCount = 150;
     for (let i = 0; i < starCount; i++) {
         const star = document.createElement("div");
         star.className = "star";
 
-        // Random star sizes (1-4px)
         const size = Math.random() * 3 + 1;
         star.style.width = `${size}px`;
         star.style.height = `${size}px`;
-
-        // Random positions
         star.style.left = `${Math.random() * 100}vw`;
         star.style.top = `${Math.random() * 100}vh`;
-
-        // Varied animation timing
         star.style.animationDelay = `${Math.random() * 3}s`;
         star.style.animationDuration = `${2 + Math.random() * 2}s`;
-
-        // Slightly varied opacity
         star.style.opacity = Math.random() * 0.8 + 0.2;
 
         starsContainer.appendChild(star);
     }
 }
 
-// Main loading simulation with progress
+// Simulated loading bar and animations
 function simulateLoading() {
     const elements = {
         progressBar: document.getElementById("progressBar"),
@@ -53,6 +42,8 @@ function simulateLoading() {
         websiteContent: document.getElementById("websiteContent"),
         astronaut: document.querySelector(".astronaut"),
         loadingText: document.querySelector(".loading-text div"),
+        landedRocket: document.querySelector(".landed-rocket"),
+        particlesBg: document.getElementById("particles-bg"),
     };
 
     const messages = [
@@ -67,26 +58,20 @@ function simulateLoading() {
     let messageIndex = 0;
     let isComplete = false;
 
-    // Update loading message
     const updateMessage = () => {
-        if (messageIndex < messages.length - 1) {
-            elements.loadingText.textContent = messages[messageIndex];
-            messageIndex++;
+        if (elements.loadingText && messageIndex < messages.length - 1) {
+            elements.loadingText.textContent = messages[messageIndex++];
         }
     };
 
-    // Loading interval
     const loadingInterval = setInterval(() => {
-        if (isComplete) return;
+        if (isComplete || !elements.progressBar) return;
 
-        // Dynamic progress increment (slows as it progresses)
         const increment =
             Math.random() * (progress < 30 ? 15 : progress < 70 ? 10 : 5) + 2;
-
         progress = Math.min(progress + increment, 100);
         elements.progressBar.style.width = `${progress}%`;
 
-        // Update messages at progress milestones
         if (
             progress >= 25 * messageIndex &&
             messageIndex < messages.length - 1
@@ -94,76 +79,91 @@ function simulateLoading() {
             updateMessage();
         }
 
-        // Complete the loading
-        if (progress >= 100) {
-            completeLoading();
-        }
+        if (progress >= 100) completeLoading();
     }, 200);
 
-    // Handle loading completion
-    const completeLoading = () => {
+    function completeLoading() {
         isComplete = true;
         clearInterval(loadingInterval);
 
-        // Show final message
-        elements.loadingText.textContent = messages[messages.length - 1];
+        if (elements.loadingText) {
+            elements.loadingText.textContent = messages[messages.length - 1];
+        }
 
-        // Trigger landing animation
         setTimeout(() => {
-            elements.loadingContainer.classList.add("loading-complete");
+            elements.loadingContainer?.classList.add("loading-complete");
 
-            // Show astronaut and landed rocket
-            elements.astronaut.style.opacity = "1";
-            elements.astronaut.style.transform = "translateY(0)";
+            if (elements.astronaut) {
+                elements.astronaut.style.opacity = "1";
+                elements.astronaut.style.transform = "translateY(0)";
+            }
 
-            document.querySelector(".landed-rocket").style.opacity = "1";
-            document.querySelector(".landed-rocket").style.transform =
-                "rotate(0deg)";
+            if (elements.landedRocket) {
+                elements.landedRocket.style.opacity = "1";
+                elements.landedRocket.style.transform = "rotate(0deg)";
+            }
 
-            // Prepare to hide loading screen
             setTimeout(transitionToContent, 2000);
         }, 500);
-    };
+    }
 
-    // Transition to main content
-    const transitionToContent = () => {
-        // Fade out loading screen
-        elements.loadingScreen.style.opacity = "0";
-        elements.loadingScreen.style.pointerEvents = "none";
+    function transitionToContent() {
+        const { loadingScreen, websiteContent, particlesBg } = elements;
 
-        // Remove loading class from body
+        if (loadingScreen) {
+            loadingScreen.style.opacity = "0";
+            loadingScreen.style.pointerEvents = "none";
+        }
+
         document.body.classList.remove("loading");
+        if (websiteContent) {
+            websiteContent.style.display = "block";
+        }
+        document.body.style.overflow = "auto";
 
-        // Show main content
-        elements.websiteContent.style.display = "block";
-        document.body.style.overflow = "auto"; // Enable scrolling
+        if (particlesBg) {
+            particlesBg.classList.remove("hidden");
 
-        // Add stars to main content
-        addStarsToWebsite();
+            setTimeout(() => {
+                particlesBg.classList.add("active");
 
-        // Setup interactive elements
-        setupExploreButton();
+                if (window.tsParticles) {
+                    particlesBg.load("particles-bg", {
+                        background: { color: { value: "transparent" } },
+                        particles: {
+                            number: { value: 50 },
+                            color: { value: "#ffffff" },
+                            shape: { type: "circle" },
+                            opacity: { value: 0.5 },
+                            size: { value: 2 },
+                            move: { enable: true, speed: 0.6 },
+                        },
+                    });
+                }
+            }, 300);
+        }
 
-        // Remove loading screen after fade completes
-        setTimeout(() => {
-            elements.loadingScreen.style.display = "none";
-        }, 1000);
-    };
+        if (loadingScreen) {
+            setTimeout(() => {
+                loadingScreen.style.display = "none";
+            }, 1000);
+        }
+    }
 }
 
-// Add stars to main website content
+// Add background stars after transition
 function addStarsToWebsite() {
     const websiteContent = document.getElementById("websiteContent");
+    if (!websiteContent) return;
+
     const bgStars = document.createElement("div");
     bgStars.className = "stars";
     websiteContent.prepend(bgStars);
 
-    // Create fewer stars for performance
     for (let i = 0; i < 80; i++) {
         const star = document.createElement("div");
         star.className = "star";
 
-        // Smaller, more subtle stars
         star.style.width = "2px";
         star.style.height = "2px";
         star.style.left = `${Math.random() * 100}vw`;
@@ -172,37 +172,5 @@ function addStarsToWebsite() {
         star.style.opacity = Math.random() * 0.6 + 0.2;
 
         bgStars.appendChild(star);
-    }
-}
-
-// Setup explore button interaction
-function setupExploreButton() {
-    const exploreBtn = document.getElementById("exploreBtn");
-
-    if (exploreBtn) {
-        exploreBtn.addEventListener("click", () => {
-            // Visual feedback on click
-            exploreBtn.textContent = "🌟 Ready for adventure!";
-            exploreBtn.style.background =
-                "linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%)";
-
-            // Reset after animation
-            setTimeout(() => {
-                exploreBtn.textContent = "🌟 Explore the Cosmos";
-                exploreBtn.style.background =
-                    "linear-gradient(135deg, #4fc3f7 0%, #29b6f6 100%)";
-            }, 2000);
-        });
-
-        // Add hover effect
-        exploreBtn.addEventListener("mouseenter", () => {
-            exploreBtn.style.transform = "translateY(-2px)";
-            exploreBtn.style.boxShadow = "0 6px 20px rgba(57, 190, 255, 0.6)";
-        });
-
-        exploreBtn.addEventListener("mouseleave", () => {
-            exploreBtn.style.transform = "translateY(0)";
-            exploreBtn.style.boxShadow = "0 4px 15px rgba(57, 190, 255, 0.4)";
-        });
     }
 }

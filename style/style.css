@@ -270,16 +270,6 @@ body {
     --nav-underline: #9333ea;
 }
 
-/* Animated Background */
-.particles-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-}
-
 /* Selection styling */
 ::selection {
     background-color: var(--color-base-highlight);
@@ -315,7 +305,19 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     z-index: -1;
+    opacity: 1;
+    transition: opacity 1.5s ease-in-out;
+    pointer-events: none;
+}
+
+.particles-bg .active {
+    opacity: 1;
+    z-index: 0;
+}
+
+.particles-bg .hidden {
+    display: none;
 }
