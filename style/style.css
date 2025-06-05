@@ -74,6 +74,15 @@ body {
     --nav-text: #ffffff;
     --nav-hover: #03dac6;
     --nav-underline: #bb86fc;
+
+    --rocket-body: var(--primary-color);
+    --rocket-wing: var(--accent);
+    --rocket-window: var(--accent);
+    --rocket-glow: var(--primary-color);
+    --rocket-strip: var(--border-color);
+    --rocket-fire1: #ff4757;
+    --rocket-fire2: #ffa502;
+    --rocket-fire3: #ffd700;
 }
 
 .theme-light {
@@ -105,6 +114,15 @@ body {
     --nav-text: #111827;
     --nav-hover: #3b82f6;
     --nav-underline: #3b82f6;
+
+    --rocket-body: var(--primary-color);
+    --rocket-wing: var(--accent);
+    --rocket-window: var(--accent);
+    --rocket-glow: var(--primary-color);
+    --rocket-strip: var(--border-color);
+    --rocket-fire1: #ff4757;
+    --rocket-fire2: #ffa502;
+    --rocket-fire3: #ffd700;
 }
 
 .theme-purple {
@@ -136,6 +154,15 @@ body {
     --nav-text: #4c1d95;
     --nav-hover: #9333ea;
     --nav-underline: #7c3aed;
+
+    --rocket-body: var(--primary-color);
+    --rocket-wing: var(--accent);
+    --rocket-window: var(--accent);
+    --rocket-glow: var(--primary-color);
+    --rocket-strip: var(--border-color);
+    --rocket-fire1: #ff4757;
+    --rocket-fire2: #ffa502;
+    --rocket-fire3: #ffd700;
 }
 
 .theme-solarized {
@@ -167,6 +194,15 @@ body {
     --nav-text: #073642;
     --nav-hover: #268bd2;
     --nav-underline: #268bd2;
+
+    --rocket-body: var(--primary-color);
+    --rocket-wing: var(--accent);
+    --rocket-window: var(--accent);
+    --rocket-glow: var(--primary-color);
+    --rocket-strip: var(--border-color);
+    --rocket-fire1: #ff4757;
+    --rocket-fire2: #ffa502;
+    --rocket-fire3: #ffd700;
 }
 
 .theme-ocean {
@@ -198,6 +234,15 @@ body {
     --nav-text: #014f86;
     --nav-hover: #0284c7;
     --nav-underline: #0284c7;
+
+    --rocket-body: var(--primary-color);
+    --rocket-wing: var(--accent);
+    --rocket-window: var(--accent);
+    --rocket-glow: var(--primary-color);
+    --rocket-strip: var(--border-color);
+    --rocket-fire1: #ff4757;
+    --rocket-fire2: #ffa502;
+    --rocket-fire3: #ffd700;
 }
 
 .theme-catppuccin {
@@ -229,6 +274,15 @@ body {
     --nav-text: #f2f2f7;
     --nav-hover: #89b4fa;
     --nav-underline: #89b4fa;
+
+    --rocket-body: var(--primary-color);
+    --rocket-wing: var(--accent);
+    --rocket-window: var(--accent);
+    --rocket-glow: var(--primary-color);
+    --rocket-strip: var(--border-color);
+    --rocket-fire1: #ff4757;
+    --rocket-fire2: #ffa502;
+    --rocket-fire3: #ffd700;
 }
 
 .theme-evergreen {
@@ -260,6 +314,15 @@ body {
     --nav-hover-bg: #a7f3d0;
     --nav-hover-text: #022c22;
     --nav-underline: #065f46;
+
+    --rocket-body: var(--primary-color);
+    --rocket-wing: var(--accent);
+    --rocket-window: var(--accent);
+    --rocket-glow: var(--primary-color);
+    --rocket-strip: var(--border-color);
+    --rocket-fire1: #ff4757;
+    --rocket-fire2: #ffa502;
+    --rocket-fire3: #ffd700;
 }
 
 .theme-aurora {
@@ -291,6 +354,15 @@ body {
     --nav-hover-bg: #334155;
     --nav-hover-text: #ffffff;
     --nav-underline: #7dd3fc;
+
+    --rocket-body: var(--primary-color);
+    --rocket-wing: var(--accent);
+    --rocket-window: var(--accent);
+    --rocket-glow: var(--primary-color);
+    --rocket-strip: var(--border-color);
+    --rocket-fire1: #ff4757;
+    --rocket-fire2: #ffa502;
+    --rocket-fire3: #ffd700;
 }
 
 .theme-vintage {
@@ -321,6 +393,15 @@ body {
     --nav-hover-bg: #e9d5ff;
     --nav-hover-text: #2e1065;
     --nav-underline: #9333ea;
+
+    --rocket-body: var(--primary-color);
+    --rocket-wing: var(--accent);
+    --rocket-window: var(--accent);
+    --rocket-glow: var(--primary-color);
+    --rocket-strip: var(--border-color);
+    --rocket-fire1: #ff4757;
+    --rocket-fire2: #ffa502;
+    --rocket-fire3: #ffd700;
 }
 
 /* Selection styling */
