@@ -86,6 +86,7 @@
         <link rel="stylesheet" href="./style/mainsection.css" />
         <link rel="stylesheet" href="./style/projectsection.css" />
         <link rel="stylesheet" href="./style/audio.css" />
+        <link rel="stylesheet" href="./style/backtotop.css" />
     </head>
 
     <body class="theme-light">
@@ -1158,6 +1159,68 @@
                 </div>
             </div>
         </div>
+
+        <!-- Rocket Button -->
+        <div class="btt-rocket-button" id="rocketBtn">
+            <svg
+                class="btt-rocket"
+                viewBox="0 0 100 120"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <ellipse cx="50" cy="85" rx="14" ry="30" fill="#E8E8E8" />
+                <path d="M35 85 L25 105 L35 100 Z" fill="#4ECDC4" />
+                <path d="M65 85 L75 105 L65 100 Z" fill="#4ECDC4" />
+                <circle
+                    cx="50"
+                    cy="75"
+                    r="7"
+                    fill="#87CEEB"
+                    stroke="#FFF"
+                    stroke-width="1.5"
+                />
+                <circle cx="50" cy="75" r="3" fill="#B0E0E6" opacity="0.7" />
+                <rect
+                    x="45"
+                    y="92"
+                    width="10"
+                    height="3"
+                    rx="1"
+                    fill="#D0D0D0"
+                />
+                <rect
+                    x="45"
+                    y="97"
+                    width="10"
+                    height="3"
+                    rx="1"
+                    fill="#D0D0D0"
+                />
+                <!-- Fire Tail -->
+                <g class="btt-fire">
+                    <path
+                        d="M44 110 L50 120 L56 110 L52 115 L48 115 Z"
+                        fill="#FF4757"
+                        opacity="0.8"
+                    />
+                    <path
+                        d="M46 112 L50 118 L54 112 Z"
+                        fill="#FFA502"
+                        opacity="0.9"
+                    />
+                    <path d="M48 113 L50 116 L52 113 Z" fill="#FFD700" />
+                </g>
+            </svg>
+        </div>
+
+        <!-- Sound Effect -->
+        <!-- <audio
+            id="bttrocketSound"
+            src="https://freesound.org/data/previews/331/331912_3248244-lq.mp3"
+            preload="auto"
+        ></audio> -->
+
+        <!-- back to top script -->
+        <script src="./script/backtotop.js"></script>
 
         <!-- html code ends here -->
 

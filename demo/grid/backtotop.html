@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Rocket Back to Top Button</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 20px;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                min-height: 200vh;
+            }
+
+            .content {
+                max-width: 800px;
+                margin: 0 auto;
+                background: white;
+                padding: 40px;
+                border-radius: 20px;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+                margin-bottom: 50px;
+            }
+
+            h1 {
+                color: #333;
+                text-align: center;
+                margin-bottom: 30px;
+            }
+
+            p {
+                line-height: 1.6;
+                color: #666;
+                margin-bottom: 20px;
+            }
+
+            /* Rocket Button Styles */
+            .rocket-button {
+                position: fixed;
+                bottom: 30px;
+                right: 30px;
+                width: 70px;
+                height: 70px;
+                background: transparent;
+                border-radius: 50%;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 1000;
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(100px);
+            }
+
+            .rocket-button.show {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+
+            .rocket-button:hover {
+                transform: translateY(-5px) scale(1.1);
+            }
+
+            .rocket-button:active {
+                transform: translateY(-2px) scale(1.05);
+            }
+
+            .rocket {
+                width: 48px;
+                height: 48px;
+                transition: transform 0.3s ease;
+            }
+
+            .rocket-button:hover .rocket {
+                transform: translateY(-2px);
+                animation: rocketShake 0.5s ease-in-out;
+            }
+
+            .rocket-button:hover .fire {
+                animation: fireFlicker 0.2s ease-in-out infinite alternate;
+            }
+
+            @keyframes rocketShake {
+                0%,
+                100% {
+                    transform: translateY(-2px) rotate(0deg);
+                }
+                25% {
+                    transform: translateY(-4px) rotate(2deg);
+                }
+                75% {
+                    transform: translateY(-1px) rotate(-2deg);
+                }
+            }
+
+            @keyframes fireFlicker {
+                0% {
+                    transform: scale(1) translateY(0);
+                    opacity: 0.8;
+                }
+                100% {
+                    transform: scale(1.1) translateY(1px);
+                    opacity: 1;
+                }
+            }
+
+            .rocket-button.launching {
+                animation: launch 0.6s ease-in-out forwards;
+            }
+
+            @keyframes launch {
+                0% {
+                    transform: translateY(0) scale(1);
+                }
+                50% {
+                    transform: translateY(-20px) scale(1.2);
+                }
+                100% {
+                    transform: translateY(-100vh) scale(0.8);
+                    opacity: 0;
+                }
+            }
+
+            @media (max-width: 768px) {
+                .rocket-button {
+                    bottom: 20px;
+                    right: 20px;
+                    width: 60px;
+                    height: 60px;
+                }
+
+                .rocket {
+                    width: 40px;
+                    height: 40px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="content">
+            <h1>🚀 Scroll Down to See the Rocket Button!</h1>
+            <p>
+                This is a demonstration page to show off our cute rocket "back
+                to top" button. Keep scrolling down and you'll see the rocket
+                appear in the bottom right corner.
+            </p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+        </div>
+
+        <div class="content">
+            <h1>Keep Scrolling! 📜</h1>
+            <p>
+                The rocket button will appear when you scroll down a bit. It has
+                a smooth animation and looks super cool!
+            </p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+        </div>
+
+        <div class="content">
+            <h1>Almost There! ⭐</h1>
+            <p>
+                Click the rocket button to smoothly scroll back to the top with
+                a cute launching animation.
+            </p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+        </div>
+
+        <!-- Rocket Button -->
+        <div class="rocket-button" id="rocketBtn">
+            <svg
+                class="rocket"
+                viewBox="0 0 100 120"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <!-- Rocket body -->
+                <ellipse cx="50" cy="85" rx="12" ry="25" fill="#E8E8E8" />
+                <!-- Rocket nose cone -->
+                <!-- <path d="M50 20 L62 60 L38 60 Z" fill="#FF6B6B" /> -->
+                <!-- Rocket fins -->
+                <path d="M38 85 L28 105 L38 100 Z" fill="#4ECDC4" />
+                <path d="M62 85 L72 105 L62 100 Z" fill="#4ECDC4" />
+                <!-- Rocket window -->
+                <circle
+                    cx="50"
+                    cy="75"
+                    r="6"
+                    fill="#87CEEB"
+                    stroke="#FFF"
+                    stroke-width="1.5"
+                />
+                <circle cx="50" cy="75" r="3" fill="#B0E0E6" opacity="0.7" />
+                <!-- Rocket body details -->
+                <rect
+                    x="46"
+                    y="90"
+                    width="8"
+                    height="3"
+                    rx="1"
+                    fill="#D0D0D0"
+                />
+                <rect
+                    x="46"
+                    y="95"
+                    width="8"
+                    height="3"
+                    rx="1"
+                    fill="#D0D0D0"
+                />
+                <!-- Fire/exhaust -->
+                <g class="fire">
+                    <path
+                        d="M44 110 L50 120 L56 110 L52 115 L48 115 Z"
+                        fill="#FF4757"
+                        opacity="0.8"
+                    />
+                    <path
+                        d="M46 112 L50 118 L54 112 Z"
+                        fill="#FFA502"
+                        opacity="0.9"
+                    />
+                    <path d="M48 113 L50 116 L52 113 Z" fill="#FFD700" />
+                </g>
+            </svg>
+        </div>
+
+        <script>
+            const rocketBtn = document.getElementById("rocketBtn");
+            let isScrolling = false;
+
+            function toggleRocketButton() {
+                if (window.pageYOffset > 300) {
+                    rocketBtn.classList.add("show");
+                } else {
+                    rocketBtn.classList.remove("show");
+                    rocketBtn.classList.remove("launching");
+                }
+            }
+
+            function scrollToTop() {
+                if (isScrolling) return;
+                isScrolling = true;
+                rocketBtn.classList.add("launching");
+                setTimeout(() => {
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                }, 200);
+                setTimeout(() => {
+                    rocketBtn.classList.remove("launching");
+                    isScrolling = false;
+                }, 1000);
+            }
+
+            window.addEventListener("scroll", () => {
+                if (!isScrolling) toggleRocketButton();
+            });
+
+            rocketBtn.addEventListener("click", scrollToTop);
+
+            toggleRocketButton(); // Initial check
+        </script>
+    </body>
+</html>
