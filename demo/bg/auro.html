@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Majestic Background Patterns</title>
+        <style>
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                font-family: "Arial", sans-serif;
+                overflow: hidden;
+                background: radial-gradient(
+                    ellipse at bottom,
+                    #1b2735 0%,
+                    #090a0f 100%
+                );
+                color: white;
+                height: 100vh;
+                position: relative;
+            }
+
+            h1 {
+                position: relative;
+                z-index: 1;
+                text-align: center;
+                margin-top: 2rem;
+                font-size: 2.5rem;
+            }
+
+            #stars-canvas {
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: -2;
+                width: 100vw;
+                height: 100vh;
+            }
+
+            .aurora-bg {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background: radial-gradient(
+                    ellipse at center,
+                    #121212 0%,
+                    #000000 100%
+                );
+                z-index: -3;
+                overflow: hidden;
+            }
+
+            .aurora-bg::before {
+                content: "";
+                position: absolute;
+                width: 300%;
+                height: 300%;
+                background: conic-gradient(
+                    from 90deg,
+                    #ffafbd,
+                    #ffc3a0,
+                    #2193b0,
+                    #6dd5ed,
+                    #cc2b5e,
+                    #753a88,
+                    #ffafbd
+                );
+                animation: rotate 20s linear infinite;
+                opacity: 0.1;
+            }
+
+            @keyframes rotate {
+                0% {
+                    transform: rotate(0deg) translate(-50%, -50%);
+                }
+                100% {
+                    transform: rotate(360deg) translate(-50%, -50%);
+                }
+            }
+
+            .floating-shapes::before,
+            .floating-shapes::after {
+                content: "💖 💫 ✨ 🌸 🌟";
+                position: absolute;
+                font-size: 2rem;
+                animation: float 8s infinite linear;
+                opacity: 0.6;
+                top: 0;
+                left: 0;
+                width: 100%;
+                white-space: nowrap;
+                z-index: -1;
+            }
+
+            .floating-shapes::after {
+                animation-delay: 4s;
+            }
+
+            @keyframes float {
+                0% {
+                    transform: translateY(100vh) translateX(0);
+                }
+                100% {
+                    transform: translateY(-100vh) translateX(100vw);
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="stars-canvas"></canvas>
+        <div class="aurora-bg"></div>
+        <div class="floating-shapes"></div>
+        <h1>✨ Welcome to My Magical Portfolio ✨</h1>
+
+        <script>
+            const canvas = document.getElementById("stars-canvas");
+            const ctx = canvas.getContext("2d");
+
+            let stars = [];
+            let w, h;
+
+            function init() {
+                w = canvas.width = window.innerWidth;
+                h = canvas.height = window.innerHeight;
+                stars = [];
+
+                for (let i = 0; i < 150; i++) {
+                    stars.push({
+                        x: Math.random() * w,
+                        y: Math.random() * h,
+                        radius: Math.random() * 1.5,
+                        velocity: Math.random() * 0.5,
+                    });
+                }
+            }
+
+            function draw() {
+                ctx.clearRect(0, 0, w, h);
+                ctx.fillStyle = "#ffffff";
+                stars.forEach((s) => {
+                    ctx.beginPath();
+                    ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+
+                move();
+                requestAnimationFrame(draw);
+            }
+
+            function move() {
+                stars.forEach((s) => {
+                    s.y -= s.velocity;
+                    if (s.y < 0) s.y = h;
+                });
+            }
+
+            window.addEventListener("resize", init);
+            init();
+            draw();
+        </script>
+    </body>
+</html>

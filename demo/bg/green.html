@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Floating Green Leaves</title>
+        <style>
+            body {
+                margin: 0;
+                background: #e8f5e9;
+                overflow: hidden;
+            }
+            #leaf-container {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+            }
+            .leaf {
+                position: absolute;
+                width: 30px;
+                height: 30px;
+                background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%234caf50" d="M50 0 C70 20, 80 40, 50 80 C20 40, 30 20, 50 0 Z"/></svg>')
+                    no-repeat;
+                filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.2));
+            }
+        </style>
+    </head>
+    <body>
+        <div id="leaf-container"></div>
+
+        <script>
+            const container = document.getElementById("leaf-container");
+            const leafCount = 25;
+            const leaves = [];
+
+            for (let i = 0; i < leafCount; i++) {
+                createLeaf();
+            }
+
+            function createLeaf() {
+                const leaf = document.createElement("div");
+                leaf.classList.add("leaf");
+
+                // Random starting position
+                const startX = Math.random() * window.innerWidth;
+                const startY = Math.random() * window.innerHeight;
+
+                // Random size
+                const size = 20 + Math.random() * 40;
+                leaf.style.width = `${size}px`;
+                leaf.style.height = `${size}px`;
+
+                // Random rotation
+                const rotation = Math.random() * 360;
+                leaf.style.transform = `rotate(${rotation}deg)`;
+
+                // Random opacity
+                leaf.style.opacity = 0.7 + Math.random() * 0.3;
+
+                // Random float speed
+                const floatSpeed = 0.5 + Math.random();
+
+                // Set initial position
+                leaf.style.left = `${startX}px`;
+                leaf.style.top = `${startY}px`;
+
+                container.appendChild(leaf);
+
+                // Store leaf data
+                leaves.push({
+                    element: leaf,
+                    x: startX,
+                    y: startY,
+                    angle: Math.random() * Math.PI * 2,
+                    speed: floatSpeed,
+                    rotationSpeed: (Math.random() - 0.5) * 0.02,
+                    amplitude: 50 + Math.random() * 100,
+                    timeOffset: Math.random() * Math.PI * 2,
+                });
+            }
+
+            function animateLeaves() {
+                const time = Date.now() / 1000;
+
+                leaves.forEach((leaf) => {
+                    // Update position with gentle wave motion
+                    leaf.y += leaf.speed;
+                    leaf.x += Math.sin(time + leaf.timeOffset) * 0.5;
+
+                    // Reset if off screen
+                    if (leaf.y > window.innerHeight + 50) {
+                        leaf.y = -50;
+                        leaf.x = Math.random() * window.innerWidth;
+                    }
+
+                    // Apply rotation
+                    leaf.angle += leaf.rotationSpeed;
+
+                    // Update DOM
+                    leaf.element.style.left = `${leaf.x}px`;
+                    leaf.element.style.top = `${leaf.y}px`;
+                    leaf.element.style.transform = `rotate(${leaf.angle}rad)`;
+                });
+
+                requestAnimationFrame(animateLeaves);
+            }
+
+            animateLeaves();
+        </script>
+    </body>
+</html>

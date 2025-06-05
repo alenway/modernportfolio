@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sakura Blossom Fall</title>
+        <style>
+            body {
+                margin: 0;
+                background: #ffe6f2;
+                overflow: hidden;
+            }
+            #sakura-container {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+            }
+            .sakura {
+                position: absolute;
+                width: 15px;
+                height: 15px;
+                background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23ff66b3" d="M50 0 L60 40 L100 50 L60 60 L50 100 L40 60 L0 50 L40 40 Z"/></svg>')
+                    no-repeat;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="sakura-container"></div>
+
+        <script>
+            const container = document.getElementById("sakura-container");
+            const petalCount = 50;
+
+            for (let i = 0; i < petalCount; i++) {
+                createPetal();
+            }
+
+            function createPetal() {
+                const petal = document.createElement("div");
+                petal.classList.add("sakura");
+
+                // Random starting position
+                const startX = Math.random() * window.innerWidth;
+                const startY = -20;
+
+                // Random size
+                const size = 5 + Math.random() * 15;
+                petal.style.width = `${size}px`;
+                petal.style.height = `${size}px`;
+
+                // Random rotation
+                const rotation = Math.random() * 360;
+                petal.style.transform = `rotate(${rotation}deg)`;
+
+                // Random opacity
+                petal.style.opacity = 0.7 + Math.random() * 0.3;
+
+                // Random fall speed
+                const fallDuration = 10 + Math.random() * 20;
+
+                // Set initial position
+                petal.style.left = `${startX}px`;
+                petal.style.top = `${startY}px`;
+
+                container.appendChild(petal);
+
+                // Animate falling
+                animatePetal(petal, fallDuration);
+            }
+
+            function animatePetal(petal, duration) {
+                const startTime = Date.now();
+                const startY = -20;
+                const endY = window.innerHeight + 20;
+                const startX = parseFloat(petal.style.left);
+                const driftAmount = (Math.random() - 0.5) * 200;
+
+                function updatePosition() {
+                    const elapsed = (Date.now() - startTime) / 1000;
+                    const progress = elapsed / duration;
+
+                    if (progress >= 1) {
+                        // Reset petal to top
+                        petal.style.top = `${startY}px`;
+                        petal.style.left = `${
+                            Math.random() * window.innerWidth
+                        }px`;
+                        animatePetal(petal, duration);
+                        return;
+                    }
+
+                    // Falling with slight drift
+                    const currentY = startY + (endY - startY) * progress;
+                    const currentX =
+                        startX + driftAmount * Math.sin(progress * Math.PI);
+
+                    petal.style.top = `${currentY}px`;
+                    petal.style.left = `${currentX}px`;
+
+                    // Gentle rotation
+                    petal.style.transform = `rotate(${progress * 360}deg)`;
+
+                    requestAnimationFrame(updatePosition);
+                }
+
+                updatePosition();
+            }
+        </script>
+    </body>
+</html>

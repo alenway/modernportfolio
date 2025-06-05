@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Digital Rain</title>
+        <style>
+            body {
+                margin: 0;
+                background: #000;
+                overflow: hidden;
+            }
+            #matrix-container {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                font-family: "Courier New", monospace;
+                color: #0f0;
+                font-size: 16px;
+                line-height: 16px;
+            }
+            .matrix-column {
+                display: inline-block;
+                vertical-align: top;
+                width: 16px;
+            }
+            .matrix-char {
+                opacity: 0;
+                animation: fadeInOut 1s infinite;
+            }
+            @keyframes fadeInOut {
+                0% {
+                    opacity: 0;
+                }
+                50% {
+                    opacity: 1;
+                }
+                100% {
+                    opacity: 0;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div id="matrix-container"></div>
+
+        <script>
+            const container = document.getElementById("matrix-container");
+            const charSet =
+                "日ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍｦｲｸｺｿﾁﾄﾉﾌﾔﾖﾙﾚﾛﾝ0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const columnCount = Math.floor(window.innerWidth / 16);
+            const rowCount = Math.floor(window.innerHeight / 16);
+
+            // Create columns
+            for (let i = 0; i < columnCount; i++) {
+                const column = document.createElement("div");
+                column.classList.add("matrix-column");
+
+                // Create initial characters
+                for (let j = 0; j < rowCount; j++) {
+                    const char = document.createElement("div");
+                    char.classList.add("matrix-char");
+                    char.textContent = getRandomChar();
+                    column.appendChild(char);
+
+                    // Random delay for animation
+                    char.style.animationDelay = `${Math.random() * 2}s`;
+                }
+
+                container.appendChild(column);
+
+                // Animate column
+                animateColumn(column);
+            }
+
+            function getRandomChar() {
+                return charSet[Math.floor(Math.random() * charSet.length)];
+            }
+
+            function animateColumn(column) {
+                const chars = column.children;
+                let activeIndex = 0;
+
+                function updateColumn() {
+                    // Reset previous active char
+                    if (activeIndex > 0) {
+                        chars[activeIndex - 1].style.opacity = "0.2";
+                    }
+
+                    // Set new active char
+                    if (activeIndex < chars.length) {
+                        chars[activeIndex].textContent = getRandomChar();
+                        chars[activeIndex].style.opacity = "1";
+                        activeIndex++;
+                    } else {
+                        // Start new trail
+                        activeIndex = 0;
+                    }
+
+                    // Random speed
+                    setTimeout(updateColumn, 50 + Math.random() * 100);
+                }
+
+                updateColumn();
+            }
+        </script>
+    </body>
+</html>

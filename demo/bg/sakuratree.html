@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sakura Tree with Falling Petals</title>
+        <style>
+            body {
+                margin: 0;
+                background: #e8f4f8;
+                overflow: hidden;
+                height: 100vh;
+                font-family: Arial, sans-serif;
+            }
+
+            #tree-container {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 300px;
+                height: 400px;
+                z-index: 1;
+            }
+
+            #petals-container {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                z-index: 0;
+            }
+
+            .petal {
+                position: absolute;
+                width: 12px;
+                height: 12px;
+                background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23ffb6c1" d="M50 0 Q70 40 50 80 Q30 40 50 0 Z" opacity="0.8"/></svg>')
+                    no-repeat;
+                pointer-events: none;
+            }
+
+            .branch {
+                position: absolute;
+                background: #5e2c04;
+                border-radius: 10px;
+                transform-origin: bottom left;
+            }
+
+            .blossom {
+                position: absolute;
+                width: 16px;
+                height: 16px;
+                background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23ff69b4" d="M50 0 Q60 20 80 20 Q60 40 60 60 Q40 40 20 60 Q20 40 0 20 Q20 20 50 0 Z" opacity="0.9"/></svg>')
+                    no-repeat;
+                animation: blossom-pulse 3s infinite alternate;
+            }
+
+            @keyframes blossom-pulse {
+                0% {
+                    transform: scale(1);
+                    opacity: 0.8;
+                }
+                100% {
+                    transform: scale(1.1);
+                    opacity: 1;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div id="tree-container"></div>
+        <div id="petals-container"></div>
+
+        <script>
+            // Create sakura tree
+            const treeContainer = document.getElementById("tree-container");
+
+            // Trunk
+            const trunk = document.createElement("div");
+            trunk.className = "branch";
+            trunk.style.width = "30px";
+            trunk.style.height = "200px";
+            trunk.style.bottom = "0";
+            trunk.style.left = "50px";
+            treeContainer.appendChild(trunk);
+
+            // Main branches
+            createBranch(50, 200, 120, -30, 20, "40deg");
+            createBranch(50, 150, 100, -40, 15, "30deg");
+            createBranch(50, 100, 80, -50, 12, "25deg");
+
+            // Secondary branches
+            createBranch(170, 170, 80, -20, 10, "15deg");
+            createBranch(150, 120, 70, -30, 8, "20deg");
+            createBranch(130, 80, 60, -40, 6, "25deg");
+
+            // Create blossoms on branches
+            for (let i = 0; i < 60; i++) {
+                createBlossom();
+            }
+
+            function createBranch(
+                startX,
+                startY,
+                length,
+                endX,
+                thickness,
+                rotation
+            ) {
+                const branch = document.createElement("div");
+                branch.className = "branch";
+                branch.style.width = `${thickness}px`;
+                branch.style.height = `${length}px`;
+                branch.style.bottom = `${startY - length}px`;
+                branch.style.left = `${startX}px`;
+                branch.style.transform = `rotate(${rotation})`;
+                treeContainer.appendChild(branch);
+
+                // Return end position for creating sub-branches
+                return {
+                    x: startX + endX,
+                    y:
+                        startY -
+                        length * Math.cos((parseInt(rotation) * Math.PI) / 180),
+                };
+            }
+
+            function createBlossom() {
+                const blossom = document.createElement("div");
+                blossom.className = "blossom";
+
+                // Position blossoms along branches
+                const area = Math.random();
+                if (area < 0.3) {
+                    // Upper right branches
+                    blossom.style.left = `${100 + Math.random() * 120}px`;
+                    blossom.style.top = `${50 + Math.random() * 80}px`;
+                } else if (area < 0.6) {
+                    // Middle right branches
+                    blossom.style.left = `${80 + Math.random() * 100}px`;
+                    blossom.style.top = `${120 + Math.random() * 80}px`;
+                } else {
+                    // Lower branches
+                    blossom.style.left = `${50 + Math.random() * 100}px`;
+                    blossom.style.top = `${180 + Math.random() * 100}px`;
+                }
+
+                // Random rotation
+                blossom.style.transform = `rotate(${Math.random() * 360}deg)`;
+
+                // Random size variation
+                const size = 0.8 + Math.random() * 0.4;
+                blossom.style.width = `${16 * size}px`;
+                blossom.style.height = `${16 * size}px`;
+
+                treeContainer.appendChild(blossom);
+            }
+
+            // Create falling petals
+            const petalsContainer = document.getElementById("petals-container");
+            const petalCount = 150; // Increased density
+            const petals = [];
+
+            for (let i = 0; i < petalCount; i++) {
+                createPetal();
+            }
+
+            function createPetal() {
+                const petal = document.createElement("div");
+                petal.className = "petal";
+
+                // Random starting position
+                const startX = Math.random() * window.innerWidth;
+                const startY = -20;
+
+                // Random size (smaller petals)
+                const size = 8 + Math.random() * 8;
+                petal.style.width = `${size}px`;
+                petal.style.height = `${size}px`;
+
+                // Random rotation
+                const rotation = Math.random() * 360;
+                petal.style.transform = `rotate(${rotation}deg)`;
+
+                // Random opacity
+                petal.style.opacity = 0.7 + Math.random() * 0.3;
+
+                // Random fall speed
+                const fallDuration = 15 + Math.random() * 15;
+
+                // Set initial position
+                petal.style.left = `${startX}px`;
+                petal.style.top = `${startY}px`;
+
+                petalsContainer.appendChild(petal);
+
+                // Store petal data for animation
+                petals.push({
+                    element: petal,
+                    x: startX,
+                    y: startY,
+                    rotation: rotation,
+                    rotationSpeed: (Math.random() - 0.5) * 0.5,
+                    drift: (Math.random() - 0.5) * 1.5,
+                    speed: 1 + Math.random() * 2,
+                });
+            }
+
+            function animatePetals() {
+                petals.forEach((petal) => {
+                    // Update position
+                    petal.y += petal.speed * 0.1;
+                    petal.x +=
+                        Math.sin(Date.now() * 0.001 + petal.x * 0.01) *
+                        petal.drift;
+
+                    // Update rotation
+                    petal.rotation += petal.rotationSpeed;
+                    petal.element.style.transform = `rotate(${petal.rotation}deg)`;
+
+                    // Reset if off screen
+                    if (petal.y > window.innerHeight + 20) {
+                        petal.y = -20;
+                        petal.x = Math.random() * window.innerWidth;
+                    }
+
+                    // Update DOM
+                    petal.element.style.left = `${petal.x}px`;
+                    petal.element.style.top = `${petal.y}px`;
+                });
+
+                requestAnimationFrame(animatePetals);
+            }
+
+            animatePetals();
+
+            // Handle window resize
+            window.addEventListener("resize", function () {
+                petals.forEach((petal) => {
+                    if (petal.x > window.innerWidth) {
+                        petal.x = window.innerWidth - 10;
+                    }
+                    if (petal.y > window.innerHeight) {
+                        petal.y = -20;
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>

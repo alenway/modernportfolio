@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Rocket Back to Top Button</title>
+        <!-- Add particles.js library -->
+        <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 20px;
+                /* Darker gradient for better contrast */
+                background: linear-gradient(135deg, #4a54e1 0%, #5f2b8c 100%);
+                min-height: 200vh;
+            }
+
+            /* Animated Background - made more visible */
+            .particles-bg {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                z-index: -1;
+                opacity: 0.8; /* Increased opacity */
+                transition: opacity 1.5s ease-in-out;
+                pointer-events: none;
+            }
+
+            .content {
+                max-width: 800px;
+                margin: 0 auto;
+                background: rgba(
+                    255,
+                    255,
+                    255,
+                    0.9
+                ); /* Slightly transparent white */
+                padding: 40px;
+                border-radius: 20px;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+                margin-bottom: 50px;
+            }
+
+            /* Rest of your existing CSS remains the same */
+            h1 {
+                color: #333;
+                text-align: center;
+                margin-bottom: 30px;
+            }
+
+            p {
+                line-height: 1.6;
+                color: #666;
+                margin-bottom: 20px;
+            }
+
+            /* Rocket Button */
+            .rocket-button {
+                position: fixed;
+                bottom: 30px;
+                right: 30px;
+                width: 100px;
+                height: 100px;
+                background: transparent;
+                border-radius: 50%;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 1000;
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(100px);
+            }
+
+            .rocket-button.show {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+
+            .rocket-button:hover {
+                transform: translateY(-5px) scale(1.1);
+            }
+
+            .rocket-button:active {
+                transform: translateY(-2px) scale(1.05);
+            }
+
+            .rocket {
+                width: 64px;
+                height: 64px;
+                transition: transform 0.3s ease;
+            }
+
+            .rocket-button:hover .rocket {
+                transform: translateY(-2px);
+                animation: rocketShake 0.5s ease-in-out;
+            }
+
+            @keyframes rocketShake {
+                0%,
+                100% {
+                    transform: translateY(-2px) rotate(0deg);
+                }
+                25% {
+                    transform: translateY(-4px) rotate(2deg);
+                }
+                75% {
+                    transform: translateY(-1px) rotate(-2deg);
+                }
+            }
+
+            .rocket-button.launching {
+                animation: launch 0.6s ease-in-out forwards;
+            }
+
+            @keyframes launch {
+                0% {
+                    transform: translateY(0) scale(1);
+                }
+                50% {
+                    transform: translateY(-20px) scale(1.2);
+                }
+                100% {
+                    transform: translateY(-100vh) scale(0.8);
+                    opacity: 0;
+                }
+            }
+
+            /* Tail Fire */
+            .fire {
+                animation: fireFlicker 0.2s ease-in-out infinite alternate;
+            }
+
+            @keyframes fireFlicker {
+                0% {
+                    transform: scale(1) translateY(0);
+                    opacity: 0.8;
+                }
+                100% {
+                    transform: scale(1.1) translateY(1px);
+                    opacity: 1;
+                }
+            }
+
+            @media (max-width: 768px) {
+                .rocket-button {
+                    width: 80px;
+                    height: 80px;
+                }
+
+                .rocket {
+                    width: 52px;
+                    height: 52px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Animated Background -->
+        <div id="particles-js" class="particles-bg"></div>
+        <div class="content">
+            <h1>🚀 Scroll Down to See the Rocket!</h1>
+            <p>
+                Scroll to activate the rocket back-to-top feature with smoke,
+                sound, and launch effect!
+            </p>
+        </div>
+
+        <div class="content">
+            <h1>More Content 🚀</h1>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+                auctor, nisl eget ultricies tincidunt, nisl nisl aliquam nisl,
+                eget ultricies nisl nisl eget nisl. Nullam auctor, nisl eget
+                ultricies tincidunt, nisl nisl aliquam nisl, eget ultricies nisl
+                nisl eget nisl.
+            </p>
+        </div>
+
+        <div class="content">
+            <h1>Almost There! 🌌</h1>
+            <p>Click the rocket button to smoothly scroll back to the top!</p>
+        </div>
+
+        <!-- Rocket Button -->
+        <div class="rocket-button" id="rocketBtn">
+            <!-- SVG Rocket -->
+            <svg
+                class="rocket"
+                viewBox="0 0 100 120"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <ellipse cx="50" cy="85" rx="14" ry="30" fill="#E8E8E8" />
+                <path d="M35 85 L25 105 L35 100 Z" fill="#4ECDC4" />
+                <path d="M65 85 L75 105 L65 100 Z" fill="#4ECDC4" />
+                <circle
+                    cx="50"
+                    cy="75"
+                    r="7"
+                    fill="#87CEEB"
+                    stroke="#FFF"
+                    stroke-width="1.5"
+                />
+                <circle cx="50" cy="75" r="3" fill="#B0E0E6" opacity="0.7" />
+                <rect
+                    x="45"
+                    y="92"
+                    width="10"
+                    height="3"
+                    rx="1"
+                    fill="#D0D0D0"
+                />
+                <rect
+                    x="45"
+                    y="97"
+                    width="10"
+                    height="3"
+                    rx="1"
+                    fill="#D0D0D0"
+                />
+
+                <!-- Fire Tail -->
+                <g class="fire">
+                    <path
+                        d="M44 110 L50 120 L56 110 L52 115 L48 115 Z"
+                        fill="#FF4757"
+                        opacity="0.8"
+                    />
+                    <path
+                        d="M46 112 L50 118 L54 112 Z"
+                        fill="#FFA502"
+                        opacity="0.9"
+                    />
+                    <path d="M48 113 L50 116 L52 113 Z" fill="#FFD700" />
+                </g>
+            </svg>
+        </div>
+
+        <script>
+            const rocketBtn = document.getElementById("rocketBtn");
+            let isScrolling = false;
+            let scrollTimeout;
+
+            function toggleRocketButton() {
+                if (window.pageYOffset > 300) {
+                    rocketBtn.classList.add("show");
+                } else {
+                    rocketBtn.classList.remove("show");
+                }
+            }
+
+            function scrollToTop() {
+                if (isScrolling) return;
+                isScrolling = true;
+
+                rocketBtn.classList.add("launching");
+                rocketBtn.classList.remove("show"); // Hide immediately
+
+                // Scroll to top after animation starts
+                setTimeout(() => {
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                }, 200);
+
+                // Reset after animation completes
+                setTimeout(() => {
+                    rocketBtn.classList.remove("launching");
+                    isScrolling = false;
+                }, 1000);
+            }
+
+            function handleScroll() {
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => {
+                    if (!isScrolling) toggleRocketButton();
+                }, 100);
+            }
+
+            window.addEventListener("scroll", handleScroll);
+            rocketBtn.addEventListener("click", scrollToTop);
+
+            // Initial check
+            toggleRocketButton();
+
+            // Initialize particles.js background with more visible settings
+            document.addEventListener("DOMContentLoaded", function () {
+                particlesJS("particles-js", {
+                    particles: {
+                        number: {
+                            value: 100, // Increased number of particles
+                            density: {
+                                enable: true,
+                                value_area: 800,
+                            },
+                        },
+                        color: {
+                            value: ["#FFFFFF", "#FFD700", "#4ECDC4"], // Brighter colors
+                        },
+                        shape: {
+                            type: "circle",
+                            stroke: {
+                                width: 0,
+                                color: "#000000",
+                            },
+                        },
+                        opacity: {
+                            value: 0.7, // Increased opacity
+                            random: true,
+                            anim: {
+                                enable: true,
+                                speed: 1,
+                                opacity_min: 0.3, // Higher minimum opacity
+                                sync: false,
+                            },
+                        },
+                        size: {
+                            value: 4, // Slightly larger particles
+                            random: true,
+                            anim: {
+                                enable: true,
+                                speed: 2,
+                                size_min: 0.3,
+                                sync: false,
+                            },
+                        },
+                        line_linked: {
+                            enable: true,
+                            distance: 150,
+                            color: "#FFFFFF", // White connections
+                            opacity: 0.4, // More visible connections
+                            width: 1,
+                        },
+                        move: {
+                            enable: true,
+                            speed: 2, // Faster movement
+                            direction: "none",
+                            random: true,
+                            straight: false,
+                            out_mode: "out",
+                            bounce: false,
+                            attract: {
+                                enable: true,
+                                rotateX: 600,
+                                rotateY: 1200,
+                            },
+                        },
+                    },
+                    interactivity: {
+                        detect_on: "canvas",
+                        events: {
+                            onhover: {
+                                enable: true,
+                                mode: "grab",
+                            },
+                            onclick: {
+                                enable: true,
+                                mode: "push",
+                            },
+                            resize: true,
+                        },
+                        modes: {
+                            grab: {
+                                distance: 140,
+                                line_linked: {
+                                    opacity: 0.8, // More visible on hover
+                                },
+                            },
+                            push: {
+                                particles_nb: 4,
+                            },
+                        },
+                    },
+                    retina_detect: true,
+                });
+            });
+        </script>
+    </body>
+</html>

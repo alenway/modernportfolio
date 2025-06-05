@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Ocean Waves Particle Background</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                background: #083344;
+                color: white;
+                font-family: "Arial", sans-serif;
+                overflow: hidden;
+            }
+            #particles-js {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                z-index: -1;
+            }
+            .content {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                text-align: center;
+            }
+            h1 {
+                font-size: 2.5rem;
+                margin-bottom: 1rem;
+                color: #22d3ee;
+            }
+            p {
+                font-size: 1.2rem;
+                opacity: 0.9;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="particles-js"></div>
+        <div class="content">
+            <h1>Ocean Waves</h1>
+            <p>Cool blue particles with wave-like movement</p>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                particlesJS("particles-js", {
+                    particles: {
+                        number: {
+                            value: 70,
+                            density: { enable: true, value_area: 800 },
+                        },
+                        color: { value: ["#22d3ee", "#67e8f9", "#a5f3fc"] },
+                        shape: { type: "circle" },
+                        opacity: {
+                            value: 0.6,
+                            random: true,
+                            anim: { enable: true, speed: 1, opacity_min: 0.2 },
+                        },
+                        size: {
+                            value: 3.5,
+                            random: true,
+                            anim: { enable: true, speed: 4, size_min: 0.5 },
+                        },
+                        line_linked: {
+                            enable: true,
+                            distance: 160,
+                            color: "#22d3ee",
+                            opacity: 0.2,
+                            width: 1.2,
+                        },
+                        move: {
+                            enable: true,
+                            speed: 1.2,
+                            direction: "none",
+                            random: false,
+                            straight: false,
+                            out_mode: "out",
+                            attract: {
+                                enable: true,
+                                rotateX: 600,
+                                rotateY: 1200,
+                            },
+                        },
+                    },
+                    interactivity: {
+                        events: {
+                            onhover: { enable: true, mode: "connect" },
+                            onclick: { enable: true, mode: "push" },
+                        },
+                        modes: {
+                            connect: {
+                                distance: 180,
+                                radius: 200,
+                                links: { opacity: 0.5 },
+                            },
+                            push: { particles_nb: 4 },
+                        },
+                    },
+                });
+            });
+        </script>
+    </body>
+</html>

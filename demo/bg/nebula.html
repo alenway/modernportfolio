@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Soft Nebula Particle Background</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                background: #1e1b4b;
+                color: white;
+                font-family: "Arial", sans-serif;
+                overflow: hidden;
+            }
+            #particles-js {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                z-index: -1;
+            }
+            .content {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                text-align: center;
+            }
+            h1 {
+                font-size: 2.5rem;
+                margin-bottom: 1rem;
+            }
+            p {
+                font-size: 1.2rem;
+                opacity: 0.9;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="particles-js"></div>
+        <div class="content">
+            <h1>Soft Nebula Effect</h1>
+            <p>Interactive particle background with purple tones</p>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                particlesJS("particles-js", {
+                    particles: {
+                        number: {
+                            value: 60,
+                            density: { enable: true, value_area: 1000 },
+                        },
+                        color: { value: ["#a78bfa", "#c4b5fd", "#ddd6fe"] },
+                        shape: { type: "circle" },
+                        opacity: {
+                            value: 0.7,
+                            random: true,
+                            anim: { enable: true, speed: 1, opacity_min: 0.3 },
+                        },
+                        size: {
+                            value: 4,
+                            random: true,
+                            anim: { enable: true, speed: 3, size_min: 1 },
+                        },
+                        line_linked: {
+                            enable: true,
+                            distance: 180,
+                            color: "#a78bfa",
+                            opacity: 0.3,
+                            width: 1.5,
+                        },
+                        move: {
+                            enable: true,
+                            speed: 0.8,
+                            direction: "none",
+                            random: true,
+                            out_mode: "out",
+                            attract: {
+                                enable: true,
+                                rotateX: 800,
+                                rotateY: 1600,
+                            },
+                        },
+                    },
+                    interactivity: {
+                        events: {
+                            onhover: { enable: true, mode: "repulse" },
+                            onclick: { enable: true, mode: "push" },
+                        },
+                        modes: {
+                            repulse: { distance: 100, duration: 0.4 },
+                            push: { particles_nb: 6 },
+                        },
+                    },
+                });
+            });
+        </script>
+    </body>
+</html>
