@@ -17,7 +17,7 @@
 }
 
 /* Background image with fade effect */
-.media-cell::before {
+/* .media-cell::before {
     content: "";
     position: absolute;
     top: 0;
@@ -26,10 +26,10 @@
     height: 100%;
     background-size: cover;
     background-position: center;
-    /* opacity: 0.7; */
+    opacity: 0.7;
     z-index: 1;
     transition: opacity 0.3s ease;
-}
+} */
 
 .media-cell {
     position: relative;
@@ -40,6 +40,38 @@
 .media-cell * {
     position: relative;
     z-index: 2;
+}
+
+.media-cell::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: var(--carousel-image);
+    background-size: cover;
+    background-position: center;
+    /* opacity: 0.7; */
+    z-index: 1;
+    transition: background-image 0.3s ease, opacity 0.3s ease;
+}
+
+/* .media-cell.fade {
+    animation: fadeIn 0.3s;
+} */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0.4;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.media-cell::before {
+    background-image: var(--carousel-image);
 }
 
 .media-cell:hover::before {
@@ -84,13 +116,16 @@
 /* .gcel1::before {
     background-image: url("../images/cat1.jpg");
 }
+
 .gcel2::before {
     background-image: url("../images/cat2.jpg");
-} */
+}
+
 .gcel3::before {
     background-image: url("../images/sakura.jpg");
 }
-/* .gcel4::before {
+
+.gcel4::before {
     background-image: url("../images/cat3.jpg");
 }
 .gcel5::before {
@@ -132,4 +167,60 @@
     background-color: white;
     color: black;
     font-size: 15px;
+}
+
+.nav-btn {
+    position: relative; /* remove absolute positioning */
+    background: transparent;
+    color: black;
+    border: 2px solid black;
+    border-radius: 50%;
+    padding: 7px 10px;
+    font-size: 17px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.nav-btn:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.slide-indicator {
+    position: relative;
+    /* background: rgba(0, 0, 0, 0.6); */
+    color: black;
+    /* padding: 6px 10px; */
+    /* border-radius: 8px; */
+    /* font-size: 14px; */
+    z-index: 3;
+}
+
+.slide-current {
+    font-size: 40px;
+    color: black;
+}
+
+.slide-total {
+    font-size: 25px;
+    color: white;
+}
+
+.tools {
+    display: flex;
+    align-items: center;
+    margin-top: 60px;
+    gap: 10px; /* space between items */
+    padding: 10px;
+}
+
+.tools .info {
+    color: black;
+    font-size: 25px;
+    font-weight: 550;
+    width: 300px;
+}
+
+.tools hr {
+    border: 2px solid black;
+    width: 100%;
 }

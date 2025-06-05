@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Grid Carousel</title>
+        <style>
+            body {
+                margin: 0;
+                background: #000;
+                color: white;
+                font-family: "Arial", sans-serif;
+            }
+
+            .hero-section .hero-container {
+                width: 80%;
+                margin: 0 auto;
+            }
+
+            .gridview {
+                height: 700px;
+                display: grid;
+                grid-template-columns: repeat(5, 1fr);
+                grid-template-rows: repeat(7, 1fr);
+                gap: 0.7rem;
+            }
+
+            .gridcolumn {
+                width: 100%;
+                height: 100%;
+                border-radius: 12px;
+            }
+
+            .media-cell {
+                position: relative;
+                overflow: hidden;
+                background-size: cover;
+                background-position: center;
+                z-index: 0;
+            }
+
+            .media-cell * {
+                position: relative;
+                z-index: 2;
+            }
+
+            .cell-content {
+                position: absolute;
+                z-index: 2;
+                display: flex;
+                bottom: 0;
+                width: 100%;
+                color: white;
+                text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+            }
+
+            .cell-content .block {
+                display: grid;
+                width: 100%;
+                grid-template-columns: repeat(5, 1fr);
+            }
+
+            .block .side1 {
+                grid-column: span 2;
+                border-top: 2px solid white;
+                border-right: 2px solid white;
+                padding: 10px;
+            }
+
+            .block .side2 {
+                grid-column: span 3;
+                border-top: 2px solid white;
+                padding: 10px;
+            }
+
+            .gcel1 {
+                grid-column: span 2;
+                grid-row: span 1;
+                background-color: white;
+                color: black;
+                font-size: 15px;
+            }
+
+            .gcel2 {
+                grid-column: span 3;
+                grid-row: span 1;
+                background-color: white;
+                color: black;
+                font-size: 15px;
+            }
+
+            .gcel3 {
+                grid-column: span 3;
+                grid-row: span 6;
+            }
+
+            .gcel4 {
+                grid-column: span 2;
+                grid-row: span 4;
+                background-color: rgb(228, 237, 217);
+                color: black;
+                font-size: 15px;
+            }
+
+            .gcel5 {
+                grid-column: span 2;
+                grid-row: span 2;
+                background-color: white;
+                color: black;
+                font-size: 15px;
+            }
+
+            .nav-btn {
+                position: absolute;
+                bottom: 15px;
+                z-index: 3;
+                background: rgba(255, 255, 255, 0.2);
+                color: white;
+                border: 1px solid white;
+                border-radius: 50%;
+                padding: 10px 14px;
+                font-size: 16px;
+                cursor: pointer;
+                transition: background 0.3s;
+            }
+
+            .nav-btn:hover {
+                background: rgba(255, 255, 255, 0.5);
+            }
+
+            .prev-btn {
+                left: 15px;
+            }
+
+            .next-btn {
+                right: 15px;
+            }
+
+            .slide-indicator {
+                position: absolute;
+                top: 15px;
+                right: 15px;
+                background: rgba(0, 0, 0, 0.6);
+                color: white;
+                padding: 6px 10px;
+                border-radius: 8px;
+                font-size: 14px;
+                z-index: 3;
+            }
+        </style>
+    </head>
+    <body>
+        <section class="hero-section">
+            <div class="hero-container">
+                <div class="gridview">
+                    <div class="gridcolumn gcel1">Cell 1</div>
+                    <div class="gridcolumn gcel2">Cell 2</div>
+
+                    <div class="gridcolumn media-cell gcel3" id="carousel">
+                        <div class="cell-content">
+                            <div class="block">
+                                <div class="side1" id="carousel-title">
+                                    Title 1
+                                </div>
+                                <div class="side2" id="carousel-description">
+                                    Description for the first image
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="nav-btn prev-btn" onclick="prevSlide()">
+                            ◀
+                        </button>
+                        <button class="nav-btn next-btn" onclick="nextSlide()">
+                            ▶
+                        </button>
+                        <div class="slide-indicator" id="slide-indicator">
+                            Slide 1 of 3
+                        </div>
+                    </div>
+
+                    <div class="gridcolumn gcel4">Cell 4</div>
+                    <div class="gridcolumn gcel5">Cell 5</div>
+                </div>
+            </div>
+        </section>
+
+        <script>
+            const carouselData = [
+                {
+                    image: "../../images/sakura.jpg",
+                    title: "Nature View",
+                    description: "A peaceful view of nature's harmony.",
+                },
+                {
+                    image: "../../images/cat1.jpg",
+                    title: "Nature View",
+                    description: "A peaceful view of nature's harmony.",
+                },
+                {
+                    image: "../../images/cat2.jpg",
+                    title: "City Lights",
+                    description: "The vibrant life of a city at night.",
+                },
+                {
+                    image: "../../images/cat3.jpg",
+                    title: "Sunlit Forest",
+                    description: "Sunlight filtering through the trees.",
+                },
+            ];
+
+            let currentIndex = 0;
+
+            function updateCarousel() {
+                const carousel = document.getElementById("carousel");
+                const title = document.getElementById("carousel-title");
+                const description = document.getElementById(
+                    "carousel-description"
+                );
+                const indicator = document.getElementById("slide-indicator");
+
+                const {
+                    image,
+                    title: newTitle,
+                    description: newDesc,
+                } = carouselData[currentIndex];
+                carousel.style.backgroundImage = `url('${image}')`;
+                title.textContent = newTitle;
+                description.textContent = newDesc;
+                indicator.textContent = `Slide ${currentIndex + 1} of ${
+                    carouselData.length
+                }`;
+            }
+
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % carouselData.length;
+                updateCarousel();
+            }
+
+            function prevSlide() {
+                currentIndex =
+                    (currentIndex - 1 + carouselData.length) %
+                    carouselData.length;
+                updateCarousel();
+            }
+
+            window.addEventListener("DOMContentLoaded", updateCarousel);
+        </script>
+    </body>
+</html>

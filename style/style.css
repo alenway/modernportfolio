@@ -348,10 +348,10 @@ body {
 }
 
 /* Focus styling */
-:focus {
-    /* outline: 2px solid var(--accent);
-    outline-offset: 2px; */
-}
+/* :focus {
+     outline: 2px solid var(--accent);
+    outline-offset: 2px;
+} */
 
 /* Animated Background */
 .particles-bg {

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Skills Section</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                min-height: 100vh;
+                padding: 2rem;
+            }
+
+            .skills-section {
+                max-width: 1200px;
+                margin: 0 auto;
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(10px);
+                border-radius: 20px;
+                padding: 3rem;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+            }
+
+            .section-title {
+                text-align: center;
+                color: white;
+                font-size: 3rem;
+                font-weight: 700;
+                margin-bottom: 1rem;
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            }
+
+            .section-subtitle {
+                text-align: center;
+                color: rgba(255, 255, 255, 0.8);
+                font-size: 1.2rem;
+                margin-bottom: 3rem;
+            }
+
+            .skills-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+                margin-bottom: 3rem;
+            }
+
+            .skill-category {
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 15px;
+                padding: 2rem;
+                backdrop-filter: blur(5px);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            .skill-category:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            }
+
+            .category-title {
+                color: white;
+                font-size: 1.5rem;
+                font-weight: 600;
+                margin-bottom: 1.5rem;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .category-icon {
+                width: 24px;
+                height: 24px;
+                fill: currentColor;
+            }
+
+            .skill-item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 1rem;
+                color: rgba(255, 255, 255, 0.9);
+            }
+
+            .skill-name {
+                font-weight: 500;
+            }
+
+            .skill-level {
+                font-size: 0.9rem;
+                color: rgba(255, 255, 255, 0.7);
+            }
+
+            .skill-bar {
+                width: 100%;
+                height: 8px;
+                background: rgba(255, 255, 255, 0.2);
+                border-radius: 4px;
+                margin-top: 0.5rem;
+                overflow: hidden;
+            }
+
+            .skill-progress {
+                height: 100%;
+                background: linear-gradient(90deg, #00d4aa, #00b4d8);
+                border-radius: 4px;
+                width: 0%;
+                transition: width 2s ease-in-out;
+                position: relative;
+            }
+
+            .skill-progress::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.4),
+                    transparent
+                );
+                animation: shimmer 2s infinite;
+            }
+
+            @keyframes shimmer {
+                0% {
+                    left: -100%;
+                }
+                100% {
+                    left: 100%;
+                }
+            }
+
+            .tech-stack {
+                text-align: center;
+                margin-top: 2rem;
+            }
+
+            .tech-stack h3 {
+                color: white;
+                font-size: 1.8rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .tech-icons {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 1.5rem;
+            }
+
+            .tech-icon {
+                width: 60px;
+                height: 60px;
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 12px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s ease;
+                cursor: pointer;
+                backdrop-filter: blur(5px);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+            }
+
+            .tech-icon:hover {
+                transform: scale(1.1) rotate(5deg);
+                background: rgba(255, 255, 255, 0.2);
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            }
+
+            .tech-icon svg {
+                width: 30px;
+                height: 30px;
+                fill: white;
+            }
+
+            @media (max-width: 768px) {
+                .skills-section {
+                    padding: 2rem;
+                }
+
+                .section-title {
+                    font-size: 2rem;
+                }
+
+                .skills-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="skills-section">
+            <h2 class="section-title">Skills & Expertise</h2>
+            <p class="section-subtitle">Technologies and tools I work with</p>
+
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3 class="category-title">
+                        <svg class="category-icon" viewBox="0 0 24 24">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z" />
+                            <path d="M2 17L12 22L22 17" />
+                            <path d="M2 12L12 17L22 12" />
+                        </svg>
+                        Frontend Development
+                    </h3>
+                    <div class="skill-item">
+                        <span class="skill-name">React</span>
+                        <span class="skill-level">Advanced</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-level="90"></div>
+                    </div>
+
+                    <div class="skill-item">
+                        <span class="skill-name">JavaScript</span>
+                        <span class="skill-level">Expert</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-level="95"></div>
+                    </div>
+
+                    <div class="skill-item">
+                        <span class="skill-name">CSS/SASS</span>
+                        <span class="skill-level">Advanced</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-level="85"></div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3 class="category-title">
+                        <svg class="category-icon" viewBox="0 0 24 24">
+                            <path d="M20 12L16 8V11H4V13H16V16L20 12Z" />
+                        </svg>
+                        Backend Development
+                    </h3>
+                    <div class="skill-item">
+                        <span class="skill-name">Node.js</span>
+                        <span class="skill-level">Advanced</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-level="85"></div>
+                    </div>
+
+                    <div class="skill-item">
+                        <span class="skill-name">Python</span>
+                        <span class="skill-level">Intermediate</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-level="75"></div>
+                    </div>
+
+                    <div class="skill-item">
+                        <span class="skill-name">MongoDB</span>
+                        <span class="skill-level">Advanced</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-level="80"></div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3 class="category-title">
+                        <svg class="category-icon" viewBox="0 0 24 24">
+                            <path
+                                d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 1H5C3.9 1 3 1.9 3 3V19C3 20.1 3.9 21 5 21H11V19H5V3H13V9H21Z"
+                            />
+                        </svg>
+                        Tools & Others
+                    </h3>
+                    <div class="skill-item">
+                        <span class="skill-name">Git/GitHub</span>
+                        <span class="skill-level">Advanced</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-level="90"></div>
+                    </div>
+
+                    <div class="skill-item">
+                        <span class="skill-name">Docker</span>
+                        <span class="skill-level">Intermediate</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-level="70"></div>
+                    </div>
+
+                    <div class="skill-item">
+                        <span class="skill-name">AWS</span>
+                        <span class="skill-level">Beginner</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-level="60"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tech-stack">
+                <h3>Tech Stack</h3>
+                <div class="tech-icons">
+                    <div class="tech-icon" title="HTML5">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M1.5 0H22.5L20.5 21.5L12 24L3.5 21.5L1.5 0ZM7 8L6.5 3H17.5L17 8H12H7ZM8 11H11.5L11.8 14.5L12 16L12.2 14.5L15.5 11H16L15.5 19L12 20L8.5 19L8 11Z"
+                            />
+                        </svg>
+                    </div>
+                    <div class="tech-icon" title="CSS3">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M1.5 0H22.5L20.5 21.5L12 24L3.5 21.5L1.5 0ZM17.5 8H7L7.5 11H17L16.5 19L12 20L7.5 19L7.2 15.5H10.2L10.5 17L12 17.5L13.5 17L13.8 14.5H7L6 3H18L17.5 8Z"
+                            />
+                        </svg>
+                    </div>
+                    <div class="tech-icon" title="JavaScript">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M0 0H24V24H0V0ZM22.034 18.276C21.815 16.756 20.87 15.644 18.783 14.842C18.477 14.717 18.095 14.628 18.018 14.267C17.976 13.989 17.999 13.858 18.077 13.698C18.27 13.295 18.73 13.177 19.09 13.295C19.336 13.377 19.559 13.54 19.698 13.84C20.344 13.424 20.344 13.424 20.873 13.072C20.721 12.825 20.616 12.731 20.487 12.578C20.034 11.983 19.377 11.707 18.423 11.743L17.918 11.837C17.378 12.019 16.874 12.343 16.546 12.79C15.676 13.936 16.010 15.749 17.009 16.541C17.997 17.449 19.447 17.667 19.698 18.541C19.936 19.531 19.213 19.828 18.318 19.769C17.647 19.651 17.271 19.369 16.851 18.717L15.676 19.393C15.912 19.828 16.219 20.076 16.605 20.404C18.471 21.497 22.447 21.427 22.447 18.788C22.459 18.635 22.094 18.276 22.034 18.276ZM13.912 11.872H12.484C12.484 14.174 12.472 16.464 12.472 16.776C12.472 17.979 12.001 18.294 11.049 18.177C10.688 18.118 10.516 17.979 10.28 17.731C10.210 17.649 10.163 17.590 10.151 17.590L8.988 18.341C9.295 18.847 9.742 19.251 10.28 19.463C11.120 19.798 12.178 19.722 12.883 19.310C13.741 18.788 13.900 17.931 13.900 16.882C13.924 15.384 13.912 13.874 13.912 11.872Z"
+                            />
+                        </svg>
+                    </div>
+                    <div class="tech-icon" title="React">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M14.23 12.004C14.23 13.509 13.008 14.731 11.504 14.731C10.000 14.731 8.777 13.509 8.777 12.004C8.777 10.499 10.000 9.277 11.504 9.277C13.008 9.277 14.23 10.499 14.23 12.004Z"
+                            />
+                            <path
+                                d="M11.504 21.5C13.504 21.5 15.504 21 17.004 20L15.504 18C14.304 18.5 12.904 18.7 11.504 18.7C10.104 18.7 8.704 18.5 7.504 18L6.004 20C7.504 21 9.504 21.5 11.504 21.5Z"
+                            />
+                            <path
+                                d="M11.504 5.3C9.504 5.3 7.504 4.8 6.004 3.8L7.504 5.8C8.704 5.3 10.104 5.1 11.504 5.1C12.904 5.1 14.304 5.3 15.504 5.8L17.004 3.8C15.504 4.8 13.504 5.3 11.504 5.3Z"
+                            />
+                        </svg>
+                    </div>
+                    <div class="tech-icon" title="Node.js">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M11.998 24C11.596 24 11.194 23.9 10.834 23.7L7.658 21.934C7.116 21.634 7.398 21.534 7.598 21.434C8.558 21.034 8.758 20.934 9.758 20.334C9.838 20.284 9.938 20.304 10.018 20.354L12.458 21.734C12.558 21.784 12.678 21.784 12.758 21.734L21.638 16.834C21.738 16.784 21.798 16.684 21.798 16.574V6.774C21.798 6.664 21.738 6.564 21.638 6.514L12.758 1.614C12.658 1.564 12.538 1.564 12.458 1.614L3.578 6.514C3.478 6.564 3.418 6.674 3.418 6.774V16.574C3.418 16.684 3.478 16.784 3.578 16.834L6.098 18.294C7.398 18.994 8.158 18.194 8.158 17.394V7.854C8.158 7.694 8.278 7.574 8.438 7.574H9.478C9.638 7.574 9.758 7.694 9.758 7.854V17.394C9.758 19.094 8.818 20.094 7.218 20.094C6.718 20.094 6.338 20.094 5.178 19.494L2.758 18.094C2.058 17.694 1.638 16.934 1.638 16.114V6.774C1.638 5.954 2.058 5.194 2.758 4.794L11.638 -0.106C12.318 -0.486 13.278 -0.486 13.938 -0.106L22.818 4.794C23.518 5.194 23.938 5.954 23.938 6.774V16.574C23.938 17.394 23.518 18.154 22.818 18.554L13.938 23.454C13.618 23.644 13.298 23.754 12.978 23.854C12.658 23.934 12.328 24 11.998 24Z"
+                            />
+                        </svg>
+                    </div>
+                    <div class="tech-icon" title="MongoDB">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M17.193 9.555C16.949 9.4 16.643 9.317 16.337 9.317C15.031 9.317 13.818 10.529 13.818 11.836C13.818 13.142 15.031 14.354 16.337 14.354C16.643 14.354 16.949 14.271 17.193 14.116L18.5 15.422C17.916 15.956 17.148 16.281 16.337 16.281C13.818 16.281 11.891 14.354 11.891 11.836C11.891 9.317 13.818 7.39 16.337 7.39C17.148 7.39 17.916 7.715 18.5 8.249L17.193 9.555Z"
+                            />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // Animate skill bars on load
+            function animateSkillBars() {
+                const skillBars = document.querySelectorAll(".skill-progress");
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            const skillBar = entry.target;
+                            const level = skillBar.getAttribute("data-level");
+                            skillBar.style.width = level + "%";
+                        }
+                    });
+                });
+
+                skillBars.forEach((bar) => {
+                    observer.observe(bar);
+                });
+            }
+
+            // Add hover effects to tech icons
+            function addTechIconEffects() {
+                const techIcons = document.querySelectorAll(".tech-icon");
+
+                techIcons.forEach((icon) => {
+                    icon.addEventListener("mouseenter", function () {
+                        this.style.transform = "scale(1.1) rotate(5deg)";
+                    });
+
+                    icon.addEventListener("mouseleave", function () {
+                        this.style.transform = "scale(1) rotate(0deg)";
+                    });
+                });
+            }
+
+            // Initialize animations
+            document.addEventListener("DOMContentLoaded", function () {
+                animateSkillBars();
+                addTechIconEffects();
+            });
+        </script>
+    </body>
+</html>

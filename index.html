@@ -286,18 +286,39 @@
                                 <h3>demo content</h3>
                             </div>
                         </div>
-                        <div class="gridcolumn gcel3 media-cell">
+                        <div class="gridcolumn media-cell gcel3" id="carousel">
                             <div class="cell-content">
                                 <div class="block">
-                                    <div class="side1">
-                                        <h2>dlfsjdifj</h2>
-                                        <p>sldifjsldifjlsidjflis</p>
+                                    <div class="side1" id="carousel-title">
+                                        Title 1
                                     </div>
-                                    <div class="side2">
-                                        <h2>dlfsjdifj</h2>
-                                        <p>sldifjsldifjlsidjflis</p>
+                                    <div
+                                        class="side2"
+                                        id="carousel-description"
+                                    >
+                                        Description for the first image
                                     </div>
                                 </div>
+                            </div>
+                            <div class="tools">
+                                <div class="info" id="carousel-info"></div>
+                                <button
+                                    class="nav-btn prev-btn"
+                                    onclick="prevSlide()"
+                                >
+                                    ⟵
+                                </button>
+                                <button
+                                    class="nav-btn next-btn"
+                                    onclick="nextSlide()"
+                                >
+                                    ⟶
+                                </button>
+                                <hr />
+                                <div
+                                    class="slide-indicator"
+                                    id="slide-indicator"
+                                ></div>
                             </div>
                         </div>
                         <div class="gridcolumn gcel4">
@@ -1166,5 +1187,8 @@
 
         <!-- preloader animation js -->
         <script src="./script/preloader.js"></script>
+
+        <!-- grid js -->
+        <script src="./script/grid.js"></script>
     </body>
 </html>
