@@ -119,6 +119,12 @@
     grid-row: span 2;
 }
 
+.gcel5 .resumebox h3 {
+    text-align: center;
+    font-size: var(--font-xl);
+    margin-top: 0.3rem;
+}
+
 /* Cell content */
 .cell-content {
     position: absolute;

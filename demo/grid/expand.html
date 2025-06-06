@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Smooth Expand Tab</title>
+        <style>
+            .grid-container {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+                padding: 20px;
+            }
+
+            .grid-item {
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                padding: 15px;
+                transition: all 0.3s ease;
+            }
+
+            .expand-btn,
+            .collapse-btn {
+                background-color: #4caf50;
+                color: white;
+                border: none;
+                padding: 8px 16px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 14px;
+                margin: 4px 2px;
+                cursor: pointer;
+                border-radius: 4px;
+            }
+
+            .collapse-btn {
+                background-color: #f44336;
+                margin-top: 10px;
+            }
+
+            .details {
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease-out;
+            }
+
+            .details.expanded {
+                max-height: 500px; /* Adjust based on your content */
+            }
+
+            .hidden {
+                display: none;
+            }
+
+            /* Style for expanded grid item */
+            .grid-item.expanded {
+                grid-column: span 2; /* Makes the item span 2 columns */
+                /* Alternatively, you could use grid-row: span 2 for vertical expansion */
+            }
+
+            .expand-btn {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            /* For the expanded state */
+            .expanded .expand-btn svg {
+                transform: rotate(180deg);
+                transition: transform 0.3s ease;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="grid-container">
+            <div class="grid-item">
+                <h3>Item 1</h3>
+                <p>Basic information...</p>
+                <button class="expand-btn">Show Details</button>
+                <div class="details hidden">
+                    <p>Detailed information 1...</p>
+                    <p>More details about item 1...</p>
+                    <button class="collapse-btn">Hide Details</button>
+                </div>
+            </div>
+
+            <div class="grid-item">
+                <h3>Item 2</h3>
+                <p>Basic information...</p>
+                <button class="expand-btn">Show Details</button>
+                <div class="details hidden">
+                    <p>Detailed information 2...</p>
+                    <p>More details about item 2...</p>
+                    <button class="collapse-btn">Hide Details</button>
+                </div>
+            </div>
+
+            <!-- More grid items as needed -->
+        </div>
+
+        <button class="expand-btn">
+            <span>Show Details</span>
+            <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                    d="M6 9L12 15L18 9"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+            </svg>
+        </button>
+
+        <script>
+            document.querySelectorAll(".expand-btn").forEach((button) => {
+                button.addEventListener("click", function () {
+                    const gridItem = this.closest(".grid-item");
+                    const details = gridItem.querySelector(".details");
+
+                    // Collapse any currently expanded items
+                    document
+                        .querySelectorAll(".grid-item.expanded")
+                        .forEach((item) => {
+                            if (item !== gridItem) {
+                                item.classList.remove("expanded");
+                                item.querySelector(".details").classList.remove(
+                                    "expanded"
+                                );
+                                item.querySelector(".details").classList.add(
+                                    "hidden"
+                                );
+                                item.querySelector(
+                                    ".expand-btn"
+                                ).style.display = "inline-block";
+                                item.querySelector(
+                                    ".collapse-btn"
+                                ).style.display = "none";
+                            }
+                        });
+
+                    // Toggle current item
+                    gridItem.classList.toggle("expanded");
+                    details.classList.toggle("expanded");
+                    details.classList.toggle("hidden");
+
+                    // Toggle button visibility
+                    this.style.display = "none";
+                    gridItem.querySelector(".collapse-btn").style.display =
+                        "inline-block";
+                });
+            });
+
+            document.querySelectorAll(".collapse-btn").forEach((button) => {
+                button.addEventListener("click", function () {
+                    const gridItem = this.closest(".grid-item");
+                    const details = gridItem.querySelector(".details");
+
+                    gridItem.classList.remove("expanded");
+                    details.classList.remove("expanded");
+                    details.classList.add("hidden");
+
+                    // Toggle button visibility
+                    this.style.display = "none";
+                    gridItem.querySelector(".expand-btn").style.display =
+                        "inline-block";
+                });
+            });
+        </script>
+    </body>
+</html>

@@ -1,6 +1,10 @@
 :root {
     --transition-speed: 0.4s;
 
+    --pattern-size: 24px; /* Adjust spacing */
+    --pattern-dot: 1px; /* Tiny dot size */
+    --pattern-color: var(--border-color); /* Uses existing border color */
+
     /* Border Radius */
     --radius-sm: 4px;
     --radius-md: 8px;
@@ -112,6 +116,8 @@ h3 {
     /* --carousel-image: url("../images/light-carousel.jpg"); */
 
     --grid-bg: #1a1a1a;
+
+    --pattern-color: rgba(255, 255, 255, 0.05); /* Soft white dots for dark */
 }
 
 .theme-light {
@@ -161,6 +167,8 @@ h3 {
     /* --carousel-image: url("../images/dark-carousel.jpg"); */
 
     --grid-bg: #f0f0f5;
+
+    --pattern-color: rgba(0, 0, 0, 0.03); /* Subtle black dots for light */
 }
 
 .theme-purple {
@@ -210,6 +218,8 @@ h3 {
     /* --carousel-image: url("../images/purple-carousel.jpg"); */
 
     --grid-bg: #f3e8ff;
+
+    --pattern-color: rgba(124, 58, 237, 0.08); /* --primary-color faded */
 }
 
 .theme-solarized {
@@ -263,6 +273,8 @@ h3 {
     ); */
 
     --grid-bg: #f5f1e6;
+
+    --pattern-color: rgba(101, 123, 131, 0.1); /* --text-color faded */
 }
 
 .theme-ocean {
@@ -369,6 +381,8 @@ h3 {
     ); */
 
     --grid-bg: #2e2e3e;
+
+    --pattern-color: rgba(137, 180, 250, 0.08); /* --primary-color glow */
 }
 
 .theme-evergreen {
