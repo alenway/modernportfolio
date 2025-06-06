@@ -87,7 +87,7 @@
 }
 .gcel4 {
     grid-column: span 2;
-    grid-row: span 4;
+    grid-row: span 5;
     background-color: var(--primary-color);
     position: relative;
     overflow: hidden;
@@ -116,13 +116,19 @@
 }
 .gcel5 {
     grid-column: span 2;
-    grid-row: span 2;
+    grid-row: span 1;
 }
 
-.gcel5 .resumebox h3 {
+.gcel5 .extra-content h2 {
     text-align: center;
     font-size: var(--font-xl);
     margin-top: 0.3rem;
+}
+
+.resumebox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Cell content */
@@ -207,4 +213,54 @@
 .tools hr {
     border: 2px solid white;
     width: 100%;
+}
+
+.theme-aware-resume-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 24px;
+    border-radius: 8px;
+    color: var(--button-text) !important;
+    font-family: inherit;
+    font-weight: 600;
+    background-color: var(--primary-color);
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.theme-aware-resume-btn:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.theme-aware-resume-btn:active {
+    transform: translateY(0);
+}
+
+.theme-aware-resume-btn:hover .btn-icon {
+    transform: translateX(3px) rotate(10deg);
+    transition: transform 0.3s ease;
+}
+
+.theme-aware-resume-btn::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, var(--accent) 1%, transparent 1%);
+    background-size: 150% 150%;
+    opacity: 0.1;
+    pointer-events: none;
+}
+
+.btn-icon {
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
 }
