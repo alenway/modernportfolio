@@ -65,21 +65,6 @@
     grid-row: span 1;
 }
 
-.gcel3 {
-    grid-column: span 3;
-    grid-row: span 6;
-    border-radius: var(--radius-xl);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-}
-
-.gcel3 .extra-content {
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    height: 100%;
-}
-
 .gcel4 {
     grid-column: span 2;
     grid-row: span 5;
@@ -110,8 +95,8 @@
     position: absolute;
     height: 200px;
     width: 200px;
-    right: -50px;
-    bottom: -40px;
+    right: -15%;
+    bottom: -15%;
     border-radius: 50%;
     background: var(--eq-bar-color);
 }
@@ -133,14 +118,81 @@
     align-items: center;
 }
 
-/* Section Styling (Socials, Contact, Skills) */
+/* Resume Button Styles */
+.theme-aware-resume-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 24px;
+    border-radius: 8px;
+    color: var(--button-text) !important;
+    font-family: inherit;
+    font-weight: 600;
+    background-color: var(--primary-color);
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.theme-aware-resume-btn:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.theme-aware-resume-btn:active {
+    transform: translateY(0);
+}
+
+.theme-aware-resume-btn:hover .btn-icon {
+    transform: translateX(3px) rotate(10deg);
+    transition: transform 0.3s ease;
+}
+
+.btn-icon {
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+/* Consistent Styling for gcel3 */
+.gcel3 {
+    grid-column: span 3;
+    grid-row: span 6;
+    border-radius: var(--radius-xl);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Adjust padding and gap to reduce content height */
+.gcel3 .extra-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+/* Side-by-Side Layout for Socials and Contact */
+.social-contact-wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
 .socials-section,
-.contact-section,
-.skills-section {
+.contact-section {
+    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: 0.75rem;
+    min-width: 200px; /* Ensure sections don’t collapse too much */
 }
 
 .socials-section h2,
@@ -260,51 +312,10 @@
     transition: transform 0.3s ease;
 }
 
-/* Resume Button Styles */
-.theme-aware-resume-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 24px;
-    border-radius: 8px;
-    color: var(--button-text) !important;
-    font-family: inherit;
-    font-weight: 600;
-    background-color: var(--primary-color);
-    border: none;
-    cursor: pointer;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    position: relative;
-    overflow: hidden;
-}
-
-.theme-aware-resume-btn:hover {
-    background-color: var(--primary-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-}
-
-.theme-aware-resume-btn:active {
-    transform: translateY(0);
-}
-
-.theme-aware-resume-btn:hover .btn-icon {
-    transform: translateX(3px) rotate(10deg);
-    transition: transform 0.3s ease;
-}
-
-.btn-icon {
-    display: flex;
-    align-items: center;
-    transition: transform 0.3s ease;
-}
-
 /* HR Styles */
 .gcel3 hr {
     width: 60%;
-    margin: 1rem auto;
+    margin: 0.75rem auto;
     border: none;
     height: 2px;
     background: linear-gradient(
@@ -322,10 +333,23 @@
     align-items: center;
 }
 
+.skills-category {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.skills-category h3 {
+    font-size: 1.1rem;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
 .skills-snapshot {
     display: flex;
     justify-content: center;
-    gap: 1rem;
+    gap: 0.75rem;
     flex-wrap: wrap;
 }
 
@@ -333,7 +357,7 @@
     font-size: 1rem;
     font-weight: 600;
     color: #ffffff;
-    padding: 8px 16px;
+    padding: 6px 12px;
     border-radius: 16px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
@@ -450,8 +474,19 @@
 /* Responsive Adjustments */
 @media (max-width: 768px) {
     .gcel3 .extra-content {
-        padding: 1.5rem;
-        gap: 1.5rem;
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .social-contact-wrapper {
+        flex-direction: column; /* Stack vertically on mobile */
+        align-items: center;
+    }
+
+    .socials-section,
+    .contact-section {
+        width: 100%;
+        min-width: unset;
     }
 
     .social-link {
@@ -470,10 +505,10 @@
 
     .skill-tag {
         font-size: 0.9rem;
-        padding: 6px 12px;
+        padding: 5px 10px;
     }
 
     .skills-snapshot {
-        gap: 0.75rem;
+        gap: 0.5rem;
     }
 }
