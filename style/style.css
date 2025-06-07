@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500&display=swap");
+
 :root {
     --transition-speed: 0.4s;
 
@@ -50,22 +52,51 @@
     font-style: normal;
 }
 
+/* h1,
+h2,
+h3 {
+    font-family: "Space Grotesk", sans-serif;
+}
+body,
+p {
+    font-family: "Inter", sans-serif;
+} */
+
+h1,
+h2 {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+}
+
+h3 {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+}
+
+p,
+li,
+a,
+body {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 400;
+}
+
 html,
 body {
     padding: 0;
     margin: 0;
-    font-family: "Work Sans", sans-serif; /* clean and readable for main content */
+    /* font-family: "Work Sans", sans-serif; clean and readable for main content */
     transition: background-color var(--transition-speed),
         color var(--transition-speed);
     background-color: var(--bg-color);
     color: var(--text-color);
 }
 
-h1,
+/* h1,
 h2,
 h3 {
     font-family: "Comfortaa", cursive; /* stylish and futuristic for headings */
-}
+/* } */
 
 /* === Theme Variables === */
 .theme-dark {
