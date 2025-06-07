@@ -158,7 +158,7 @@ h3 {
     --primary-color: #3b82f6;
     --primary-hover: #2563eb;
     --accent: #6366f1;
-    --secondary-text: #6b7280;
+    --secondary-text: #4b5563; /* Darker gray for better contrast (~5.5:1) */
     --eq-bar-color: #2563eb;
     --input-bg: #f9fafb;
     --input-border: #d1d5db;
@@ -170,12 +170,11 @@ h3 {
     --color-base-selection: #111827;
     --border-color: rgba(0, 0, 0, 0.08);
 
-    --hero-gradient-1: #3b82f6;
-    --hero-gradient-2: #6366f1;
-    --hero-gradient-3: #e2e8f0;
-    --hero-gradient-4: #360f2a;
+    --hero-gradient-1: rgba(59, 130, 246, 0.8); /* Softer blue */
+    --hero-gradient-2: rgba(99, 102, 241, 0.5); /* Softer indigo */
+    --hero-gradient-3: rgba(226, 232, 240, 0.3); /* Light slate */
+    --hero-gradient-4: #ffffff; /* Matches background */
 
-    /* 🆕 Nav */
     --nav-bg: #f1f5f9;
     --nav-text: #111827;
     --nav-hover: #3b82f6;
@@ -186,20 +185,19 @@ h3 {
     --rocket-window: var(--accent);
     --rocket-glow: var(--primary-color);
     --rocket-strip: var(--border-color);
-    --rocket-fire1: #ff4757;
-    --rocket-fire2: #ffa502;
-    --rocket-fire3: #ffd700;
+    --rocket-fire1: #f87171; /* Softer red */
+    --rocket-fire2: #fb923c; /* Softer orange */
+    --rocket-fire3: #facc15; /* Softer yellow */
 
-    --hero-bg: #111111;
-    --hero-text: #f5f5f5;
-    --hero-border: #666666;
-    --hero-shadow: rgba(0, 0, 0, 0.8);
-    --hero-btn-hover: rgba(255, 255, 255, 0.1);
-    /* --carousel-image: url("../images/dark-carousel.jpg"); */
+    --hero-bg: #ffffff; /* Matches background */
+    --hero-text: #111827; /* Matches text color */
+    --hero-border: #d1d5db; /* Light gray border */
+    --hero-shadow: rgba(0, 0, 0, 0.1); /* Softer shadow */
+    --hero-btn-hover: rgba(59, 130, 246, 0.1); /* Subtle blue hover */
 
     --grid-bg: #f0f0f5;
 
-    --pattern-color: rgba(0, 0, 0, 0.03); /* Subtle black dots for light */
+    --pattern-color: rgba(0, 0, 0, 0.03);
 }
 
 .theme-nebula {
