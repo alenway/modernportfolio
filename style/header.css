@@ -220,21 +220,21 @@ nav a:hover::after {
         font-size: 1.5rem;
     }
 
-    .dropdown-toggle {
+    /* .dropdown-toggle {
         font-size: 0.8rem;
         padding: 0.4rem;
-    }
+    } */
 
     .dropdown-menu {
         width: 160px;
-        top: 250px;
+        top: 265px;
         left: 50%;
         transform: translate(-50%, -50%);
     }
 
     .nav-dropdown {
         width: 160px;
-        top: 250px;
+        top: 195px;
         left: 50%;
         transform: translate(-50%, -50%);
     }

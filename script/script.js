@@ -14,6 +14,7 @@ const themeConfig = {
     themes: [
         "theme-dark",
         "theme-light",
+        "theme-nebula",
         "theme-purple",
         "theme-solarized",
         "theme-ocean",
@@ -26,6 +27,7 @@ const themeConfig = {
         system: "System",
         "theme-dark": "Dark",
         "theme-light": "Light",
+        "theme-nebula": "Nebula",
         "theme-purple": "Purple",
         "theme-solarized": "Solarized",
         "theme-ocean": "Ocean",

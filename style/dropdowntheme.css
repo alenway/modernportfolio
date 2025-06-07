@@ -94,6 +94,9 @@
 .ball-light {
     background: linear-gradient(45deg, #ffffff, #f3f4f6);
 }
+.ball-nebula {
+    background: linear-gradient(45deg, #7c3aed, #38bdf8);
+}
 .ball-purple {
     background: linear-gradient(45deg, #7c3aed, #a78bfa);
 }
