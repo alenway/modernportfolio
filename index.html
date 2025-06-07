@@ -167,17 +167,20 @@
                     <a href="index.html"><h1 class="logo">Portfèlio</h1></a>
 
                     <nav>
-                        <img src="./assets/circleiconimage.png" alt="Logo" />
-                        <a href="#projects">Projects</a>
-                        <a href="#">Features</a>
-                        <a href="#">Resources</a>
-                        <a href="#">Docs</a>
+                        <div class="nav-links">
+                            <img
+                                src="./assets/circleiconimage.png"
+                                alt="Logo"
+                            />
+                            <a href="#projects">Projects</a>
+                            <a href="#">Features</a>
+                            <a href="#">Resources</a>
+                            <a href="#">Docs</a>
+                        </div>
                     </nav>
 
-                    <!-- Dropdown Container -->
                     <div class="dropdown-container">
                         <div class="dropdown">
-                            <!-- Music Button (separate from dropdown) -->
                             <div class="audiobuttonmm">
                                 <button
                                     class="audio-button"
@@ -211,7 +214,6 @@
                                     </svg>
                                 </button>
                             </div>
-
                             <audio id="bg-audio" loop>
                                 <source
                                     src="./sound/audio.mp3"
@@ -222,9 +224,25 @@
                             <div class="dropdown-toggle" id="dropdownToggle">
                                 Select Theme <i class="arrow"></i>
                             </div>
+
+                            <!-- Hamburger Icon -->
+                            <button
+                                class="hamburger"
+                                aria-label="Toggle navigation menu"
+                            >
+                                <svg
+                                    class="hamburger-icon"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"
+                                    />
+                                </svg>
+                            </button>
                         </div>
 
-                        <!-- Dropdown Menu (now outside main dropdown) -->
+                        <!-- Theme Dropdown Menu -->
                         <div class="dropdown-menu" id="themeMenu">
                             <div class="theme-item" data-theme="system">
                                 <div class="theme-ball ball-system"></div>
@@ -274,6 +292,20 @@
                             <div class="theme-item" data-theme="theme-aurora">
                                 <div class="theme-ball ball-aurora"></div>
                                 Aurora
+                            </div>
+                        </div>
+
+                        <!-- Separate Nav Dropdown for Mobile -->
+                        <div class="nav-dropdown" id="navMenu">
+                            <div class="nav-links-mobile">
+                                <img
+                                    src="./assets/circleiconimage.png"
+                                    alt="Logo"
+                                />
+                                <a href="#projects">Projects</a>
+                                <a href="#">Features</a>
+                                <a href="#">Resources</a>
+                                <a href="#">Docs</a>
                             </div>
                         </div>
                     </div>
@@ -1229,6 +1261,8 @@
             </svg>
         </div>
 
+        <!-- html code ends here -->
+
         <!-- Sound Effect -->
         <!-- <audio
             id="bttrocketSound"
@@ -1239,7 +1273,8 @@
         <!-- back to top script -->
         <script src="./script/backtotop.js"></script>
 
-        <!-- html code ends here -->
+        <!-- header js -->
+        <script src="./script/header.js"></script>
 
         <!-- spline 3d model -->
         <script
