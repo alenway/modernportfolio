@@ -81,6 +81,18 @@
     color: #fff;
 }
 
+/* Special case: first child */
+.theme-item:first-child:hover {
+    border-top-left-radius: var(--radius-xl);
+    border-top-right-radius: var(--radius-xl);
+}
+
+/* Special case: last child */
+.theme-item:last-child:hover {
+    border-bottom-left-radius: var(--radius-xl);
+    border-bottom-right-radius: var(--radius-xl);
+}
+
 .theme-ball {
     width: 16px;
     height: 16px;

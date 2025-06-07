@@ -118,7 +118,7 @@ nav a:hover::after {
     background-color: rgba(var(--nav-bg-rgb), 0.3);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    padding: 1rem;
+    /* padding: 1rem; */
     border-radius: var(--radius-xl);
     border: 1px solid var(--border-color);
     z-index: 998;
