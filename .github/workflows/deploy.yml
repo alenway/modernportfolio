@@ -26,7 +26,7 @@ jobs:
               run: npm install
 
             - name: Validate HTML
-              uses: Cyb3r-Jak3/html5validator-action@v1 # ✅ fixed version tag
+              uses: Cyb3r-Jak3/html5validator-action@v0.7.0 # Updated to a valid version
               with:
                   root: ./
                   blacklist: node_modules,dist
