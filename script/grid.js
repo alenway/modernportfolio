@@ -134,3 +134,73 @@ function typeEffect() {
 
 // Start the typing effect
 typeEffect();
+
+// hero section copy email functionality
+function copyEmail(event) {
+    const emailText = document.getElementById("emailText").textContent;
+    const feedback = document.getElementById("copyFeedback");
+    const container = event.currentTarget;
+
+    // Create ripple effect
+    createRipple(event, container);
+
+    // Copy to clipboard
+    navigator.clipboard
+        .writeText(emailText)
+        .then(() => {
+            // Show feedback
+            feedback.classList.add("show");
+
+            // Hide feedback after 2 seconds
+            setTimeout(() => {
+                feedback.classList.remove("show");
+            }, 2000);
+        })
+        .catch((err) => {
+            console.error("Failed to copy email: ", err);
+            // Fallback for older browsers
+            fallbackCopyTextToClipboard(emailText);
+        });
+}
+
+function createRipple(event, element) {
+    const ripple = document.createElement("span");
+    const rect = element.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    const x = event.clientX - rect.left - size / 2;
+    const y = event.clientY - rect.top - size / 2;
+
+    ripple.style.width = ripple.style.height = size + "px";
+    ripple.style.left = x + "px";
+    ripple.style.top = y + "px";
+    ripple.classList.add("ripple");
+
+    element.appendChild(ripple);
+
+    setTimeout(() => {
+        ripple.remove();
+    }, 600);
+}
+
+function fallbackCopyTextToClipboard(text) {
+    const textArea = document.createElement("textarea");
+    textArea.value = text;
+    textArea.style.position = "fixed";
+    textArea.style.opacity = "0";
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+
+    try {
+        document.execCommand("copy");
+        const feedback = document.getElementById("copyFeedback");
+        feedback.classList.add("show");
+        setTimeout(() => {
+            feedback.classList.remove("show");
+        }, 2000);
+    } catch (err) {
+        console.error("Fallback: Could not copy text: ", err);
+    }
+
+    document.body.removeChild(textArea);
+}
