@@ -601,10 +601,15 @@ h3 {
     --color-base-selection: #0a0c1b;
     --border-color: rgba(255, 0, 122, 0.25);
 
-    --hero-gradient-1: rgba(255, 0, 122, 0.8);
-    --hero-gradient-2: rgba(0, 229, 255, 0.5);
-    --hero-gradient-3: rgba(84, 110, 122, 0.3);
-    --hero-gradient-4: #0a0c1b;
+    --hero-gradient-1: rgba(255, 0, 122, 0.8); /* Neon pink */
+    --hero-gradient-2: rgba(0, 229, 255, 0.5); /* Neon cyan, matching accent */
+    --hero-gradient-3: rgba(
+        255,
+        0,
+        255,
+        0.3
+    ); /* Magenta for extra neon flair */
+    --hero-gradient-4: #0a0c1b; /* Matches background */
 
     --nav-bg: #12152e;
     --nav-text: #e0f7fa;
@@ -620,7 +625,7 @@ h3 {
     --rocket-fire2: #ff9100;
     --rocket-fire3: #ff00ff;
 
-    --hero-text: #e0f7fa; /* Matches text-color */
+    --hero-text: #e0f7fa;
     --hero-border: #546e7a;
     --hero-shadow: rgba(0, 0, 0, 0.3);
     --hero-btn-hover: rgba(255, 0, 122, 0.2);

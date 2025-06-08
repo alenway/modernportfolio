@@ -109,6 +109,9 @@
 .ball-nebula {
     background: linear-gradient(45deg, #7c3aed, #38bdf8);
 }
+.ball-cyberpunk {
+    background: linear-gradient(45deg, #ff007a, #00e5ff);
+}
 .ball-purple {
     background: linear-gradient(45deg, #7c3aed, #a78bfa);
 }

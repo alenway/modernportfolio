@@ -15,6 +15,7 @@ const themeConfig = {
         "theme-dark",
         "theme-light",
         "theme-nebula",
+        "theme-cyberpunk",
         "theme-purple",
         "theme-solarized",
         "theme-ocean",
@@ -28,6 +29,7 @@ const themeConfig = {
         "theme-dark": "Dark",
         "theme-light": "Light",
         "theme-nebula": "Nebula",
+        "theme-cyberpunk": "Cyberpunk",
         "theme-purple": "Purple",
         "theme-solarized": "Solarized",
         "theme-ocean": "Ocean",
@@ -57,7 +59,7 @@ const themeManager = {
     applySystemTheme() {
         const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
             .matches
-            ? "theme-dark"
+            ? "theme-nebula"
             : "theme-light";
         document.body.classList.add(systemTheme);
     },
