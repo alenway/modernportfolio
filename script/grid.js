@@ -79,3 +79,58 @@
 // }
 
 // window.addEventListener("DOMContentLoaded", updateCarousel);
+
+// hero title dynamic sentance
+const words = ["inspire", "convert", "engage", "perform"];
+
+let currentWordIndex = 0;
+let currentCharIndex = 0;
+let isDeleting = false;
+let typingSpeed = 120;
+let deletingSpeed = 60;
+let pauseAfterWord = 1800;
+let pauseAfterDelete = 400;
+
+const typingTextElement = document.getElementById("typingText");
+
+function typeEffect() {
+    const currentWord = words[currentWordIndex];
+
+    if (isDeleting) {
+        // Delete character by character
+        currentCharIndex--;
+        typingTextElement.textContent = currentWord.substring(
+            0,
+            currentCharIndex
+        );
+
+        // Check if completely deleted
+        if (currentCharIndex === 0) {
+            isDeleting = false;
+            currentWordIndex = (currentWordIndex + 1) % words.length;
+            setTimeout(typeEffect, pauseAfterDelete);
+            return;
+        }
+
+        setTimeout(typeEffect, deletingSpeed);
+    } else {
+        // Type character by character
+        typingTextElement.textContent = currentWord.substring(
+            0,
+            currentCharIndex + 1
+        );
+        currentCharIndex++;
+
+        // Check if word is complete
+        if (currentCharIndex === currentWord.length) {
+            isDeleting = true;
+            setTimeout(typeEffect, pauseAfterWord);
+            return;
+        }
+
+        setTimeout(typeEffect, typingSpeed);
+    }
+}
+
+// Start the typing effect
+typeEffect();
