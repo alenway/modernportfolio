@@ -1,0 +1,2 @@
+#!/bin/sh
+npx html-minifier --input-dir ./ --output-dir ./dist --file-ext html --collapse-whitespace
