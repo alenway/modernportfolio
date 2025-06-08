@@ -12,17 +12,37 @@ permissions:
 jobs:
     deploy:
         runs-on: ubuntu-latest
+
         steps:
             - name: Checkout code
               uses: actions/checkout@v3
 
-            - name: Setup Pages
+            - name: Setup Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: "20"
+
+            - name: Install Dependencies for Minification
+              run: npm install
+
+            - name: Validate HTML
+              uses: Cyb3r-Jak3/html5validator-action@v1.1.0
+              with:
+                  root: ./
+
+            - name: Minify HTML and CSS
+              run: |
+                  mkdir -p dist
+                  npx html-minifier --input-dir ./ --output-dir ./dist --file-ext html --collapse-whitespace --remove-comments --minify-css true --minify-js true
+                  npx cleancss -o dist/style.min.css style.css
+
+            - name: Setup GitHub Pages
               uses: actions/configure-pages@v3
 
             - name: Upload to GitHub Pages
               uses: actions/upload-pages-artifact@v3
               with:
-                  path: ./
+                  path: ./dist
 
             - name: Deploy to GitHub Pages
               uses: actions/deploy-pages@v4
