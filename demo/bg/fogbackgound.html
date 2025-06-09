@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+            body,
+            html {
+                margin: 0;
+                padding: 0;
+                font-family: "Roboto", sans-serif;
+                color: #333;
+                background-color: #f0f0f0;
+                height: 100%;
+                overflow-x: hidden;
+            }
+
+            #vanta-bg {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 0;
+            }
+
+            .container {
+                margin: 0 auto;
+                padding: 2rem;
+                position: absolute;
+                font-family: "Roboto", sans-serif;
+                color: #fff;
+                max-width: 1200px;
+                z-index: 1;
+            }
+
+            button {
+                background-color: #4caf50;
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                border-radius: 10px;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+                &:hover {
+                    background-color: #25902950;
+                }
+                &:active {
+                    background-color: #292990cc;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div id="vanta-bg"></div>
+
+        <div class="container">
+            <h1>Animated Background: Three + Vanta FOG</h1>
+            Lorem ipsum dolor sit amet, at labitur complectitur mei. Tota
+            eloquentiam an sea, nostro electram mea et. Debitis accusata
+            forensibus sed in, no omnium evertitur prodesset eam. Hendrerit
+            torquatos deterruisset no per, eirmod equidem omnesque per ne. Vix
+            appetere percipit cu.
+            <p>
+                <button onclick="changeEffect('fog')">Randomize</button>
+                <button id="fullscreen-toggle">Toggle Fullscreen</button>
+            </p>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js"></script>
+
+        <script>
+            let vantaEffect;
+            let highlightFrequency = 0.8;
+            let midtoneFrequency = 0.4;
+            let lowlightFrequency = 0.2;
+            let baseFrequency = 0.005;
+
+            function initVanta() {
+                vantaEffect = VANTA.FOG({
+                    el: "#vanta-bg",
+                    highlightColor: 0xffcccc,
+                    midtoneColor: 0x006600,
+                    lowlightColor: 0x0000aa,
+                    baseColor: 0x333366,
+                    blurFactor: 0.5,
+                    speed: 2.0,
+                    zoom: 1.0,
+                    scale: 2,
+                    scaleMobile: 4,
+                });
+            }
+
+            function colorCycle() {
+                // Cycle through rainbow colors at different frequencies
+                vantaEffect.setOptions({
+                    highlightColor: cycleColor(highlightFrequency),
+                    midtoneColor: cycleColor(midtoneFrequency),
+                    lowlightColor: cycleColor(lowlightFrequency),
+                    baseColor: cycleColor(baseFrequency),
+                });
+                requestAnimationFrame(colorCycle);
+            }
+
+            function cycleColor(frequency) {
+                const time = Date.now() * 0.001;
+                const r = Math.sin(frequency * time + 0) * 127 + 128;
+                const g = Math.sin(frequency * time + 2) * 127 + 128;
+                const b = Math.sin(frequency * time + 4) * 127 + 128;
+                return (r << 16) + (g << 8) + b;
+            }
+
+            function changeEffect(effect) {
+                switch (effect) {
+                    case "fog":
+                        vantaEffect.setOptions({
+                            highlightColor: Math.random() * 0xffffff,
+                            midtoneColor: Math.random() * 0x0000aa,
+                            lowlightColor: Math.random() * 0xaa0000,
+                            baseColor: Math.random() * 0xff0000,
+                            blurFactor: Math.random() * 1.5 + 0.2,
+                            speed: Math.random() * 3 + 0.1,
+                        });
+                        break;
+                }
+            }
+
+            document.addEventListener("DOMContentLoaded", initVanta);
+            //requestAnimationFrame(colorCycle);
+
+            // Fullscreen toggle functionality
+            const fullscreenToggle =
+                document.getElementById("fullscreen-toggle");
+
+            fullscreenToggle.addEventListener("click", () => {
+                if (!document.fullscreenElement) {
+                    document.documentElement
+                        .requestFullscreen()
+                        .catch((err) => {
+                            console.log(
+                                `Error attempting to enable full-screen mode: ${err.message} (${err.name})`
+                            );
+                        });
+                } else {
+                    document.exitFullscreen();
+                }
+            });
+
+            document.addEventListener("fullscreenchange", () => {
+                if (document.fullscreenElement) {
+                    fullscreenToggle.textContent = "Exit Fullscreen";
+                } else {
+                    fullscreenToggle.textContent = "Toggle Fullscreen";
+                }
+            });
+        </script>
+    </body>
+</html>

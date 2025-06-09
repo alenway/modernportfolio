@@ -140,7 +140,17 @@ h3 {
     --hero-btn-hover: rgba(59, 130, 246, 0.1);
     --grid-bg: #f0f0f5;
     --pattern-color: rgba(0, 0, 0, 0.03);
-    --card-bg-overlay: rgba(243, 244, 246, 0.6); /* From --card-bg */
+    --card-bg-overlay: rgba(243, 244, 246, 0.6);
+    --shadow-glow: color-mix(in srgb, var(--primary-color) 30%, transparent);
+    --project-image-gradient: linear-gradient(135deg, #f3f4f6, #dbeafe);
+    --image-overlay-gradient: linear-gradient(
+        135deg,
+        rgba(59, 130, 246, 0.9),
+        rgba(99, 102, 241, 0.9)
+    );
+    --button-bg: rgba(255, 255, 255, 0.2);
+    --button-border: rgba(255, 255, 255, 0.3);
+    --button-text: var(--button-text);
 }
 
 .theme-nebula {
@@ -184,7 +194,17 @@ h3 {
     --hero-btn-hover: rgba(124, 58, 237, 0.2);
     --grid-bg: #0f1524;
     --pattern-color: rgba(255, 255, 255, 0.03);
-    --card-bg-overlay: rgba(20, 27, 45, 0.6); /* From --card-bg */
+    --card-bg-overlay: rgba(20, 27, 45, 0.6);
+    --shadow-glow: color-mix(in srgb, var(--primary-color) 30%, transparent);
+    --project-image-gradient: linear-gradient(135deg, #141b2d, #1c243f);
+    --image-overlay-gradient: linear-gradient(
+        135deg,
+        rgba(124, 58, 237, 0.9),
+        rgba(56, 189, 248, 0.9)
+    );
+    --button-bg: rgba(255, 255, 255, 0.1);
+    --button-border: rgba(255, 255, 255, 0.2);
+    --button-text: var(--button-text);
 }
 
 .theme-catppuccin {
@@ -227,7 +247,17 @@ h3 {
     --hero-btn-hover: rgba(137, 180, 250, 0.2);
     --grid-bg: #2e2e3e;
     --pattern-color: rgba(137, 180, 250, 0.08);
-    --card-bg-overlay: rgba(49, 50, 68, 0.6); /* From --card-bg */
+    --card-bg-overlay: rgba(49, 50, 68, 0.6);
+    --shadow-glow: color-mix(in srgb, var(--primary-color) 30%, transparent);
+    --project-image-gradient: linear-gradient(135deg, #313244, #45475a);
+    --image-overlay-gradient: linear-gradient(
+        135deg,
+        rgba(137, 180, 250, 0.9),
+        rgba(245, 194, 231, 0.9)
+    );
+    --button-bg: rgba(204, 214, 244, 0.2);
+    --button-border: rgba(204, 214, 244, 0.3);
+    --button-text: var(--button-text);
 }
 
 .theme-evergreen {
@@ -270,7 +300,17 @@ h3 {
     --hero-btn-hover: rgba(16, 185, 129, 0.2);
     --grid-bg: #e6ffed;
     --pattern-color: rgba(16, 185, 129, 0.08);
-    --card-bg-overlay: rgba(209, 250, 229, 0.6); /* From --card-bg */
+    --card-bg-overlay: rgba(209, 250, 229, 0.6);
+    --shadow-glow: color-mix(in srgb, var(--primary-color) 30%, transparent);
+    --project-image-gradient: linear-gradient(135deg, #d1fae5, #bbf7d0);
+    --image-overlay-gradient: linear-gradient(
+        135deg,
+        rgba(16, 185, 129, 0.9),
+        rgba(52, 211, 153, 0.9)
+    );
+    --button-bg: rgba(16, 185, 129, 0.15);
+    --button-border: rgba(16, 185, 129, 0.3);
+    --button-text: var(--button-text);
 }
 
 .theme-aurora {
@@ -313,7 +353,17 @@ h3 {
     --hero-btn-hover: #38bdf8;
     --grid-bg: #1a2538;
     --pattern-color: rgba(125, 211, 252, 0.08);
-    --card-bg-overlay: rgba(30, 41, 59, 0.6); /* From --card-bg */
+    --card-bg-overlay: rgba(30, 41, 59, 0.6);
+    --shadow-glow: color-mix(in srgb, var(--primary-color) 30%, transparent);
+    --project-image-gradient: linear-gradient(135deg, #1e293b, #334155);
+    --image-overlay-gradient: linear-gradient(
+        135deg,
+        rgba(125, 211, 252, 0.9),
+        rgba(192, 132, 252, 0.9)
+    );
+    --button-bg: rgba(125, 211, 252, 0.15);
+    --button-border: rgba(125, 211, 252, 0.3);
+    --button-text: var(--button-text);
 }
 
 .theme-cyberpunk {
@@ -356,7 +406,17 @@ h3 {
     --hero-btn-hover: rgba(255, 0, 122, 0.2);
     --grid-bg: #141731;
     --pattern-color: rgba(255, 0, 122, 0.08);
-    --card-bg-overlay: rgba(26, 30, 51, 0.6); /* From --card-bg */
+    --card-bg-overlay: rgba(26, 30, 51, 0.6);
+    --shadow-glow: color-mix(in srgb, var(--primary-color) 30%, transparent);
+    --project-image-gradient: linear-gradient(135deg, #1a1e33, #2e2e52);
+    --image-overlay-gradient: linear-gradient(
+        135deg,
+        rgba(255, 0, 122, 0.9),
+        rgba(0, 229, 255, 0.9)
+    );
+    --button-bg: rgba(255, 0, 122, 0.15);
+    --button-border: rgba(255, 0, 122, 0.3);
+    --button-text: var(--button-text);
 }
 
 /*
