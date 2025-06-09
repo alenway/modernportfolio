@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            *,
+            ::before,
+            ::after {
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+            }
+
+            @keyframes rotate-orb {
+                100% {
+                    transform:
+            /* GPU Context Activation */ translate3d(
+                            0,
+                            0,
+                            0
+                        )
+                        rotate(360deg);
+                }
+            }
+
+            .animated-bg {
+                width: 100%;
+                height: 100%;
+                position: fixed;
+                z-index: -1;
+                background: black
+                    url(https://cdn.pixabay.com/photo/2022/12/03/12/42/lantern-7632609_1280.jpg)
+                    center/ cover no-repeat;
+                overflow: hidden;
+            }
+
+            .animated-bg span {
+                width: 1vmax;
+                height: 1vmax;
+                border-radius: 50%;
+                position: absolute;
+                animation: rotate-orb;
+                animation-timing-function: linear;
+                animation-iteration-count: infinite;
+                box-shadow: 2vmax 0 1vmin currentColor;
+                color: #ff7300;
+            }
+
+            .animated-bg span:nth-child(1) {
+                scale: 200%;
+                animation-duration: 12s;
+                top: 0;
+                left: 0;
+                transform-origin: 15vw 20vh;
+            }
+
+            .animated-bg span:nth-child(2) {
+                scale: 200%;
+                animation-duration: 10s;
+                top: 100%;
+                left: 0;
+                transform-origin: 15vw 20vh;
+            }
+
+            .animated-bg span:nth-child(3) {
+                scale: 200%;
+                animation-duration: 15s;
+                top: 0;
+                left: 100%;
+                transform-origin: 15vw 20vh;
+            }
+
+            .animated-bg span:nth-child(4) {
+                scale: 200%;
+                animation-duration: 15s;
+                top: 100%;
+                left: 100%;
+                transform-origin: 35vw 15vh;
+            }
+
+            .animated-bg span:nth-child(5) {
+                scale: 150%;
+                animation-duration: 15s;
+                top: 0;
+                left: 50%;
+                transform-origin: 0 40vh;
+            }
+
+            .animated-bg span:nth-child(6) {
+                scale: 150%;
+                animation-duration: 15s;
+                top: 100%;
+                left: 50%;
+                transform-origin: 20vw -35vh;
+            }
+
+            .animated-bg span:nth-child(7) {
+                scale: 150%;
+                animation-duration: 20s;
+                top: 50%;
+                left: 0;
+                transform-origin: 25vw 10vh;
+            }
+
+            .animated-bg span:nth-child(8) {
+                scale: 150%;
+                animation-duration: 15s;
+                top: 50%;
+                left: 100%;
+                transform-origin: 20vw 0;
+            }
+
+            .animated-bg span:nth-child(9) {
+                scale: 100%;
+                animation-duration: 30s;
+                top: 0;
+                left: 0;
+                transform-origin: 10vw 30vh;
+            }
+
+            .animated-bg span:nth-child(10) {
+                scale: 100%;
+                animation-duration: 25s;
+                top: 100%;
+                left: 0;
+                transform-origin: 30vw -10vh;
+            }
+
+            .animated-bg span:nth-child(11) {
+                scale: 100%;
+                animation-duration: 30s;
+                top: 0;
+                left: 100%;
+                transform-origin: -10vw 20vh;
+            }
+
+            .animated-bg span:nth-child(12) {
+                scale: 100%;
+                animation-duration: 35s;
+                top: 100%;
+                left: 100%;
+                transform-origin: -20vw -20vh;
+            }
+
+            .animated-bg span:nth-child(13) {
+                scale: 75%;
+                animation-duration: 40s;
+                top: 25%;
+                left: 25%;
+                transform-origin: -15vw -5vh;
+            }
+
+            .animated-bg span:nth-child(14) {
+                scale: 75%;
+                animation-duration: 40s;
+                top: 75%;
+                left: 0;
+                transform-origin: 15vw 5vh;
+            }
+
+            .animated-bg span:nth-child(15) {
+                scale: 75%;
+                animation-duration: 45s;
+                top: 0;
+                left: 100%;
+                transform-origin: -15vw 15vh;
+            }
+
+            .animated-bg span:nth-child(16) {
+                scale: 75%;
+                animation-duration: 40s;
+                top: 100%;
+                left: 100%;
+                transform-origin: -10vw -20vh;
+            }
+
+            .animated-bg span:nth-child(17) {
+                scale: 50%;
+                animation-duration: 50s;
+                top: 0;
+                left: 0;
+                transform-origin: 40vw 25vh;
+            }
+
+            .animated-bg span:nth-child(18) {
+                scale: 50%;
+                animation-duration: 50s;
+                top: 100%;
+                left: 0;
+                transform-origin: 30vw -20vh;
+            }
+
+            .animated-bg span:nth-child(19) {
+                scale: 50%;
+                animation-duration: 50s;
+                top: 0;
+                left: 100%;
+                transform-origin: -20vw 20vh;
+            }
+
+            .animated-bg span:nth-child(20) {
+                scale: 50%;
+                animation-duration: 50s;
+                top: 100%;
+                left: 100%;
+                transform-origin: -30vw -10vh;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="animated-bg">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </body>
+</html>

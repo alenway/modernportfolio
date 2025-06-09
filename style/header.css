@@ -193,10 +193,10 @@ nav a:hover::after {
         gap: 0.5rem;
     }
 
-    .dropdown-toggle {
+    /* .dropdown-toggle {
         font-size: 0.9rem;
         padding: 0.5rem;
-    }
+    } */
 
     .dropdown-menu {
         width: 180px;
@@ -227,7 +227,7 @@ nav a:hover::after {
 
     .dropdown-menu {
         width: 160px;
-        top: 265px;
+        top: 190px;
         left: 50%;
         transform: translate(-50%, -50%);
     }

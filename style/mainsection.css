@@ -58,11 +58,13 @@
 .gcel1 {
     grid-column: span 2;
     grid-row: span 1;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 
 .gcel2 {
     grid-column: span 3;
     grid-row: span 1;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 
 .gcel4 {
@@ -104,6 +106,7 @@
 .gcel5 {
     grid-column: span 2;
     grid-row: span 1;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 
 .gcel5 .extra-content h2 {
@@ -165,6 +168,10 @@
     grid-row: span 6;
     border-radius: var(--radius-xl);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    /* min-height: 100vh; */
+    /* background: linear-gradient(to bottom, transparent 23px, #aaa 24px),
+        linear-gradient(to right, transparent 23px, #aaa 24px);
+    background-size: 24px 24px; */
 }
 
 /* Adjust padding and gap to reduce content height */
@@ -192,14 +199,14 @@
     flex-direction: column;
     align-items: center;
     gap: 0.75rem;
-    min-width: 200px; /* Ensure sections don’t collapse too much */
+    min-width: 250px; /* Ensure sections don’t collapse too much */
 }
 
 .socials-section h2,
 .contact-section h2,
 .skills-section h2 {
     font-size: var(--font-xl);
-    color: #ffffff;
+    color: var(--text-color);
     margin-bottom: 0.5rem;
     position: relative;
     text-align: center;
@@ -340,7 +347,7 @@
 
 .skills-category h3 {
     font-size: 1.1rem;
-    color: #ffffff;
+    color: var(--text-color);
     text-align: center;
     margin-bottom: 0.5rem;
     font-weight: 500;
@@ -486,6 +493,7 @@
     .socials-section,
     .contact-section {
         width: 100%;
+        color: var(--text-color);
         min-width: unset;
     }
 
@@ -606,7 +614,7 @@
 .email-text {
     font-size: 1.1rem;
     font-weight: 600;
-    color: white;
+    color: var(--text-color);
     letter-spacing: 0.5px;
 }
 
@@ -674,4 +682,162 @@
     .email-text {
         font-size: 1rem;
     }
+}
+
+.lava-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    background-color: var(--card-bg);
+}
+
+.lava-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent));
+    opacity: 0.7;
+    /* No transition; rely on JavaScript lerp */
+}
+
+.blob:nth-child(1) {
+    width: 100px;
+    height: 100px;
+    top: 20%;
+    left: 10%;
+    animation: float-1 12s infinite ease-in-out;
+}
+
+.blob:nth-child(2) {
+    width: 80px;
+    height: 80px;
+    top: 50%;
+    left: 60%;
+    animation: float-2 10s infinite ease-in-out;
+}
+
+.blob:nth-child(3) {
+    width: 120px;
+    height: 120px;
+    top: 70%;
+    left: 30%;
+    animation: float-3 14s infinite ease-in-out;
+}
+
+.card-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    background: var(--card-bg-overlay);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    color: var(--text-color);
+    text-align: center;
+}
+
+.card-content h2 {
+    margin: 0 0 10px;
+    font-size: 24px;
+    color: var(--text-color);
+}
+
+.card-content p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--secondary-text);
+}
+
+/* Organic float animations for each blob */
+@keyframes float-1 {
+    0% {
+        top: 20%;
+        left: 10%;
+    }
+    25% {
+        top: 40%;
+        left: 15%;
+    }
+    50% {
+        top: 60%;
+        left: 12%;
+    }
+    75% {
+        top: 30%;
+        left: 8%;
+    }
+    100% {
+        top: 20%;
+        left: 10%;
+    }
+}
+
+@keyframes float-2 {
+    0% {
+        top: 50%;
+        left: 60%;
+    }
+    25% {
+        top: 70%;
+        left: 55%;
+    }
+    50% {
+        top: 40%;
+        left: 65%;
+    }
+    75% {
+        top: 60%;
+        left: 58%;
+    }
+    100% {
+        top: 50%;
+        left: 60%;
+    }
+}
+
+@keyframes float-3 {
+    0% {
+        top: 70%;
+        left: 30%;
+    }
+    25% {
+        top: 50%;
+        left: 35%;
+    }
+    50% {
+        top: 80%;
+        left: 25%;
+    }
+    75% {
+        top: 60%;
+        left: 32%;
+    }
+    100% {
+        top: 70%;
+        left: 30%;
+    }
+}
+
+/* Disable animations during hover and return */
+.lava-card:hover .blob,
+.blob.returning {
+    animation: none;
 }

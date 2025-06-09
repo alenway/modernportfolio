@@ -204,3 +204,102 @@ function fallbackCopyTextToClipboard(text) {
 
     document.body.removeChild(textArea);
 }
+
+const card = document.querySelector(".lava-card");
+const blobs = document.querySelectorAll(".blob");
+let isHovering = false;
+
+// Initial positions for smooth return
+const initialPositions = [
+    { top: 20, left: 10 },
+    { top: 50, left: 60 },
+    { top: 70, left: 30 },
+];
+
+// Animation frame for smooth movement (hover and return)
+function animateBlobs() {
+    if (!isHovering && !blobs[0].classList.contains("returning")) return;
+
+    let allBlobsReturned = true;
+
+    blobs.forEach((blob, index) => {
+        const currentX = parseFloat(
+            blob.style.left || initialPositions[index].left
+        );
+        const currentY = parseFloat(
+            blob.style.top || initialPositions[index].top
+        );
+
+        if (isHovering) {
+            // Mouse-following logic
+            const mouseX = parseFloat(
+                card.dataset.mouseX || initialPositions[index].left
+            );
+            const mouseY = parseFloat(
+                card.dataset.mouseY || initialPositions[index].top
+            );
+            const time = Date.now() * 0.001;
+            const offsetX = Math.sin(time + index) * 5; // Playful wobble
+            const offsetY = Math.cos(time + index) * 5;
+            const targetX = mouseX + (index * 20 - 20) + offsetX;
+            const targetY = mouseY + (index * 20 - 20) + offsetY;
+
+            const lerp = (start, end, factor) => start + (end - start) * factor;
+            const newX = lerp(currentX, targetX, 0.15);
+            const newY = lerp(currentY, targetY, 0.15);
+
+            blob.style.left = `${newX}%`;
+            blob.style.top = `${newY}%`;
+        } else {
+            // Return to initial positions
+            const targetX = initialPositions[index].left;
+            const targetY = initialPositions[index].top;
+
+            const lerp = (start, end, factor) => start + (end - start) * factor;
+            const newX = lerp(currentX, targetX, 0.15); // Consistent lerp factor
+            const newY = lerp(currentY, targetY, 0.15);
+
+            blob.style.left = `${newX}%`;
+            blob.style.top = `${newY}%`;
+
+            // Tighter threshold for stopping return animation
+            if (
+                Math.abs(newX - targetX) > 0.5 ||
+                Math.abs(newY - targetY) > 0.5
+            ) {
+                allBlobsReturned = false;
+            }
+        }
+    });
+
+    // Stop return animation when all blobs are close to initial positions
+    if (!isHovering && allBlobsReturned) {
+        blobs.forEach((blob) => blob.classList.remove("returning"));
+    } else {
+        requestAnimationFrame(animateBlobs);
+    }
+}
+
+card.addEventListener("mousemove", (e) => {
+    const rect = card.getBoundingClientRect();
+    card.dataset.mouseX = (
+        ((e.clientX - rect.left) / rect.width) *
+        100
+    ).toString();
+    card.dataset.mouseY = (
+        ((e.clientY - rect.top) / rect.height) *
+        100
+    ).toString();
+
+    if (!isHovering) {
+        isHovering = true;
+        blobs.forEach((blob) => blob.classList.remove("returning"));
+        animateBlobs();
+    }
+});
+
+card.addEventListener("mouseleave", () => {
+    isHovering = false;
+    blobs.forEach((blob) => blob.classList.add("returning"));
+    animateBlobs();
+});
