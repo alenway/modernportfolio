@@ -534,7 +534,7 @@
 }
 
 .typing-text {
-    background: linear-gradient(45deg, #50e3c2, #4facfe);
+    background: linear-gradient(45deg, var(--primary-color), var(--accent));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -546,7 +546,7 @@
     display: inline-block;
     width: 3px;
     height: 1em;
-    background: #50e3c2;
+    background: var(--primary-color);
     margin-left: 2px;
     animation: blink 1s infinite;
     vertical-align: top;
