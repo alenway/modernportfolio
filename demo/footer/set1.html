@@ -1,0 +1,217 @@
+<html class="theme-light">
+    <head>
+        <style>
+            /* Footer Styles */
+            .portfolio-footer {
+                background-color: #1a1a1a;
+                color: #ffffff;
+                padding: 4rem 2rem 2rem;
+                font-family: "Inter", sans-serif;
+            }
+
+            .footer-container {
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            .footer-content {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 2rem;
+                margin-bottom: 3rem;
+            }
+
+            .footer-brand {
+                margin-bottom: 2rem;
+            }
+
+            .footer-logo {
+                font-size: 1.8rem;
+                font-weight: 700;
+                margin-bottom: 0.5rem;
+                color: #ffffff;
+            }
+
+            .footer-tagline {
+                color: #a0a0a0;
+                font-size: 0.9rem;
+                line-height: 1.5;
+            }
+
+            .footer-links {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 2rem;
+            }
+
+            .links-column {
+                min-width: 120px;
+            }
+
+            .links-title {
+                font-size: 1.1rem;
+                margin-bottom: 1rem;
+                color: #ffffff;
+                font-weight: 600;
+            }
+
+            .footer-links ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            .footer-links li {
+                margin-bottom: 0.5rem;
+            }
+
+            .footer-links a {
+                color: #a0a0a0;
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
+
+            .footer-links a:hover {
+                color: #ffffff;
+            }
+
+            .footer-cta {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .cta-title {
+                font-size: 1.1rem;
+                margin-bottom: 1rem;
+                color: #ffffff;
+                font-weight: 600;
+            }
+
+            .cta-button {
+                display: inline-block;
+                background-color: #4f46e5;
+                color: white;
+                padding: 0.8rem 1.5rem;
+                border-radius: 4px;
+                text-decoration: none;
+                font-weight: 500;
+                transition: background-color 0.3s ease;
+                width: fit-content;
+            }
+
+            .cta-button:hover {
+                background-color: #4338ca;
+            }
+
+            .footer-bottom {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-between;
+                padding-top: 2rem;
+                border-top: 1px solid #333333;
+                color: #a0a0a0;
+                font-size: 0.9rem;
+            }
+
+            .copyright {
+                margin-bottom: 1rem;
+            }
+
+            .legal-links {
+                display: flex;
+                gap: 1rem;
+            }
+
+            .legal-links a {
+                color: #a0a0a0;
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
+
+            .legal-links a:hover {
+                color: #ffffff;
+            }
+
+            /* Responsive adjustments */
+            @media (min-width: 768px) {
+                .footer-bottom {
+                    flex-direction: row;
+                }
+
+                .copyright {
+                    margin-bottom: 0;
+                }
+
+                .footer-content {
+                    grid-template-columns: 2fr 1fr 1fr 1fr;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <footer class="portfolio-footer">
+            <div class="footer-container">
+                <div class="footer-content">
+                    <div class="footer-brand">
+                        <h3 class="footer-logo">Your Name</h3>
+                        <p class="footer-tagline">
+                            Creating digital experiences that matter
+                        </p>
+                    </div>
+
+                    <div class="footer-links">
+                        <div class="links-column">
+                            <h4 class="links-title">Quick Links</h4>
+                            <ul>
+                                <li><a href="#home">Home</a></li>
+                                <li><a href="#work">Work</a></li>
+                                <li><a href="#about">About</a></li>
+                                <li><a href="#contact">Contact</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="links-column">
+                            <h4 class="links-title">Connect</h4>
+                            <ul>
+                                <li>
+                                    <a href="#" target="_blank">LinkedIn</a>
+                                </li>
+                                <li><a href="#" target="_blank">GitHub</a></li>
+                                <li>
+                                    <a href="#" target="_blank">Dribbble</a>
+                                </li>
+                                <li><a href="#" target="_blank">Twitter</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="footer-cta">
+                        <h4 class="cta-title">Let's Work Together</h4>
+                        <a href="mailto:you@example.com" class="cta-button"
+                            >Get In Touch</a
+                        >
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <p class="copyright">
+                        &copy; <span id="year"></span> Your Name. All rights
+                        reserved.
+                    </p>
+                    <div class="legal-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Include Font Awesome for social icons -->
+        <script src="https://kit.fontawesome.com/your-font-awesome-kit.js"></script>
+        /* Auto-updating year */
+        <script>
+            document.getElementById("year").textContent =
+                new Date().getFullYear();
+        </script>
+    </body>
+</html>

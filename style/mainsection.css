@@ -277,6 +277,7 @@
 .contact-link {
     display: flex;
     justify-content: center;
+    margin-top: 1.5rem;
 }
 
 .theme-aware-contact-btn {
