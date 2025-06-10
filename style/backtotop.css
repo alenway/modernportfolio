@@ -3,8 +3,8 @@
     position: fixed;
     bottom: 30px;
     right: 30px;
-    width: 150px; /* Increased from 100px */
-    height: 150px; /* Increased from 100px */
+    width: 60px; /* Increased from 100px */
+    height: 60px; /* Increased from 100px */
     background: transparent;
     border-radius: 50%;
     cursor: pointer;
@@ -33,8 +33,8 @@
 }
 
 .btt-rocket {
-    width: 96px; /* Increased from 64px */
-    height: 96px; /* Increased from 64px */
+    width: 70px; /* Increased from 64px */
+    height: 70px; /* Increased from 64px */
     transition: transform 0.3s ease;
 }
 
