@@ -1,0 +1,147 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: #ecefff;
+    color: #333;
+    font-size: 17px;
+}
+
+label {
+    font-weight: 400;
+}
+
+/* Layout Wrapper */
+.display {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+}
+
+/* Image Section */
+.block1 {
+    flex: 1 1 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-section img.laptop {
+    max-width: 100%;
+    height: 800px;
+}
+
+/* Form Section */
+.block2 {
+    flex: 1 1 400px;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.form-section h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    color: #222;
+}
+
+/* Form Styling */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 6px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="file"] {
+    padding: 10px;
+    border: 2px solid #686dd3;
+    font-size: 1rem;
+}
+
+.form-group input[type="text"] {
+    border-radius: 20px;
+}
+
+.form-group input[type="file"] {
+    border-radius: 10px;
+}
+
+.form-group input[type="file"] {
+    margin-top: 6px;
+    border: 2px dotted #888;
+}
+
+/* Checkbox */
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+}
+
+/* Checkbox */
+.checkbox-group {
+    display: flex;
+    flex-direction: row; /* Aligns checkbox and label horizontally */
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.centerist {
+    display: flex;
+    justify-content: center;
+}
+
+.centerist .input[type="file"] {
+    width: 40%;
+    border-radius: 10px !important;
+}
+
+/* Button Styling */
+button[type="submit"] {
+    padding: 12px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    background-color: #686dd3;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #afb2ff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .display {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .block1,
+    .block2 {
+        width: 100%;
+    }
+}
