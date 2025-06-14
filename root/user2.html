@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>User Dashboard</title>
+        <style>
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f5f6fa;
+                color: #333;
+            }
+
+            .dashboard {
+                display: flex;
+                min-height: 100vh;
+            }
+
+            .sidebar {
+                width: 250px;
+                background-color: #2c3e50;
+                color: white;
+                padding: 20px;
+            }
+
+            .sidebar h2 {
+                margin-bottom: 30px;
+            }
+
+            .sidebar a {
+                display: block;
+                color: white;
+                text-decoration: none;
+                margin: 10px 0;
+                padding: 10px;
+                border-radius: 5px;
+            }
+
+            .sidebar a:hover {
+                background-color: #34495e;
+            }
+
+            .main {
+                flex-grow: 1;
+                padding: 30px;
+            }
+
+            .header {
+                margin-bottom: 30px;
+            }
+
+            .header h1 {
+                font-size: 28px;
+            }
+
+            .cards {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
+            }
+
+            .card {
+                background-color: white;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+                transition: 0.3s;
+            }
+
+            .card:hover {
+                transform: translateY(-5px);
+            }
+
+            .card h3 {
+                margin-bottom: 10px;
+            }
+
+            .card p {
+                font-size: 14px;
+                color: #666;
+            }
+
+            .btn {
+                margin-top: 10px;
+                padding: 10px 16px;
+                background-color: #3498db;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            .btn:hover {
+                background-color: #2980b9;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="dashboard">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <h2>User Menu</h2>
+                <a href="#">Dashboard</a>
+                <a href="#">Book Service</a>
+                <a href="#">Subscriptions</a>
+                <a href="#">History</a>
+                <a href="#">Addresses</a>
+                <a href="#">Track Status</a>
+                <a href="#">Submit OTP</a>
+                <a href="#">Feedback</a>
+                <a href="#">Settings</a>
+                <a href="#">Logout</a>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main">
+                <div class="header">
+                    <h1>Hello, Narendra 👋</h1>
+                    <p>Welcome back to your dashboard!</p>
+                </div>
+
+                <div class="cards">
+                    <div class="card">
+                        <h3>Book New Service</h3>
+                        <p>Start a new service request quickly.</p>
+                        <button class="btn">Book Now</button>
+                    </div>
+
+                    <div class="card">
+                        <h3>Your Subscriptions</h3>
+                        <p>Manage or renew your service plans.</p>
+                        <button class="btn">View Subscriptions</button>
+                    </div>
+
+                    <div class="card">
+                        <h3>Booking History</h3>
+                        <p>See past service requests and status.</p>
+                        <button class="btn">View History</button>
+                    </div>
+
+                    <div class="card">
+                        <h3>Saved Addresses</h3>
+                        <p>Select and manage default addresses.</p>
+                        <button class="btn">Manage Addresses</button>
+                    </div>
+
+                    <div class="card">
+                        <h3>Track Status</h3>
+                        <p>Real-time updates of your current bookings.</p>
+                        <button class="btn">Track Now</button>
+                    </div>
+
+                    <div class="card">
+                        <h3>Submit OTP</h3>
+                        <p>Securely submit OTP during technician visit.</p>
+                        <button class="btn">Submit OTP</button>
+                    </div>
+
+                    <div class="card">
+                        <h3>Feedback</h3>
+                        <p>Rate your last service experience.</p>
+                        <button class="btn">Give Feedback</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

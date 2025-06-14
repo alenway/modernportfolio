@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>User Dashboard</title>
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            rel="stylesheet"
+        />
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                min-height: 100vh;
+                color: #2d3748;
+                line-height: 1.6;
+            }
+
+            .container {
+                max-width: 1400px;
+                margin: 0 auto;
+                padding: 2rem;
+            }
+
+            header {
+                text-align: center;
+                margin-bottom: 3rem;
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(10px);
+                border-radius: 20px;
+                padding: 2rem;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+            }
+
+            header h1 {
+                font-size: clamp(2rem, 4vw, 3rem);
+                font-weight: 700;
+                color: white;
+                margin-bottom: 0.5rem;
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            }
+
+            header p {
+                color: rgba(255, 255, 255, 0.9);
+                font-size: 1.1rem;
+                font-weight: 300;
+            }
+
+            .grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+                gap: 1.5rem;
+            }
+
+            .card {
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(10px);
+                padding: 2rem;
+                border-radius: 16px;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                position: relative;
+                overflow: hidden;
+            }
+
+            .card::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 4px;
+                background: linear-gradient(90deg, #667eea, #764ba2);
+                transform: scaleX(0);
+                transition: transform 0.3s ease;
+            }
+
+            .card:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            }
+
+            .card:hover::before {
+                transform: scaleX(1);
+            }
+
+            .card-header {
+                display: flex;
+                align-items: center;
+                margin-bottom: 1rem;
+            }
+
+            .card-icon {
+                width: 48px;
+                height: 48px;
+                border-radius: 12px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-right: 1rem;
+                font-size: 1.5rem;
+                color: white;
+            }
+
+            .card h2 {
+                font-size: 1.25rem;
+                font-weight: 600;
+                color: #1a202c;
+                margin: 0;
+            }
+
+            .card p {
+                color: #4a5568;
+                margin-bottom: 1.5rem;
+                font-size: 0.95rem;
+            }
+
+            .card ul {
+                list-style: none;
+                margin-bottom: 1.5rem;
+            }
+
+            .card ul li {
+                padding: 0.5rem 0;
+                color: #4a5568;
+                font-size: 0.9rem;
+                display: flex;
+                align-items: center;
+            }
+
+            .card ul li::before {
+                content: "●";
+                color: #667eea;
+                margin-right: 0.5rem;
+                font-size: 0.8rem;
+            }
+
+            .btn {
+                padding: 0.75rem 1.5rem;
+                border: none;
+                border-radius: 8px;
+                color: white;
+                cursor: pointer;
+                font-weight: 500;
+                font-size: 0.95rem;
+                transition: all 0.3s ease;
+                text-transform: none;
+                letter-spacing: 0.025em;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .btn::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.2),
+                    transparent
+                );
+                transition: left 0.5s;
+            }
+
+            .btn:hover::before {
+                left: 100%;
+            }
+
+            .btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            }
+
+            .btn:active {
+                transform: translateY(0);
+            }
+
+            .btn-blue {
+                background: linear-gradient(135deg, #4299e1, #2b6cb0);
+                box-shadow: 0 4px 14px rgba(66, 153, 225, 0.4);
+            }
+
+            .btn-green {
+                background: linear-gradient(135deg, #48bb78, #2f855a);
+                box-shadow: 0 4px 14px rgba(72, 187, 120, 0.4);
+            }
+
+            .btn-purple {
+                background: linear-gradient(135deg, #9f7aea, #6b46c1);
+                box-shadow: 0 4px 14px rgba(159, 122, 234, 0.4);
+            }
+
+            .btn-indigo {
+                background: linear-gradient(135deg, #667eea, #5a67d8);
+                box-shadow: 0 4px 14px rgba(102, 126, 234, 0.4);
+            }
+
+            .btn-yellow {
+                background: linear-gradient(135deg, #ed8936, #d69e2e);
+                box-shadow: 0 4px 14px rgba(237, 137, 54, 0.4);
+            }
+
+            .btn-red {
+                background: linear-gradient(135deg, #f56565, #e53e3e);
+                box-shadow: 0 4px 14px rgba(245, 101, 101, 0.4);
+            }
+
+            .btn-teal {
+                background: linear-gradient(135deg, #38b2ac, #2c7a7b);
+                box-shadow: 0 4px 14px rgba(56, 178, 172, 0.4);
+            }
+
+            .input-group {
+                position: relative;
+                margin-bottom: 1rem;
+            }
+
+            .card input[type="text"],
+            .card textarea {
+                width: 100%;
+                padding: 0.75rem 1rem;
+                border: 2px solid #e2e8f0;
+                border-radius: 8px;
+                font-size: 0.95rem;
+                transition: all 0.3s ease;
+                background: #f7fafc;
+            }
+
+            .card input[type="text"]:focus,
+            .card textarea:focus {
+                outline: none;
+                border-color: #667eea;
+                background: white;
+                box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            }
+
+            textarea {
+                resize: vertical;
+                min-height: 100px;
+            }
+
+            .feedback-card {
+                grid-column: span 2;
+            }
+
+            .status-indicator {
+                display: inline-block;
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                margin-right: 0.5rem;
+            }
+
+            .status-pending {
+                background-color: #ed8936;
+            }
+            .status-assigned {
+                background-color: #4299e1;
+            }
+            .status-enroute {
+                background-color: #9f7aea;
+            }
+            .status-progress {
+                background-color: #f56565;
+            }
+            .status-completed {
+                background-color: #48bb78;
+            }
+
+            @media (max-width: 768px) {
+                .container {
+                    padding: 1rem;
+                }
+
+                .grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .feedback-card {
+                    grid-column: span 1;
+                }
+
+                .card {
+                    padding: 1.5rem;
+                }
+            }
+
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .card {
+                animation: fadeInUp 0.6s ease forwards;
+            }
+
+            .card:nth-child(1) {
+                animation-delay: 0.1s;
+            }
+            .card:nth-child(2) {
+                animation-delay: 0.2s;
+            }
+            .card:nth-child(3) {
+                animation-delay: 0.3s;
+            }
+            .card:nth-child(4) {
+                animation-delay: 0.4s;
+            }
+            .card:nth-child(5) {
+                animation-delay: 0.5s;
+            }
+            .card:nth-child(6) {
+                animation-delay: 0.6s;
+            }
+            .card:nth-child(7) {
+                animation-delay: 0.7s;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <!-- Header -->
+            <header>
+                <h1>
+                    <i class="fas fa-tachometer-alt"></i> Welcome to Your
+                    Dashboard
+                </h1>
+                <p>Manage your services, bookings, and preferences with ease</p>
+            </header>
+
+            <!-- Grid -->
+            <div class="grid">
+                <!-- Book New Service -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon btn-blue">
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <h2>Book New Service</h2>
+                    </div>
+                    <p>
+                        Easily initiate a new service request with our
+                        streamlined booking process.
+                    </p>
+                    <button class="btn btn-blue">
+                        <i class="fas fa-calendar-plus"></i> Book Now
+                    </button>
+                </div>
+
+                <!-- View Subscriptions -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon btn-green">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <h2>View Subscriptions</h2>
+                    </div>
+                    <p>
+                        Manage, upgrade, or renew your active subscriptions and
+                        service plans.
+                    </p>
+                    <button class="btn btn-green">
+                        <i class="fas fa-cog"></i> Manage Subscriptions
+                    </button>
+                </div>
+
+                <!-- Booking History -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon btn-purple">
+                            <i class="fas fa-history"></i>
+                        </div>
+                        <h2>Booking History</h2>
+                    </div>
+                    <p>
+                        Review all past bookings with detailed status
+                        information and service records.
+                    </p>
+                    <button class="btn btn-purple">
+                        <i class="fas fa-list"></i> View History
+                    </button>
+                </div>
+
+                <!-- Saved Addresses -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon btn-indigo">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h2>Saved Addresses</h2>
+                    </div>
+                    <p>
+                        Manage your addresses and set default locations for
+                        faster service booking.
+                    </p>
+                    <button class="btn btn-indigo">
+                        <i class="fas fa-home"></i> Manage Addresses
+                    </button>
+                </div>
+
+                <!-- Track Booking Status -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon btn-yellow">
+                            <i class="fas fa-tracking"></i>
+                        </div>
+                        <h2>Track Booking Status</h2>
+                    </div>
+                    <ul>
+                        <li>
+                            <span class="status-indicator status-pending"></span
+                            >Pending Confirmation
+                        </li>
+                        <li>
+                            <span
+                                class="status-indicator status-assigned"
+                            ></span
+                            >Job Assigned
+                        </li>
+                        <li>
+                            <span class="status-indicator status-enroute"></span
+                            >Technician En Route
+                        </li>
+                        <li>
+                            <span
+                                class="status-indicator status-progress"
+                            ></span
+                            >Work in Progress
+                        </li>
+                        <li>
+                            <span
+                                class="status-indicator status-completed"
+                            ></span
+                            >Work Completed
+                        </li>
+                    </ul>
+                    <button class="btn btn-yellow">
+                        <i class="fas fa-search"></i> Track Now
+                    </button>
+                </div>
+
+                <!-- Submit OTP -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon btn-red">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h2>Submit OTP</h2>
+                    </div>
+                    <p>
+                        Enter the one-time password to verify and confirm
+                        technician visit completion.
+                    </p>
+                    <div class="input-group">
+                        <input
+                            type="text"
+                            placeholder="Enter 6-digit OTP"
+                            maxlength="6"
+                        />
+                    </div>
+                    <button class="btn btn-red">
+                        <i class="fas fa-check-circle"></i> Submit OTP
+                    </button>
+                </div>
+
+                <!-- Give Feedback -->
+                <div class="card feedback-card">
+                    <div class="card-header">
+                        <div class="card-icon btn-teal">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h2>Give Feedback</h2>
+                    </div>
+                    <p>
+                        Rate our service quality and share your experience to
+                        help us improve our offerings.
+                    </p>
+                    <div class="input-group">
+                        <textarea
+                            rows="4"
+                            placeholder="Share your experience and suggestions..."
+                        ></textarea>
+                    </div>
+                    <button class="btn btn-teal">
+                        <i class="fas fa-paper-plane"></i> Submit Feedback
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // Add subtle interactions
+            document.querySelectorAll(".btn").forEach((button) => {
+                button.addEventListener("click", function () {
+                    // Add click animation
+                    this.style.transform = "scale(0.95)";
+                    setTimeout(() => {
+                        this.style.transform = "";
+                    }, 150);
+                });
+            });
+
+            // OTP input formatting
+            const otpInput = document.querySelector('input[type="text"]');
+            if (otpInput) {
+                otpInput.addEventListener("input", function () {
+                    this.value = this.value.replace(/\D/g, "");
+                });
+            }
+
+            // Add floating animation to cards
+            document.querySelectorAll(".card").forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
+        </script>
+    </body>
+</html>
